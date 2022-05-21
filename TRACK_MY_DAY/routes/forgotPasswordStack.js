@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator } from '@react-navigation/native-stack';
 import { createAppContainer } from 'react-navigation';
 import ForgotPassword from '../screens/ForgotPassword';
 import Login from '../screens/Login';

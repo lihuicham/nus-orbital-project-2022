@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Pressable, Alert, Image } from 'react-native';
 import React, { useState } from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+//import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Login({ navigation }) {
   const [username, setUsername] = useState('');
