@@ -1,7 +1,6 @@
 import { Button, Pressable, Platform, Alert, StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, Keyboard, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import {Picker} from '@react-native-picker/picker';
 
 export default function Register() {
     const [username, setUsername] = useState('');
@@ -11,6 +10,8 @@ export default function Register() {
     const [favQuote, setFavQuote] = useState('');
     const [sleep, setSleep] = useState('');
     const [water, setWater] = useState('');
+
+
 
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
@@ -47,16 +48,6 @@ export default function Register() {
             Alert.alert('Correct Password Length - continue')
         }
     }
-
-    // const sleepPicker = {
-    //     hours: 'select',
-    // };
-
-    const [sleepPicker, setSleepPicker] = useState('select', '0');
-
-    const waterPicker = {
-        glasses: 'select',
-    };
 
     return (
         <TouchableWithoutFeedback onPress={() => {
@@ -110,51 +101,16 @@ export default function Register() {
                     onChangeText={(val) => setFavQuote(val)}/>
 
                     <Text>Sleep goal:</Text>
-                    <Picker
-                    selectedValue={sleepPicker.hours}
-                    style={{height: 50, width: 150}}
-                    onValueChange={(val, value) =>
-                        setSleepPicker(val, value)}>
-                            {/* still not sticking - try birthday method */}
-                    {/* onValueChange={(itemValue, itemIndex) =>
-                        this.setState({hours: itemValue})
-                    }> */}
-                    <Picker.Item label="select" value="select" color="grey"/>
-                    <Picker.Item label="4 hours" value="4" />
-                    <Picker.Item label="5 hours" value="5" />
-                    <Picker.Item label="6 hours" value="6" />
-                    <Picker.Item label="7 hours" value="7" />
-                    <Picker.Item label="8 hours" value="8" />
-                    <Picker.Item label="9 hours" value="9" />
-                    <Picker.Item label="10 hours" value="10" />
-                    <Picker.Item label="11 hours" value="11" />
-                    <Picker.Item label="12 hours" value="12" />
-                    </Picker>
-
-                    <Text>Water goal:</Text>
-                    <Picker
-                    selectedValue={waterPicker.glasses}
-                    style={{height: 50, width: 150}}
-                    onValueChange={(itemValue, itemIndex) =>
-                        this.setState({glasses: itemValue})
-                    }>
-                    <Picker.Item label="select" value="select" color="grey"/>
-                    <Picker.Item label="4 glasses" value="4" />
-                    <Picker.Item label="5 glasses" value="5" />
-                    <Picker.Item label="6 glasses" value="6" />
-                    <Picker.Item label="7 glasses" value="7" />
-                    <Picker.Item label="8 glasses" value="8" />
-                    <Picker.Item label="9 glasses" value="9" />
-                    <Picker.Item label="10 glasses" value="10" />
-                    <Picker.Item label="11 glasses" value="11" />
-                    <Picker.Item label="12 glasses" value="12" />
-                    </Picker>
-
-
-                    {/* <TextInput
+                    <TextInput
                     multiline
                     style={styles.input}
-                    onChangeText={(val) => setWater(val)}/> */}
+                    onChangeText={(val) => setSleep(val)}/>
+
+                    <Text>Water goal:</Text>
+                    <TextInput
+                    multiline
+                    style={styles.input}
+                    onChangeText={(val) => setWater(val)}/>
 
                     <View style={styles.pressBox}>
                         <Pressable
