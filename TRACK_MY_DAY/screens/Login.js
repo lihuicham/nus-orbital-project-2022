@@ -1,11 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TextInput, Pressable, Alert, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Pressable, Alert, Image } from 'react-native';
 import React, { useState } from 'react';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function Login() {
+export default function Login({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const toRegister = () => {
+    navigation.navigate('Register')
+  }
+
+  const forgotPwd = () => {
+    navigation.navigate('ForgotPassword')
+  }
       
   const printAlert = () => {
     Alert.alert('Pressable Called ...')
@@ -14,63 +22,79 @@ export default function Login() {
   return (
     <View style={styles.container}>
         <Image source={require('../assets/title.png')} style={styles.image}></Image>
-       
-
       
-      <Text>Enter username:</Text>
       <TextInput
         style={styles.input}
-        placeholder='e.g. johndoe'
+        placeholder='Email'
         onChangeText={(val) => setUsername(val)}/>
 
-      <Text>Enter password:</Text>
+      
       <TextInput
         style={styles.input}
+        placeholder='Password'
         onChangeText={(val) => setPassword(val)}/>
 
       <Text> name: {username} and password: {password} </Text>
 
       <View style={styles.pressBox}>
         <Pressable
-            onPress={printAlert} // change this to navigate to another page
+            onPress={printAlert} // figure this out - based on login details
             style={({ pressed }) => ({
-            backgroundColor: pressed ? '#FF3D00' : '#0080FF', // colour a bit lighter when pressed
+            backgroundColor: pressed ? '#FF3D00' : '#0080FF' // colour a bit lighter when pressed
             
             })}>
 
             {({ pressed }) => (
-                <Text style={styles.pressable_text}>
-                {pressed ? 'Clicked!' : 'Login'}
-                </Text>
+                <Text style={styles.pressable_text}>Login</Text>
             )}
                 
         </Pressable>
       </View>
 
-      <Text> Don't have an account? Register: </Text>
-
+      <Text> Forgot your password? </Text>
       <View style={styles.pressBox}>
 
         <Pressable
-            onPress={printAlert} // change this to navigate to another page
+            onPress={forgotPwd} // change this to navigate to another page
             style={({ pressed }) => ({
-            backgroundColor: pressed ? '#FF3D00' : '#0080FF', // colour a bit lighter when pressed
-            
+            backgroundColor: pressed ? '#FF3D00' : '#0080FF' // colour a bit lighter when pressed
             })}>
 
             {({ pressed }) => (
-                <Text style={styles.pressable_text}>
-                {pressed ? 'Clicked!' : 'Register'}
-                </Text>
-            )}
-                
+                <Text style={styles.pressable_text}>Reset password</Text>
+            )}   
+
+        </Pressable>
+      </View>
+
+      {/* <View style={styles.onSide}>
+        <Text>Don't have an account?</Text>
+        <TouchableOpacity onPress={toRegister}>
+          <Text style={styles.link}>Sign up</Text>
+        </TouchableOpacity>
+      </View> */}
+
+      <Text> Don't have an account? </Text>
+
+      <View style={styles.onSide}>
+
+        <Pressable
+            onPress={toRegister} 
+            >
+
+            {({ pressed }) => (
+                <Text style={styles.link}>Register</Text>
+            )}   
+
         </Pressable>
       </View>
       
       <StatusBar style="auto" />
     </View>
-  );
-}
+
+    
+)};
+
 // make the buttons touchable things!!
 const styles = StyleSheet.create({
   container: { //key-value pairs inside object
@@ -111,7 +135,20 @@ const styles = StyleSheet.create({
 
   pressBox: {
       marginTop: 10,
-      marginBottom: 10
+      marginBottom: 10,
+      marginEnd: 10,
+  },
+
+  onSide: {
+    flexDirection: 'row',
+  },
+
+  link: {
+    textAlign: 'center',
+    fontSize: 14,
+    color: 'blue',
+    fontWeight: 'bold',
+    paddingLeft: 8,
   },
   
   image: {
