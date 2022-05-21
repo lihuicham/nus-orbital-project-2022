@@ -36,56 +36,40 @@ export default function Login({ navigation }) {
 
       <Text> name: {username} and password: {password} </Text>
 
+
       <View style={styles.pressBox}>
         <Pressable
             onPress={printAlert} // figure this out - based on login details
             style={({ pressed }) => ({
-            backgroundColor: pressed ? '#FF3D00' : '#0080FF' // colour a bit lighter when pressed
-            
+            backgroundColor: pressed ? '#FF3D00' : '#0080FF' // colour a bit lighter when pressed            
             })}>
-
             {({ pressed }) => (
                 <Text style={styles.pressable_text}>Login</Text>
-            )}
-                
+            )}    
         </Pressable>
       </View>
+
 
       <Text> Forgot your password? </Text>
-      <View style={styles.pressBox}>
-
+      <View style={styles.onSide}>
         <Pressable
-            onPress={forgotPwd} // change this to navigate to another page
-            style={({ pressed }) => ({
-            backgroundColor: pressed ? '#FF3D00' : '#0080FF' // colour a bit lighter when pressed
-            })}>
-
+            onPress={forgotPwd} 
+            >
             {({ pressed }) => (
-                <Text style={styles.pressable_text}>Reset password</Text>
+                <Text style={styles.link}>Reset Password</Text>
             )}   
-
         </Pressable>
       </View>
 
-      {/* <View style={styles.onSide}>
-        <Text>Don't have an account?</Text>
-        <TouchableOpacity onPress={toRegister}>
-          <Text style={styles.link}>Sign up</Text>
-        </TouchableOpacity>
-      </View> */}
 
       <Text> Don't have an account? </Text>
-
       <View style={styles.onSide}>
-
         <Pressable
             onPress={toRegister} 
             >
-
             {({ pressed }) => (
                 <Text style={styles.link}>Register</Text>
             )}   
-
         </Pressable>
       </View>
       
