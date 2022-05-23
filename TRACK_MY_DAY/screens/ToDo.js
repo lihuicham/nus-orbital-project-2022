@@ -21,7 +21,7 @@ export default function ToDo() {
   const handleAddTask = () => {
     Keyboard.dismiss();
     setTaskItems([...taskItems, task]);
-    setTask(null);
+    setTask('');
   };
 
   // deleteTask - a function to remove completed task from the todo list
