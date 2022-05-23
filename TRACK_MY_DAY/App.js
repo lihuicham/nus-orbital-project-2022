@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import ToDo from "./screens/ToDo";
+import Notes from "./screens/Notes";
 
 export default function App() {
   return (
-    <ToDo />
+    <Notes />
   );
 }
 
