@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Pressable, Alert, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Pressable, Alert, Image, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import React, { useState } from 'react';
 //import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Login({ navigation }) {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const toRegister = () => {
@@ -20,61 +20,66 @@ export default function Login({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
-        <Image source={require('../assets/title.png')} style={styles.image}></Image>
-      
-      <TextInput
-        style={styles.input}
-        placeholder='Email'
-        onChangeText={(val) => setUsername(val)}/>
+    <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss();
+    }}>
+      <View style={styles.container}>
+          <Image source={require('../assets/title.png')} style={styles.image}></Image>
+        
+        <TextInput
+          style={styles.input}
+          placeholder='Email'
+          onChangeText={(val) => setEmail(val)}/>
 
-      
-      <TextInput
-        style={styles.input}
-        placeholder='Password'
-        onChangeText={(val) => setPassword(val)}/>
+        
+        <TextInput
+          style={styles.input}
+          placeholder='Password'
+          onChangeText={(val) => setPassword(val)}
+          secureTextEntry />
 
-      <Text> name: {username} and password: {password} </Text>
+        <Text> email: {email} and password: {password} </Text>
 
 
-      <View style={styles.pressBox}>
-        <Pressable
-            onPress={printAlert} // figure this out - based on login details
-            style={({ pressed }) => ({
-            backgroundColor: pressed ? '#FF3D00' : '#0080FF' // colour a bit lighter when pressed            
-            })}>
-            {({ pressed }) => (
-                <Text style={styles.pressable_text}>Login</Text>
-            )}    
-        </Pressable>
+        <View style={styles.pressBox}>
+          <Pressable
+              onPress={printAlert} // figure this out - based on login details
+              style={({ pressed }) => ({
+              backgroundColor: pressed ? '#FF3D00' : '#0080FF' // colour a bit lighter when pressed            
+              })}>
+              {({ pressed }) => (
+                  <Text style={styles.pressable_text}>Login</Text>
+              )}    
+          </Pressable>
+        </View>
+
+
+        <Text> Forgot your password? </Text>
+        <View style={styles.onSide}>
+          <Pressable
+              onPress={forgotPwd} 
+              >
+              {({ pressed }) => (
+                  <Text style={styles.link}>Reset Password</Text>
+              )}   
+          </Pressable>
+        </View>
+
+
+        <Text> Don't have an account? </Text>
+        <View style={styles.onSide}>
+          <Pressable
+              onPress={toRegister} 
+              >
+              {({ pressed }) => (
+                  <Text style={styles.link}>Register</Text>
+              )}   
+          </Pressable>
+        </View>
+        
+        <StatusBar style="auto" />
       </View>
-
-
-      <Text> Forgot your password? </Text>
-      <View style={styles.onSide}>
-        <Pressable
-            onPress={forgotPwd} 
-            >
-            {({ pressed }) => (
-                <Text style={styles.link}>Reset Password</Text>
-            )}   
-        </Pressable>
-      </View>
-
-
-      <Text> Don't have an account? </Text>
-      <View style={styles.onSide}>
-        <Pressable
-            onPress={toRegister} 
-            >
-            {({ pressed }) => (
-                <Text style={styles.link}>Register</Text>
-            )}   
-        </Pressable>
-      </View>
-      
-      <StatusBar style="auto" />
-    </View>
+    </TouchableWithoutFeedback>
 
     
 )};
