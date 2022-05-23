@@ -13,13 +13,21 @@ import Note from "../components/notescomp/Note";
 
 //SERVES AS APP.JS
 export default function Notes() {
-  const [notes, setNotes] = useState();
+  const [notes, setNotes] = useState('');
   const [notesItems, setNotesItems] = useState([]);
+  // to count the character limit 
+  const characterLimit = 200;
+
+  const handleChange = (text) => {
+    if (characterLimit - text.length >= 0) {
+      setNotes(text);
+    }
+  }
 
   const handleSave = () => {
     Keyboard.dismiss();
     setNotesItems([...notesItems, notes]);
-    setNotes(null);
+    setNotes('');
   };
 
   const deleteNote = (index) => {
@@ -38,12 +46,13 @@ export default function Notes() {
         >
           <TextInput
             style={styles.newnote}
+            multiline={true}
             placeholder="Type to add a note"
             value={notes}
-            onChangeText={(text) => setNotes(text)}
+            onChangeText={(text) => handleChange(text)}
           />
           <View style={styles.notefooter}>
-            <Text>200 Remaining</Text>
+            <Text>{characterLimit - notes.length} Remaining</Text>
             <TouchableOpacity onPress={() => handleSave()}>
               <View style={styles.savewrapper}>
                 <Text style={styles.save}>Save</Text>
@@ -73,7 +82,7 @@ const styles = StyleSheet.create({
   noteslistwrapper: {
     marginTop: 10,
   },
-
+  
   newnotewrapper: {
     marginTop: 70,
     backgroundColor: "#99ffff",

@@ -22,6 +22,8 @@ const Note = ({ text }) => {
 export default Note;
 
 const styles = StyleSheet.create({
+
+  //FIXTHIS - height issue - the footer will be pushed out if press multiple "Enter"
   notewrapper: {
     backgroundColor: "#ffffb3",
     borderRadius: 10,

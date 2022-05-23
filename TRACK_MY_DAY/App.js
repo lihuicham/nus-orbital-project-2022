@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import Notes from "./screens/Notes";
+import NotesList from "./screens/NotesList";
 
 export default function App() {
   return (
-    <Notes />
+    <NotesList />
   );
 }
 
