@@ -1,11 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Pressable, Alert, Image, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import React, { useState } from 'react';
-//import { TouchableOpacity } from 'react-native-gesture-handler';
+// import { auth } from '../firebase-config'; // replace with own file path
+// import {
+//   createUserWithEmailAndPassword,
+//   signInWithEmailAndPassword,
+//   onAuthStateChanged,
+//   signOut,
+// } from "firebase/auth";
+ 
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  //const [user, setUser] = useState({}); FOR FIREBASE
 
   const toRegister = () => {
     navigation.navigate('Register')
@@ -14,10 +22,35 @@ export default function Login({ navigation }) {
   const forgotPwd = () => {
     navigation.navigate('ForgotPassword')
   }
-      
+
+  // delete printAlert once Login works - link to Home page
   const printAlert = () => {
     Alert.alert('Pressable Called ...')
   }
+  
+  //  FIREBASE PART
+  // onAuthStateChanged(auth, (currentUser) => {
+  //   setUser(currentUser);
+  // });
+
+  // const login = async () => {
+  //   try {
+  //     const user = await signInWithEmailAndPassword(
+  //       auth,
+  //       email,
+  //       password
+  //     );
+  //     console.log(user);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
+
+  // const logout = async () => {
+  //   await signOut(auth);
+  // };
+
+
 
   return (
     <TouchableWithoutFeedback onPress={() => {
@@ -40,18 +73,18 @@ export default function Login({ navigation }) {
 
         <Text> email: {email} and password: {password} </Text>
 
-
         <View style={styles.pressBox}>
           <Pressable
-              onPress={printAlert} // figure this out - based on login details
+              onPress={printAlert} // Replace with login function
               style={({ pressed }) => ({
-              backgroundColor: pressed ? '#FF3D00' : '#0080FF' // colour a bit lighter when pressed            
+              backgroundColor: pressed ? '#FF3D00' : '#0080FF'          
               })}>
               {({ pressed }) => (
                   <Text style={styles.pressable_text}>Login</Text>
               )}    
           </Pressable>
         </View>
+
 
 
         <Text> Forgot your password? </Text>
@@ -69,7 +102,7 @@ export default function Login({ navigation }) {
         <Text> Don't have an account? </Text>
         <View style={styles.onSide}>
           <Pressable
-              onPress={toRegister} 
+              onPress={toRegister}
               >
               {({ pressed }) => (
                   <Text style={styles.link}>Register</Text>
@@ -84,7 +117,6 @@ export default function Login({ navigation }) {
     
 )};
 
-// make the buttons touchable things!!
 const styles = StyleSheet.create({
   container: { //key-value pairs inside object
     flex: 1,

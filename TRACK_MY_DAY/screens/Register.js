@@ -71,12 +71,14 @@ export default function Register() {
                     <Text>Enter password:</Text>
                     <TextInput
                     style={styles.input}
-                    onChangeText={(val) => setPassword(val)}/>
+                    onChangeText={(val) => setPassword(val)}
+                    secureTextEntry />
 
                     <Text>Repeat password:</Text>
                     <TextInput
                     style={styles.input}
-                    onChangeText={(val) => setrepeatPassword(val)}/>
+                    onChangeText={(val) => setrepeatPassword(val)}
+                    secureTextEntry />
 
                     <Text>Enter birthday:</Text>
                         
