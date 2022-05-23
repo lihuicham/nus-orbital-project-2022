@@ -2,11 +2,14 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Note from './Note'
 
-const NotesList = () => {
+const NotesList = ({ items }) => {
   return (
     <View style={styles.noteslistwrapper}>
-      <Note />
-      <Note />
+        {
+            //the note here refers to each note item in the items array 
+            items.map((note) => (
+                <Note key={note.key} text={note.text} date={note.date} /> 
+        ))}
     </View>
   )
 }

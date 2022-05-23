@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Note = () => {
+const Note = ({key, text, date}) => {
   return (
     <View style={styles.notewrapper}>
       <View style={styles.noteheader}>
-          <Text>First Day In School</Text>
+          <Text>{text}</Text>
       </View>
       <View style={styles.notefooter}>
-          <Text>Date</Text>
-          <Text>Delete Me!</Text>
+          <Text>{date}</Text>
+          <Text>Delete</Text>
       </View>
     </View>
   )
