@@ -1,36 +1,103 @@
-import { StyleSheet, Text, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+  Keyboard,
+  ScrollView,
+} from "react-native";
 import React, { useState } from "react";
-import NotesList from "../components/notescomp/NotesList";
+import Note from "../components/notescomp/Note";
 
 //SERVES AS APP.JS
 export default function Notes() {
-  const [notes, setNotes] = useState([
-    {
-      key: 1, 
-      text: "This is my first note!",
-      date: "23/05/2022",
-    },
+  const [notes, setNotes] = useState();
+  const [notesItems, setNotesItems] = useState([]);
 
-    {
-      key: 2, 
-      text: "This is my second note!",
-      date: "28/05/2022",
-    },
+  const handleSave = () => {
+    Keyboard.dismiss();
+    setNotesItems([...notesItems, notes]);
+    setNotes(null);
+  };
 
-    {
-      key: 3, 
-      text: "This is my third note!",
-      date: "30/05/2022",
-    },
-    
-  ]);
+  const deleteNote = (index) => {
+    let itemsCopy = [...notesItems];
+    itemsCopy.splice(index, 1);
+    setNotesItems(itemsCopy);
+  };
 
   return (
-    <View>
-      {/* the items prop here refers to an array of notes */}
-      <NotesList items={notes} />
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        {/*Add notes*/}
+        <KeyboardAvoidingView
+          style={styles.newnotewrapper}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <TextInput
+            style={styles.newnote}
+            placeholder="Type to add a note"
+            value={notes}
+            onChangeText={(text) => setNotes(text)}
+          />
+          <View style={styles.notefooter}>
+            <Text>200 Remaining</Text>
+            <TouchableOpacity onPress={() => handleSave()}>
+              <View style={styles.savewrapper}>
+                <Text style={styles.save}>Save</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </KeyboardAvoidingView>
+
+        {/*Notes List*/}
+        <View style={styles.noteslistwrapper}>
+          {notesItems.map((item, index) => {
+            return (
+              <TouchableOpacity key={index} onPress={() => deleteNote(index)}>
+                <Note text={item} />
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  noteslistwrapper: {
+    marginTop: 10,
+  },
+
+  newnotewrapper: {
+    marginTop: 70,
+    backgroundColor: "#99ffff",
+    borderRadius: 10,
+    padding: 20,
+    height: 180,
+    justifyContent: "space-between",
+    marginVertical: 10,
+    marginHorizontal: 20,
+  },
+
+  notefooter: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  savewrapper: {
+    width: "auto",
+    height: "auto",
+    padding: 5,
+    backgroundColor: "#FFF",
+    borderRadius: 12,
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "#C0C0C0",
+    borderWidth: 1,
+  },
+});

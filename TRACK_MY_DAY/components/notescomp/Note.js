@@ -1,40 +1,51 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 
-const Note = ({key, text, date}) => {
+const Note = ({ text }) => {
   return (
     <View style={styles.notewrapper}>
       <View style={styles.noteheader}>
-          <Text>{text}</Text>
+        <Text>{text}</Text>
       </View>
       <View style={styles.notefooter}>
-          <Text>{date}</Text>
-          <Text>Delete</Text>
+        <View style={styles.deletewrapper}>
+          <Text style={styles.delete}>Delete</Text>
+        </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default Note
+export default Note;
 
 const styles = StyleSheet.create({
-    notewrapper: {
-        backgroundColor: '#FEF68A',
-        borderRadius: 10,
-        padding: 20,
-        height: 180, 
-        justifyContent: 'space-between',
-        marginVertical: 10, 
-        marginHorizontal: 20,  
-    },
+  notewrapper: {
+    backgroundColor: "#ffffb3",
+    borderRadius: 10,
+    padding: 20,
+    height: 180,
+    justifyContent: "space-between",
+    marginVertical: 10,
+    marginHorizontal: 20,
+  },
 
-    noteheader: {
+  noteheader: {},
 
-    },
+  notefooter: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
 
-    notefooter: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-})
+  deletewrapper: {
+    width: "auto",
+    height: "auto",
+    padding: 5,
+    backgroundColor: "pink",
+    borderRadius: 12,
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "#C0C0C0",
+    borderWidth: 1,
+  },
+});
