@@ -11,12 +11,15 @@ import {
 import React, { useState } from "react";
 import Note from "../components/notescomp/Note";
 import Search from "../components/notescomp/Search";
+import Header from "../components/notescomp/Header";
 
 //SERVES AS APP.JS
 export default function NotesList() {
   const [notes, setNotes] = useState('');
   const [notesItems, setNotesItems] = useState([]);
   const [searchText, setSearchText] = useState('');
+  //FIXME - consider to change the way darkMode is implemented 
+  const [darkMode, setDarkMode] = useState(false);
 
   // to count the character limit 
   const characterLimit = 200;
@@ -42,9 +45,7 @@ export default function NotesList() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <View style={styles.headerWrapper}>
-          <Text style={styles.header}>My Notes</Text>
-        </View>
+        <Header handleDarkMode={() => setDarkMode}/>
         <Search handleSearchNote={setSearchText}/>
         {/*Add notes*/}
         <KeyboardAvoidingView
@@ -75,7 +76,8 @@ export default function NotesList() {
           .map((item, index) => {
             return (
               /*FIXTHIS - need to figure out how to delete based on index.
-              deleteNote function should be able to pass in as prop in Note.js - Delete*/
+              deleteNote function should be able to pass in as prop in Note.js - Delete
+              Or, it can just be swipe to delete ??*/
               <TouchableOpacity key={index} onPress={() => deleteNote(index)}>
                 <Note text={item} />
               </TouchableOpacity>
@@ -88,16 +90,6 @@ export default function NotesList() {
 }
 
 const styles = StyleSheet.create({
-  headerWrapper: {
-    margin: 20,
-    paddingTop: 10, 
-  },
-
-  header: {
-    fontSize: 40, 
-    fontWeight: "bold",
-  },
-
   noteslistwrapper: {
     marginTop: 10,
   },
@@ -128,4 +120,5 @@ const styles = StyleSheet.create({
     borderColor: "#C0C0C0",
     borderWidth: 1,
   },
+
 });
