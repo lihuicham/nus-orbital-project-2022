@@ -10,11 +10,14 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import Note from "../components/notescomp/Note";
+import Search from "../components/notescomp/Search";
 
 //SERVES AS APP.JS
-export default function Notes() {
+export default function NotesList() {
   const [notes, setNotes] = useState('');
   const [notesItems, setNotesItems] = useState([]);
+  const [searchText, setSearchText] = useState('');
+
   // to count the character limit 
   const characterLimit = 200;
 
@@ -39,6 +42,10 @@ export default function Notes() {
   return (
     <ScrollView>
       <View style={styles.container}>
+        <View style={styles.headerWrapper}>
+          <Text style={styles.header}>My Notes</Text>
+        </View>
+        <Search handleSearchNote={setSearchText}/>
         {/*Add notes*/}
         <KeyboardAvoidingView
           style={styles.newnotewrapper}
@@ -63,10 +70,12 @@ export default function Notes() {
 
         {/*Notes List*/}
         <View style={styles.noteslistwrapper}>
-          {notesItems.map((item, index) => {
+          {/*FIXME - unable to filter*/}
+          {notesItems/*.filter((item) => item.text.toLowerCase().includes(searchText))*/
+          .map((item, index) => {
             return (
-              /*FIXTHIS - need to figure out how to delete based on index
-              deleteNote function should be implemented in Note.js - Delete*/
+              /*FIXTHIS - need to figure out how to delete based on index.
+              deleteNote function should be able to pass in as prop in Note.js - Delete*/
               <TouchableOpacity key={index} onPress={() => deleteNote(index)}>
                 <Note text={item} />
               </TouchableOpacity>
@@ -79,18 +88,26 @@ export default function Notes() {
 }
 
 const styles = StyleSheet.create({
+  headerWrapper: {
+    margin: 20,
+    paddingTop: 10, 
+  },
+
+  header: {
+    fontSize: 40, 
+    fontWeight: "bold",
+  },
+
   noteslistwrapper: {
     marginTop: 10,
   },
   
   newnotewrapper: {
-    marginTop: 70,
     backgroundColor: "#99ffff",
     borderRadius: 10,
     padding: 20,
     height: 180,
     justifyContent: "space-between",
-    marginVertical: 10,
     marginHorizontal: 20,
   },
 

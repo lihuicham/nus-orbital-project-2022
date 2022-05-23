@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   notefooter: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "center", 
   },
 
   deletewrapper: {
