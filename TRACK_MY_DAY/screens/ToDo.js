@@ -9,7 +9,7 @@ import {
   Keyboard,
   ScrollView,
 } from "react-native";
-import Task from "../components/Task";
+import Task from "../components/todocomp/Task";
 
 export default function ToDo() {
   // setTask is for the text input box
