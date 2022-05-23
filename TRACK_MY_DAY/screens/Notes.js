@@ -56,6 +56,8 @@ export default function Notes() {
         <View style={styles.noteslistwrapper}>
           {notesItems.map((item, index) => {
             return (
+              /*FIXTHIS - need to figure out how to delete based on index
+              deleteNote function should be implemented in Note.js - Delete*/
               <TouchableOpacity key={index} onPress={() => deleteNote(index)}>
                 <Note text={item} />
               </TouchableOpacity>

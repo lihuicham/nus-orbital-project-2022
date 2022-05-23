@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 
 const Note = ({ text }) => {
@@ -8,9 +8,12 @@ const Note = ({ text }) => {
         <Text>{text}</Text>
       </View>
       <View style={styles.notefooter}>
+      <Text>Date</Text>
+      <TouchableOpacity>
         <View style={styles.deletewrapper}>
           <Text style={styles.delete}>Delete</Text>
         </View>
+      </TouchableOpacity>
       </View>
     </View>
   );
