@@ -16,16 +16,15 @@ export default function Login({ navigation }) {
   //const [user, setUser] = useState({}); FOR FIREBASE
 
   const toRegister = () => {
-    navigation.navigate('Register')
+    navigation.navigate('Register');
   }
 
   const forgotPwd = () => {
-    navigation.navigate('ForgotPassword')
+    navigation.navigate('ForgotPassword');
   }
 
-  // delete printAlert once Login works - link to Home page
-  const printAlert = () => {
-    Alert.alert('Pressable Called ...')
+  const toHome = () => {
+    navigation.navigate('Home');
   }
   
   //  FIREBASE PART
@@ -75,7 +74,7 @@ export default function Login({ navigation }) {
 
         <View style={styles.pressBox}>
           <Pressable
-              onPress={printAlert} // Replace with login function
+              onPress={toHome} // only if Login details are correct!!!
               style={({ pressed }) => ({
               backgroundColor: pressed ? '#FF3D00' : '#0080FF'          
               })}>
