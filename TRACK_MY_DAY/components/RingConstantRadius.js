@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import{ VictoryPie, VictoryContainer } from 'victory-native';
 
-
-export default function Ring() {
+export default function RingConstantRadius() {
 
     let pieData = [
         { x: 1, y: 1, label: "Sleep" },
@@ -13,34 +12,16 @@ export default function Ring() {
 
     let colorData = ["tomato", "gold", "navy"]
 
-
-
-
-    // let dataImages = [
-    //     <Image source={require('../assets/clock.png')} style={styles.image}></Image>,
-    //     <Image source={require('../assets/glassOfWater.png')} style={styles.image}></Image>,
-    //     <Image source={require('../assets/footprint.png')} style={styles.image}></Image>
-    // ]
-
-
-
-
+    const [active, setActive] = useState(false);
 
     return (
+        <TouchableWithoutFeedback onPress={() => setActive(!active)}>
         <View>
             <VictoryPie
             data={pieData}           
             colorScale={colorData}
             innerRadius={90}
             radius={({ datum, active }) => (active ? 150 : 140)}
-            
-            
-            
-            
-            // labelComponent={}
-
-
-
 
             events={[
                 {
@@ -49,12 +30,12 @@ export default function Ring() {
                     onPressIn: () => {
                         return [{
                             eventKey: "all",
-                            mutation: () => ({ active: false })
-                            },
-
-                            {
+                            
+                            
                             mutation: () => ({ active: true })
                             }
+
+                            
                         ];
                         }
                    }
@@ -62,6 +43,7 @@ export default function Ring() {
               ]}
             />
         </View>
+        </TouchableWithoutFeedback>
     )
 }
 
@@ -69,11 +51,5 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    image: {
-        flex: 1,
-        width: 250,
-        height: 250,
-        resizeMode: 'contain'
     }
 })

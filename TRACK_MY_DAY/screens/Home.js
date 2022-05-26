@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Ring from '../components/Ring';
+//import RingConstantRadius from '../components/RingConstantRadius';
 
 export default function Home() {
 
