@@ -1,19 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Pressable, Alert, Image, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Pressable, Image, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import React, { useState } from 'react';
-// import { auth } from '../firebase-config'; // replace with own file path
-// import {
-//   createUserWithEmailAndPassword,
-//   signInWithEmailAndPassword,
-//   onAuthStateChanged,
-//   signOut,
-// } from "firebase/auth";
- 
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  //const [user, setUser] = useState({}); FOR FIREBASE
 
   const toRegister = () => {
     navigation.navigate('Register');
@@ -26,30 +17,6 @@ export default function Login({ navigation }) {
   const toHome = () => {
     navigation.navigate('Home');
   }
-  
-  //  FIREBASE PART
-  // onAuthStateChanged(auth, (currentUser) => {
-  //   setUser(currentUser);
-  // });
-
-  // const login = async () => {
-  //   try {
-  //     const user = await signInWithEmailAndPassword(
-  //       auth,
-  //       email,
-  //       password
-  //     );
-  //     console.log(user);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
-
-  // const logout = async () => {
-  //   await signOut(auth);
-  // };
-
-
 
   return (
     <TouchableWithoutFeedback onPress={() => {
@@ -62,7 +29,6 @@ export default function Login({ navigation }) {
           style={styles.input}
           placeholder='Email'
           onChangeText={(val) => setEmail(val)}/>
-
         
         <TextInput
           style={styles.input}
@@ -70,11 +36,9 @@ export default function Login({ navigation }) {
           onChangeText={(val) => setPassword(val)}
           secureTextEntry />
 
-        <Text> email: {email} and password: {password} </Text>
-
         <View style={styles.pressBox}>
           <Pressable
-              onPress={toHome} // only if Login details are correct!!!
+              onPress={toHome}
               style={({ pressed }) => ({
               backgroundColor: pressed ? '#FF3D00' : '#0080FF'          
               })}>
@@ -83,8 +47,6 @@ export default function Login({ navigation }) {
               )}    
           </Pressable>
         </View>
-
-
 
         <Text> Forgot your password? </Text>
         <View style={styles.onSide}>
@@ -96,7 +58,6 @@ export default function Login({ navigation }) {
               )}   
           </Pressable>
         </View>
-
 
         <Text> Don't have an account? </Text>
         <View style={styles.onSide}>
@@ -117,25 +78,11 @@ export default function Login({ navigation }) {
 )};
 
 const styles = StyleSheet.create({
-  container: { //key-value pairs inside object
+  container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-
-  login: {
-    flex: 0,
-    width: 'auto',
-    textDecorationColor: '#f1356d',
-    padding: 20,
-  },
-  
-  register: {
-    flex: 0,
-    width: 'auto',
-    textDecorationColor: '#f1356d',
-    padding: 20,
   },
 
   input: {
@@ -177,6 +124,5 @@ const styles = StyleSheet.create({
     height: 250,
     resizeMode: 'contain'
 }
-
 
 });

@@ -1,9 +1,6 @@
-import { StyleSheet, Text, View, TextInput, Pressable, TouchableWithoutFeedback, Keyboard, ScrollView } from 'react-native';
-import React, { useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import React from 'react';
 import Ring from '../components/Ring';
-//import RingConstantRadius from '../components/RingConstantRadius';
 
 export default function Home() {
 
@@ -12,6 +9,7 @@ export default function Home() {
             Keyboard.dismiss();
         }}>
             <View style={styles.container}>
+                {/* replace name with user's name here */}
                 <Text style={styles.welcome}>Welcome (replace name)!</Text>
                 <View style={styles.ring}>
                     <Ring />
@@ -21,7 +19,7 @@ export default function Home() {
 )};
 
 const styles = StyleSheet.create({
-    container: { //key-value pairs inside object
+    container: {
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center'
@@ -32,9 +30,5 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         padding: 10,
         marginTop: 50
-    },
-    ring: {
-        padding: 0
-        // just keep in case we need to change the style later
     }
 });

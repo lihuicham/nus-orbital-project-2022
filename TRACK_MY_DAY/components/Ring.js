@@ -5,9 +5,24 @@ import{ VictoryPie } from 'victory-native';
 export default function Ring() {
 
     let pieData = [
-        { x: 1, y: 1, label: "Sleep", pic: <ImageBackground source={require('../assets/sleep.png')} style={styles.pictureInRing}></ImageBackground> },
-        { x: 2, y: 1, label: "Water", pic: <ImageBackground source={require('../assets/water.png')} style={styles.pictureInRing}></ImageBackground> },
-        { x: 3, y: 1, label: "Steps", pic: <ImageBackground source={require('../assets/steps.png')} style={styles.pictureInRing}></ImageBackground> }
+        { x: 1,
+            y: 1, 
+            label: "Sleep",
+            pic: 
+            <ImageBackground source={require('../assets/sleep.png')} 
+            style={styles.pictureInRing}></ImageBackground> },
+        { x: 2, 
+            y: 1, 
+            label: "Water", 
+            pic: 
+            <ImageBackground source={require('../assets/water.png')} 
+            style={styles.pictureInRing}></ImageBackground> },
+        { x: 3, 
+            y: 1, 
+            label: "Steps", 
+            pic: 
+            <ImageBackground source={require('../assets/steps.png')} 
+            style={styles.pictureInRing}></ImageBackground> }
     ]
 
     let colorData = ["tomato", "gold", "navy"]
@@ -48,23 +63,11 @@ export default function Ring() {
                     }
                 ]}
                 />
-
                 <View>
                     { selectedHabit.pic }
-                    {/* <RnIncrementDecrementBtn  /> */}
                 </View>
-
-                {/* <View>
-                    <RnIncrementDecrementBtn  />
-                </View> */}
-
-                {/* <View> 
-                    <Text> Test </Text> 
-                </View> */}
-                
             </View>
         </TouchableWithoutFeedback>
-
     )
 }
 
