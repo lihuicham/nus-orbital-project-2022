@@ -1,67 +1,61 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import{ VictoryPie, VictoryContainer } from 'victory-native';
-
+import { StyleSheet, View, Text, TouchableWithoutFeedback, ImageBackground } from 'react-native';
+import{ VictoryPie } from 'victory-native';
 
 export default function Ring() {
 
     let pieData = [
-        { x: 1, y: 1, label: "Sleep" },
-        { x: 2, y: 1, label: "Water" },
-        { x: 3, y: 1, label: "Steps" }
+        { x: 1, y: 1, label: "Sleep", pic: <ImageBackground source={require('../assets/sleep.png')} style={styles.pictureInRing}></ImageBackground> },
+        { x: 2, y: 1, label: "Water", pic: <ImageBackground source={require('../assets/water.png')} style={styles.pictureInRing}></ImageBackground> },
+        { x: 3, y: 1, label: "Steps", pic: <ImageBackground source={require('../assets/steps.png')} style={styles.pictureInRing}></ImageBackground> }
     ]
 
     let colorData = ["tomato", "gold", "navy"]
 
+    const [selectedHabit, setSelectedHabit] = useState('')
 
-
-
-    // let dataImages = [
-    //     <Image source={require('../assets/clock.png')} style={styles.image}></Image>,
-    //     <Image source={require('../assets/glassOfWater.png')} style={styles.image}></Image>,
-    //     <Image source={require('../assets/footprint.png')} style={styles.image}></Image>
-    // ]
-
-
-
-
+    function setCorrectHabit(name) {
+        let correctHabit = pieData.filter(a => a.label == name)
+        setSelectedHabit(correctHabit[0])
+    }
 
     return (
-        <View>
-            <VictoryPie
-            data={pieData}           
-            colorScale={colorData}
-            innerRadius={90}
-            radius={({ datum, active }) => (active ? 150 : 140)}
-            
-            
-            
-            
-            // labelComponent={}
+        <TouchableWithoutFeedback onPress={() => {
+            setSelectedHabit('');
+        }}>
+            <View>
+                <VictoryPie
+                data={pieData}           
+                colorScale={colorData}
+                innerRadius={110}
+                radius={({ datum }) => (selectedHabit.label == datum.label) ? 160 : 150 }
 
-
-
-
-            events={[
-                {
-                  target: "data",
-                  eventHandlers: {
-                    onPressIn: () => {
-                        return [{
-                            eventKey: "all",
-                            mutation: () => ({ active: false })
-                            },
-
-                            {
-                            mutation: () => ({ active: true })
+                events={[
+                    {
+                    target: "data",
+                    eventHandlers: {
+                        onPressIn: () => {
+                            return [{
+                                
+                                mutation: (props) => {
+                                    let habit = pieData[props.index].label
+                                    setCorrectHabit(habit)
+                                }
                             }
-                        ];
+                            ];
                         }
-                   }
-                }
-              ]}
-            />
-        </View>
+                        }
+                    }
+                ]}
+                />
+        
+                <View>
+                    { selectedHabit.pic }
+                </View>
+                
+            </View>
+        </TouchableWithoutFeedback>
+
     )
 }
 
@@ -75,5 +69,11 @@ const styles = StyleSheet.create({
         width: 250,
         height: 250,
         resizeMode: 'contain'
+    },
+    pictureInRing: {
+        bottom: '190%', 
+        left: '30%',
+        height: 150,
+        width:150
     }
 })
