@@ -61,7 +61,6 @@ At the bottom right of the icon, there will be a “View Details” button. User
 
 **Current progress:** Basic habits (sleep, water and steps) have been added to the Ring. The clicking function works and generates the appropriate icon. Clicking on the page away from the Ring will remove the icon from view. With basic UI design.
 
-
 -> Watch a demo video of our home page here: [Home (The Ring)](https://google.com)
 
 ### Notes & To-Do List 
