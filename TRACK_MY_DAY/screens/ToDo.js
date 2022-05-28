@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#E8EAED",
   },
   tasksWrapper: {
-    paddingTop: 80,
+    paddingTop: 10,
     paddingHorizontal: 20,
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: "bold",
   },
   items: {

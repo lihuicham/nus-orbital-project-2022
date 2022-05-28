@@ -1,23 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Pressable, Image, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Login({ navigation }) {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-/*   const toRegister = () => {
-    navigation.navigate('Register');
-  }
-
-  const forgotPwd = () => {
-    navigation.navigate('ForgotPassword');
-  }
+  const navigation = useNavigation();
 
   const toHome = () => {
-    navigation.navigate('Home');
+    navigation.replace("Drawer")
   }
- */
+
+  const toRegister = () => {
+    navigation.replace("Register")
+  }
+
+  const toForgotPassword = () => {
+    navigation.replace("ForgotPassword")
+  }
+
   return (
     <TouchableWithoutFeedback onPress={() => {
       Keyboard.dismiss();
@@ -38,7 +40,7 @@ export default function Login({ navigation }) {
 
         <View style={styles.pressBox}>
           <Pressable
-              //onPress={toHome}
+              onPress={toHome}
               style={({ pressed }) => ({
               backgroundColor: pressed ? '#FF3D00' : '#0080FF'          
               })}>
@@ -51,7 +53,7 @@ export default function Login({ navigation }) {
         <Text> Forgot your password? </Text>
         <View style={styles.onSide}>
           <Pressable
-              //onPress={forgotPwd} 
+              onPress={toForgotPassword} 
               >
               {({ pressed }) => (
                   <Text style={styles.link}>Reset Password</Text>
@@ -62,7 +64,7 @@ export default function Login({ navigation }) {
         <Text> Don't have an account? </Text>
         <View style={styles.onSide}>
           <Pressable
-              //onPress={toRegister}
+              onPress={toRegister}
               >
               {({ pressed }) => (
                   <Text style={styles.link}>Register</Text>

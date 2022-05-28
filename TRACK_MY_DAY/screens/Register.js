@@ -1,10 +1,10 @@
-import { Button, Pressable, Platform, Alert, StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, Keyboard, ScrollView } from 'react-native';
+import { Button, Pressable, Platform, Alert, StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
 import React, { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import SleepPicker from '../components/SleepPicker'; 
 import WaterPicker from '../components/WaterPicker'; 
 
-export default function Register() {
+export default function Register({ navigation }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setrepeatPassword] = useState('');
@@ -12,12 +12,14 @@ export default function Register() {
     const [occupation, setOccupation] = useState('');
     const [favQuote, setFavQuote] = useState('');
 
-
-
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
     const [birthday, setBirthday] = useState('Empty');
+
+    const toLogin = () => {
+        navigation.replace("Login")
+      }
 
     // don't need later - dummy function for Register button
     const printAlert = () => {
@@ -127,6 +129,10 @@ export default function Register() {
                         </Pressable>
                     </View>  
 
+                    <View style={styles.buttonWrapper}>
+                        <Button style={styles.button} title="Back to Login" onPress={toLogin} />
+                    </View>
+
                 </View>
             </ScrollView>
         </TouchableWithoutFeedback>
@@ -164,7 +170,17 @@ const styles = StyleSheet.create({
     pressBox: {
         marginTop: 10,
         marginBottom: 10
-    }
+    },
 
+    buttonWrapper: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    
+      button: {
+        margin: 15,
+        padding: 10, 
+      }
 
   });

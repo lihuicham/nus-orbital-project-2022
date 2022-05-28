@@ -91,7 +91,7 @@ export default function NotesList() {
 
 const styles = StyleSheet.create({
   noteslistwrapper: {
-    marginTop: 10,
+    paddingTop: 15
   },
   
   newnotewrapper: {

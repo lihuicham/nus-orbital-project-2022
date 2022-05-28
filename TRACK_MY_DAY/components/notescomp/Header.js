@@ -18,7 +18,7 @@ export default Header;
 
 const styles = StyleSheet.create({
   headerwrapper: {
-      marginTop: 40,
+      marginTop: 10,
       marginHorizontal: 10, 
       flexDirection: 'row',
       justifyContent: 'space-between',

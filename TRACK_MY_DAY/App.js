@@ -1,17 +1,25 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import ForgotPassword from "./screens/ForgotPassword";
-import Home from "./screens/Home";
-import Login from "./screens/Login";
-import Register from "./screens/Register";
-import NotesList from "./screens/NotesList";
-import ToDo from "./screens/ToDo";
-
+import { NavigationContainer } from "@react-navigation/native";
 import 'react-native-gesture-handler';
+
+import BottomTab from './routes/BottomTab';
+import Drawer from './routes/Drawer';
+import HomeStackScreen from './routes/HomeStackScreen';
+import LoginStackScreen from "./routes/LoginStackScreen";
+import NotesListStackScreen from './routes/NotesListStackScreen';
+import ProfileStackScreen from './routes/ProfileStackScreen';
+import SettingStackScreen from './routes/SettingsStackScreen';
+import ToDoStackScreen from './routes/ToDoStackScreen';
+import ViewDetails from "./routes/ViewDetails";
+
+
 
 
 export default function App() {
   return (
-    <ToDo />
+    <NavigationContainer>
+      <LoginStackScreen />
+    </NavigationContainer>
   );
 }
