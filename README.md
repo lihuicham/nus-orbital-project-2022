@@ -139,7 +139,6 @@ Music: Copyright-free music
 
 ## Timeline & Progress Chart 
 ![alt text](https://github.com/lihuicham/nus-orbital-project-2022/blob/notes/TRACK_MY_DAY/readme_images/timeline.jpg "Timeline")  
-<br>
 
 ## TechStack for Milestone 1 
 We used these tools to create the project: 
