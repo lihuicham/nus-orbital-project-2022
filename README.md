@@ -43,6 +43,8 @@ Error messages will be shown on the phone screen when either of the restrictions
 ### Login Page 
 There is a login page for the app. It consists of two things, email and password. If the user has forgotten their password, there is an option to reset the password by entering their registered username or email. New users can also create an account by clicking on ‘Register’.  
 
+![alt text](https://github.com/lihuicham/nus-orbital-project-2022/blob/main/TRACK_MY_DAY/readme_images/login.png "Login")
+
 **Current progress:** The buttons lead to the correct pages, basic UI done. 
 
 ### Personal Details 
