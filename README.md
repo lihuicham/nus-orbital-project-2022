@@ -1,16 +1,11 @@
 # NUS ORBITAL PROJECT 2022 - Track My Day 
-
-## **An Orbital project by Cham Li Hui and Pwint Thiri Ko.** 
-
-<br>
+### **An Orbital project by Cham Li Hui and Pwint Thiri Ko.**  
 
 ## Team Name 
-### **Track My Day**
-<br>
+### **Track My Day**  
 
 ## Level of Achievement 
-### **Apollo 11**
-<br>
+### **Apollo 11**  
 
 ## Project Motivation 
 As students that utilize the chrome extension Momentum, we were inspired by Momentum’s concept and wanted to create an aesthetically pleasing dashboard to enhance user productivity. Initially, we were planning to create a chrome extension, but after further discussion, decided our ideas would be better suited for a mobile app. We wanted to create an app that is both functional and personalizable, such that users would use it daily to help them keep track of their habits and better organize aspects of their lives.
@@ -58,7 +53,7 @@ The app will also collect personal details of the user for further analysis and 
 ### Home Page (The Ring)
 The HOME page serves the main function of this app - tracking habits. Visually, the home page only contains one and only one thing - The Ring. The ring will be split into parts, each part is one habit that the user wishes to track. The time frame for habit tracking is daily (default). The app will provide a few default habits that are suitable for most users, these include: sleep, exercise, study, water and budget. Since there might be more habits that the user wishes to track, the app allows customized habits to be added into The Ring. 
 
-![alt text](https://github.com/lihuicham/nus-orbital-project-2022/tree/notes/TRACK_MY_DAY/readme_images/home.jpg "Home")
+![alt text](https://github.com/lihuicham/nus-orbital-project-2022/blob/notes/TRACK_MY_DAY/readme_images/home.png "Home")
 
 Once the user clicks to view or edit a certain habit in The Ring, the icon and the progress of the habit will be shown in the empty space in the middle of The Ring. 
 
@@ -72,7 +67,7 @@ At the bottom right of the icon, there will be a “View Details” button. User
 Notes & to-do lists are meant to satisfy the quick note taking needs of the users. Both pages support simple typing, and the to-do list supports an additional checkbox feature. The todo list has a tap to delete task function, and to view different todo lists, users only have to swipe (like Tinder) to view the next or previous todo lists. 
 For notes, the user can add and delete notes. All notes will be visible in one screen and users can scroll to view their notes.
 
-![alt text](https://github.com/lihuicham/nus-orbital-project-2022/tree/notes/TRACK_MY_DAY/readme_images/notes.jpg "Notes and To-Do List")
+![alt text](https://github.com/lihuicham/nus-orbital-project-2022/blob/notes/TRACK_MY_DAY/readme_images/notes.png "Notes and To-Do List")
 
 As both pages are meant for quick and simple note taking, we do not intend to add more features such as bolded words, add a photo or link function. We wish to maintain the simplicity of the features and minimalistic design of the app. 
 
@@ -143,7 +138,7 @@ Music: Copyright-free music
 <br>
 
 ## Timeline & Progress Chart 
-![alt text](https://github.com/lihuicham/nus-orbital-project-2022/tree/notes/TRACK_MY_DAY/readme_images/timeline.jpg "Timeline")  
+![alt text](https://github.com/lihuicham/nus-orbital-project-2022/blob/notes/TRACK_MY_DAY/readme_images/timeline.jpg "Timeline")  
 <br>
 
 ## TechStack for Milestone 1 
