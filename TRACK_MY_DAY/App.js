@@ -1,6 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import NotesList from "./screens/NotesList";
+import ToDo from "./screens/ToDo";
+
+import 'react-native-gesture-handler';
+
 
 export default function App() {
   return (
