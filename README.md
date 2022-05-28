@@ -48,7 +48,7 @@ There is a login page for the app. It consists of two things, email and password
 ### Personal Details 
 The app will also collect personal details of the user for further analysis and habit/goal/progress recommendations for the users. Personal details collected include: the number of hours the user spent to study/exercise per day; the number of hours the user slept per day; their occupation, smartphone usage, usual habits and goals they want to achieve through the app. 
 
-**Current progress:** User details such as goals and usual habits are entered in the Registration page. This part is done with basic UI. Details that change daily such as hours slept will be updated by the user each day in the Home page, and this part will be done later.
+**Current progress:** User details such as goals and usual habits are entered in the Registration page. This part is done with basic UI. Details that users input daily such as hours slept will be updated by the user in the Home page. This will be completed in Milestone 2.
 
 ### Home Page (The Ring)
 The HOME page serves the main function of this app - tracking habits. Visually, the home page only contains one and only one thing - The Ring. The ring will be split into parts, each part is one habit that the user wishes to track. The time frame for habit tracking is daily (default). The app will provide a few default habits that are suitable for most users, these include: sleep, exercise, study, water and budget. Since there might be more habits that the user wishes to track, the app allows customized habits to be added into The Ring. 
@@ -59,7 +59,7 @@ Once the user clicks to view or edit a certain habit in The Ring, the icon and t
 
 At the bottom right of the icon, there will be a “View Details” button. Users can click this button to view the detailed analysis and breakdown of the progress of their tracked habits and more (further explanation in the next section about extended features). 
 
-**Current progress:** The basic format of the page is done. Clicking on each segment will enlarge that section.
+**Current progress:** Basic habits (sleep, water and steps) have been added to the Ring. The clicking function works and generates the appropriate icon. Clicking on the page away from the Ring will remove the icon from view. With basic UI design.
 
 -> Watch a demo video of our home page here: [Home (The Ring)](https://google.com)
 
