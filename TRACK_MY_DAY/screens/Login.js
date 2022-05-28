@@ -1,121 +1,88 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Pressable, Alert, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Pressable, Image, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import React, { useState } from 'react';
-//import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Login({ navigation }) {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const toRegister = () => {
-    navigation.navigate('Register')
+    navigation.navigate('Register');
   }
 
   const forgotPwd = () => {
-    navigation.navigate('ForgotPassword')
+    navigation.navigate('ForgotPassword');
   }
-      
-  const printAlert = () => {
-    Alert.alert('Pressable Called ...')
+
+  const toHome = () => {
+    navigation.navigate('Home');
   }
 
   return (
-    <View style={styles.container}>
-        <Image source={require('../assets/title.png')} style={styles.image}></Image>
-      
-      <TextInput
-        style={styles.input}
-        placeholder='Email'
-        onChangeText={(val) => setUsername(val)}/>
+    <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss();
+    }}>
+      <View style={styles.container}>
+          <Image source={require('../assets/title.png')} style={styles.image}></Image>
+        
+        <TextInput
+          style={styles.input}
+          placeholder='Email'
+          onChangeText={(val) => setEmail(val)}/>
+        
+        <TextInput
+          style={styles.input}
+          placeholder='Password'
+          onChangeText={(val) => setPassword(val)}
+          secureTextEntry />
 
-      
-      <TextInput
-        style={styles.input}
-        placeholder='Password'
-        onChangeText={(val) => setPassword(val)}/>
+        <View style={styles.pressBox}>
+          <Pressable
+              onPress={toHome}
+              style={({ pressed }) => ({
+              backgroundColor: pressed ? '#FF3D00' : '#0080FF'          
+              })}>
+              {({ pressed }) => (
+                  <Text style={styles.pressable_text}>Login</Text>
+              )}    
+          </Pressable>
+        </View>
 
-      <Text> name: {username} and password: {password} </Text>
+        <Text> Forgot your password? </Text>
+        <View style={styles.onSide}>
+          <Pressable
+              onPress={forgotPwd} 
+              >
+              {({ pressed }) => (
+                  <Text style={styles.link}>Reset Password</Text>
+              )}   
+          </Pressable>
+        </View>
 
-      <View style={styles.pressBox}>
-        <Pressable
-            onPress={printAlert} // figure this out - based on login details
-            style={({ pressed }) => ({
-            backgroundColor: pressed ? '#FF3D00' : '#0080FF' // colour a bit lighter when pressed
-            
-            })}>
-
-            {({ pressed }) => (
-                <Text style={styles.pressable_text}>Login</Text>
-            )}
-                
-        </Pressable>
+        <Text> Don't have an account? </Text>
+        <View style={styles.onSide}>
+          <Pressable
+              onPress={toRegister}
+              >
+              {({ pressed }) => (
+                  <Text style={styles.link}>Register</Text>
+              )}   
+          </Pressable>
+        </View>
+        
+        <StatusBar style="auto" />
       </View>
-
-      <Text> Forgot your password? </Text>
-      <View style={styles.pressBox}>
-
-        <Pressable
-            onPress={forgotPwd} // change this to navigate to another page
-            style={({ pressed }) => ({
-            backgroundColor: pressed ? '#FF3D00' : '#0080FF' // colour a bit lighter when pressed
-            })}>
-
-            {({ pressed }) => (
-                <Text style={styles.pressable_text}>Reset password</Text>
-            )}   
-
-        </Pressable>
-      </View>
-
-      {/* <View style={styles.onSide}>
-        <Text>Don't have an account?</Text>
-        <TouchableOpacity onPress={toRegister}>
-          <Text style={styles.link}>Sign up</Text>
-        </TouchableOpacity>
-      </View> */}
-
-      <Text> Don't have an account? </Text>
-
-      <View style={styles.onSide}>
-
-        <Pressable
-            onPress={toRegister} 
-            >
-
-            {({ pressed }) => (
-                <Text style={styles.link}>Register</Text>
-            )}   
-
-        </Pressable>
-      </View>
-      
-      <StatusBar style="auto" />
-    </View>
+    </TouchableWithoutFeedback>
 
     
 )};
 
-// make the buttons touchable things!!
 const styles = StyleSheet.create({
-  container: { //key-value pairs inside object
+  container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-
-  login: {
-    flex: 0,
-    width: 'auto',
-    textDecorationColor: '#f1356d',
-    padding: 20,
-  },
-  
-  register: {
-    flex: 0,
-    width: 'auto',
-    textDecorationColor: '#f1356d',
-    padding: 20,
   },
 
   input: {
@@ -157,6 +124,5 @@ const styles = StyleSheet.create({
     height: 250,
     resizeMode: 'contain'
 }
-
 
 });

@@ -13,29 +13,43 @@ export default function ForgotPassword({ navigation }) {
 
             <TextInput
                 style={styles.input}
-                onChangeText={(val) => setPassword(val)}/>
+            />
 
- 
             <View style={styles.pressBox}>
-                <Pressable
-                    onPress={toLogin} // figure this out - based on login details
-                    style={({ pressed }) => ({
-                    backgroundColor: pressed ? '#FF3D00' : '#0080FF', // colour a bit lighter when pressed
-                    
-                    })}>
+                <View style={{padding: 10}}>
+                    <Pressable
+                        onPress={toLogin} // change to function that submits the request to reset password
+                        style={({ pressed }) => ({
+                        backgroundColor: pressed ? '#FF3D00' : '#0080FF'
+                        })}>
 
-                    {({ pressed }) => (
-                        <Text style={styles.pressable_text}>Back to Login</Text>
-                    )}
-                        
-                </Pressable>
+                        {({ pressed }) => (
+                            <Text style={styles.pressable_text}>Reset Password</Text>
+                        )}
+                            
+                    </Pressable>
+                </View>
+
+                <View style={{padding: 10}}>
+                    <Pressable
+                        onPress={toLogin} // actually goes back to login
+                        style={({ pressed }) => ({
+                        backgroundColor: pressed ? '#FF3D00' : '#0080FF'
+                        })}>
+
+                        {({ pressed }) => (
+                            <Text style={styles.pressable_text}>Back to Login</Text>
+                        )}
+                            
+                    </Pressable>
+                </View>
             </View>
 
         </View>
 )};
 
 const styles = StyleSheet.create({
-    container: { //key-value pairs inside object
+    container: {
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',

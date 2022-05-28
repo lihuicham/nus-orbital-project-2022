@@ -1,15 +1,16 @@
 import { Button, Pressable, Platform, Alert, StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, Keyboard, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import SleepPicker from '../components/SleepPicker'; 
+import WaterPicker from '../components/WaterPicker'; 
 
 export default function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [repeatPassword, setrepeatPassword] = useState('');
     const [email, setEmail] = useState('');
     const [occupation, setOccupation] = useState('');
     const [favQuote, setFavQuote] = useState('');
-    const [sleep, setSleep] = useState('');
-    const [water, setWater] = useState('');
 
 
 
@@ -18,7 +19,7 @@ export default function Register() {
     const [show, setShow] = useState(false);
     const [birthday, setBirthday] = useState('Empty');
 
-
+    // don't need later - dummy function for Register button
     const printAlert = () => {
         Alert.alert('Pressable Called ...')}
 
@@ -32,19 +33,18 @@ export default function Register() {
         '/' + tempDate.getFullYear();
 
         setBirthday(fDate);
-        console.log(fDate);
     }
 
     const showMode = (currentMode) => {
         setShow(true);
         setMode(currentMode);
     }
-
+    
+    // this can also be deleted because Firebase will handle this
     const passwordLength = (password) => {
         if(password.length < 7) {
             Alert.alert('Password should be at least 8 characters')
         } else {
-            // also return details to pass to next page
             Alert.alert('Correct Password Length - continue')
         }
     }
@@ -53,7 +53,7 @@ export default function Register() {
         <TouchableWithoutFeedback onPress={() => {
             Keyboard.dismiss();
         }}>
-            <ScrollView>
+            <ScrollView style={{backgroundColor: '#fff'}}>
                 <View style={styles.container}>
 
                     <Text>Enter email:</Text>
@@ -71,13 +71,19 @@ export default function Register() {
                     <Text>Enter password:</Text>
                     <TextInput
                     style={styles.input}
-                    onChangeText={(val) => setPassword(val)}/>
+                    onChangeText={(val) => setPassword(val)}
+                    secureTextEntry />
+
+                    <Text>Repeat password:</Text>
+                    <TextInput
+                    style={styles.input}
+                    onChangeText={(val) => setrepeatPassword(val)}
+                    secureTextEntry />
 
                     <Text>Enter birthday:</Text>
                         
                     <View style={{margin:20}}>
                         <Button title='Select Date' onPress={() => showMode('date')} />
-                        <Text> birthday: { birthday } </Text>
                     </View>
 
                     { show && (
@@ -101,22 +107,16 @@ export default function Register() {
                     onChangeText={(val) => setFavQuote(val)}/>
 
                     <Text>Sleep goal:</Text>
-                    <TextInput
-                    multiline
-                    style={styles.input}
-                    onChangeText={(val) => setSleep(val)}/>
+                    <SleepPicker />
 
                     <Text>Water goal:</Text>
-                    <TextInput
-                    multiline
-                    style={styles.input}
-                    onChangeText={(val) => setWater(val)}/>
+                    <WaterPicker />
 
                     <View style={styles.pressBox}>
                         <Pressable
-                            onPress={passwordLength} // figure this out - based on register details
+                            onPress={passwordLength} // change to function when Register button is pressed
                             style={({ pressed }) => ({
-                            backgroundColor: pressed ? '#FF3D00' : '#0080FF', // colour a bit lighter when pressed
+                            backgroundColor: pressed ? '#FF3D00' : '#0080FF'
                             
                             })}>
 
@@ -125,18 +125,7 @@ export default function Register() {
                             )}
                                 
                         </Pressable>
-                    </View>
-
-
-
-                    
-
-                    
-                    <Text> name: {username} and password: {password} and email: { email } </Text>
-                    
-                    <Text> occupation: { occupation } and favquote: { favQuote } </Text>
-
-                    
+                    </View>  
 
                 </View>
             </ScrollView>
@@ -145,7 +134,7 @@ export default function Register() {
 }
 
 const styles = StyleSheet.create({
-    container: { //key-value pairs inside object
+    container: { 
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',

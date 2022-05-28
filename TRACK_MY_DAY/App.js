@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Register from './screens/Register';
 import Login from './screens/Login';
 import ForgotPassword from './screens/ForgotPassword';
+import Home from './screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -29,6 +30,11 @@ export default function App() {
           name="ForgotPassword"
           component={ForgotPassword}
           options={{title: "Reset Password"}}
+        />
+        <Stack.Screen 
+          name="Home"
+          component={Home}
+          options={{title: "Home"}}
         />
       </Stack.Navigator>
     </NavigationContainer>
