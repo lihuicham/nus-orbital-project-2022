@@ -48,10 +48,19 @@ export default function Ring() {
                     }
                 ]}
                 />
-        
+
                 <View>
                     { selectedHabit.pic }
+                    {/* <RnIncrementDecrementBtn  /> */}
                 </View>
+
+                {/* <View>
+                    <RnIncrementDecrementBtn  />
+                </View> */}
+
+                {/* <View> 
+                    <Text> Test </Text> 
+                </View> */}
                 
             </View>
         </TouchableWithoutFeedback>
@@ -71,7 +80,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     pictureInRing: {
-        bottom: '190%', 
+        bottom: '160%', //190
         left: '30%',
         height: 150,
         width:150
