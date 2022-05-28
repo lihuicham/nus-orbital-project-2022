@@ -10,8 +10,8 @@ const Drawer = () => {
     return (
         <DrawerObj.Navigator>
             <DrawerObj.Screen name="BottomTab" component={BottomTab} options={{title: "Home"}}/>
-            <DrawerObj.Screen name="SettingsStackScreen" component={SettingsStackScreen} options={{title: "Settings"}}/>
             <DrawerObj.Screen name="ProfileStackScreen" component={ProfileStackScreen} options={{title: "Profile"}}/>
+            <DrawerObj.Screen name="SettingsStackScreen" component={SettingsStackScreen} options={{title: "Settings"}}/>
         </DrawerObj.Navigator>
     )
 }

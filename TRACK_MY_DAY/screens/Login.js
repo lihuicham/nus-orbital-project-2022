@@ -1,20 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Pressable, Image, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { authentication } from '../firebase-config';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
-  const toHome = () => {
-    navigation.replace("Drawer")
-  }
+  useEffect(() => {
+    const unsubscribe = authentication.onAuthStateChanged(user => {
+      if (user) {
+        navigation.replace("Drawer")
+      }
+    })
+    return unsubscribe;
+  }, [])
 
-  const toRegister = () => {
-    navigation.replace("Register")
-  }
+  const handleRegister = () => {
+    createUserWithEmailAndPassword(authentication, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("Register : " + user.email);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
+  const handleLogin = () => {
+    signInWithEmailAndPassword(authentication, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("Login : " + user.email);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
 
   const toForgotPassword = () => {
     navigation.replace("ForgotPassword")
@@ -40,7 +66,7 @@ export default function Login() {
 
         <View style={styles.pressBox}>
           <Pressable
-              onPress={toHome}
+              onPress={handleLogin}
               style={({ pressed }) => ({
               backgroundColor: pressed ? '#FF3D00' : '#0080FF'          
               })}>
@@ -64,7 +90,7 @@ export default function Login() {
         <Text> Don't have an account? </Text>
         <View style={styles.onSide}>
           <Pressable
-              onPress={toRegister}
+              onPress={handleRegister}
               >
               {({ pressed }) => (
                   <Text style={styles.link}>Register</Text>

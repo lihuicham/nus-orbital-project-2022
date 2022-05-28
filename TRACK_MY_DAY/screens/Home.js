@@ -1,15 +1,23 @@
 import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, Button} from "react-native";
 import React from "react";
 import Ring from "../components/Ring";
+import { useNavigation } from "@react-navigation/native";
+import { authentication } from "../firebase-config";
 
-export default function Home({ navigation }) {
+export default function Home() {
+  const navigation = useNavigation();
+
   const toViewDetails = () => {
     navigation.navigate("ViewDetails");
   };
 
-  const toLogin = () => {
-    navigation.navigate("Login");
-  };
+  const handleLogout = () => {
+    console.log("Logout: " + authentication.currentUser?.email)
+    authentication
+    .signOut()
+    .then(() => {navigation.replace("Login")})
+    .catch((error) => alert(error.message))
+  }
 
   return (
     <TouchableWithoutFeedback
@@ -19,7 +27,7 @@ export default function Home({ navigation }) {
     >
       <View style={styles.container}>
         {/* replace name with user's name here */}
-        <Text style={styles.welcome}>Welcome (replace name)!</Text>
+        <Text style={styles.welcome}>Welcome {authentication.currentUser?.email}!</Text>
         <View style={styles.ring}>
           <Ring />
         </View>
@@ -36,7 +44,7 @@ export default function Home({ navigation }) {
           <Button
             style={styles.button}
             title="Logout"
-            onPress={toLogin}
+            onPress={handleLogout}
           />
         </View>
       </View>

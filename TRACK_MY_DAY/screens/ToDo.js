@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   sectionTitle: {
-    fontSize: 30,
+    fontSize: 35,
     fontWeight: "bold",
   },
   items: {
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   writeTaskWrapper: {
     position: "absolute",
-    bottom: 60,
+    bottom: 30,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
