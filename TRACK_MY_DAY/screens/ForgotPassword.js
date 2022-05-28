@@ -18,7 +18,7 @@ export default function ForgotPassword({ navigation }) {
             <View style={styles.pressBox}>
                 <View style={{padding: 10}}>
                     <Pressable
-                        onPress={toLogin} // change to function that submits the request to reset password
+                        //onPress={toLogin} // change to function that submits the request to reset password
                         style={({ pressed }) => ({
                         backgroundColor: pressed ? '#FF3D00' : '#0080FF'
                         })}>
@@ -32,7 +32,7 @@ export default function ForgotPassword({ navigation }) {
 
                 <View style={{padding: 10}}>
                     <Pressable
-                        onPress={toLogin} // actually goes back to login
+                        //onPress={toLogin} // actually goes back to login
                         style={({ pressed }) => ({
                         backgroundColor: pressed ? '#FF3D00' : '#0080FF'
                         })}>

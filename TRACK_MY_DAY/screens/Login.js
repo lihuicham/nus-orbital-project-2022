@@ -6,7 +6,7 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const toRegister = () => {
+/*   const toRegister = () => {
     navigation.navigate('Register');
   }
 
@@ -17,7 +17,7 @@ export default function Login({ navigation }) {
   const toHome = () => {
     navigation.navigate('Home');
   }
-
+ */
   return (
     <TouchableWithoutFeedback onPress={() => {
       Keyboard.dismiss();
@@ -38,7 +38,7 @@ export default function Login({ navigation }) {
 
         <View style={styles.pressBox}>
           <Pressable
-              onPress={toHome}
+              //onPress={toHome}
               style={({ pressed }) => ({
               backgroundColor: pressed ? '#FF3D00' : '#0080FF'          
               })}>
@@ -51,7 +51,7 @@ export default function Login({ navigation }) {
         <Text> Forgot your password? </Text>
         <View style={styles.onSide}>
           <Pressable
-              onPress={forgotPwd} 
+              //onPress={forgotPwd} 
               >
               {({ pressed }) => (
                   <Text style={styles.link}>Reset Password</Text>
@@ -62,7 +62,7 @@ export default function Login({ navigation }) {
         <Text> Don't have an account? </Text>
         <View style={styles.onSide}>
           <Pressable
-              onPress={toRegister}
+              //onPress={toRegister}
               >
               {({ pressed }) => (
                   <Text style={styles.link}>Register</Text>

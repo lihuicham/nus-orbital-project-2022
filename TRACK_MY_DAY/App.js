@@ -1,5 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import ForgotPassword from "./screens/ForgotPassword";
+import Home from "./screens/Home";
+import Login from "./screens/Login";
+import Register from "./screens/Register";
 import NotesList from "./screens/NotesList";
 import ToDo from "./screens/ToDo";
 
@@ -8,99 +12,6 @@ import 'react-native-gesture-handler';
 
 export default function App() {
   return (
-    <NotesList />
+    <ToDo />
   );
 }
-
-/* const styles = StyleSheet.create({
-  container: {
-    //key-value pairs inside object
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-}); */
-
-
-
-
-
-
-
-
-/* import { StyleSheet } from 'react-native';
-import React, { useState } from 'react';
-import Register from './screens/Register';
-import Login from './screens/Login';
-import ForgotPassword from './screens/ForgotPassword';
-import Home from './screens/Home';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-const Stack = createNativeStackNavigator();
-
-export default function App() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen 
-          name="Login"
-          component={Login}
-          options={{title: "Welcome"}}
-        />
-        <Stack.Screen 
-          name="Register"
-          component={Register}
-          options={{title: "Register"}}
-        />
-        <Stack.Screen 
-          name="ForgotPassword"
-          component={ForgotPassword}
-          options={{title: "Reset Password"}}
-        />
-        <Stack.Screen 
-          name="Home"
-          component={Home}
-          options={{title: "Home"}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
-
-
-const styles = StyleSheet.create({
-  container: { //key-value pairs inside object
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  login: {
-    flex: 0,
-    width: 'auto',
-    textDecorationColor: '#f1356d',
-    padding: 20,
-  },
-  
-  register: {
-    flex: 0,
-    width: 'auto',
-    textDecorationColor: '#f1356d',
-    padding: 20,
-  },
-
-  input: {
-    borderWidth: 1,
-    borderColor: '#777',
-    padding: 8,
-    margin: 10,
-    width: 200,
-  }
-});
- */
