@@ -38,7 +38,7 @@ Error messages will be shown on the phone screen when either of the restrictions
 
 **Current Progress:** Completed registration, login and logout. Authentication actions performed on app is successfully recorded on Firebase backend database. 
 
--> Watch a demo video of our authentication page: [Authentication](https://drive.google.com/drive/u/0/folders/1ao7Sf3JCY9aJ-KtsCuDTS9hRUgC3BMPp)
+-> Watch a demo video of our authentication page: [Authentication](https://drive.google.com/file/d/1BuL07CN505TG56ysWAkK02LBswU0oojP/view?usp=sharing)
 
 ### Login Page 
 There is a login page for the app. It consists of two things, email and password. If the user has forgotten their password, there is an option to reset the password by entering their registered username or email. New users can also create an account by clicking on ‘Register’.  
@@ -73,8 +73,8 @@ As both pages are meant for quick and simple note taking, we do not intend to ad
 
 **Current Progress:** Normal note & todo list taking and deleting function done. With basic UI design. 
 
--> Watch a demo video of our todo list page: [To-Do List](https://drive.google.com/file/d/1JP8ni48-V1LorjkWYbHL-_KLtNTtyBQ-/view)
-<br>
+-> Watch a demo video of our todo list page: [To-Do List](https://drive.google.com/file/d/1JP8ni48-V1LorjkWYbHL-_KLtNTtyBQ-/view) 
+
 -> Watch a demo video of our notes page here: [Notes](https://drive.google.com/file/d/1b7qtYZRf7ydyLoCoE2vfLBFN_BbtYcTh/view)
 
 ### Navigation 
@@ -86,7 +86,7 @@ Track My Day uses React Navigation package to navigate between different screens
 
 **Current Progress:** Completed. Able to navigate between different pages. 
 
--> Watch a demo video of our navigation here: [Navigation](https://drive.google.com/drive/u/0/folders/1ao7Sf3JCY9aJ-KtsCuDTS9hRUgC3BMPp)
+-> Watch a demo video of our navigation here: [Navigation](https://drive.google.com/file/d/1Ft8r2sqhZ9vwz_q5egJx6ejmppROGLBc/view?usp=sharing)
 
 ### Settings 
 Like all apps, there must be a setting button. Things that are included in the setting are: Change personal details, change username and password, day/night mode, turn on/off notification, report issues.  
@@ -148,7 +148,7 @@ We used these tools to create the project:
 <br>
 
 ## What We Intend to Achieve in Milestone 2 ? 
-Going forward,for Milestone 2, we plan to: 
+Going forward, for Milestone 2, we plan to: 
 - Complete the Home page
 - Design basic trackers and a basic tracker template for users to customize based on their desired habit to track
 - Add in a tinder-like swiping functionality for the to-do list
