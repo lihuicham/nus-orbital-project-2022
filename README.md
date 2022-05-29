@@ -63,8 +63,6 @@ At the bottom right of the icon, there will be a “View Details” button. User
 
 **Current progress:** Basic habits (sleep, water and steps) have been added to the Ring. The clicking function works and generates the appropriate icon. Clicking on the page away from the Ring will remove the icon from view. With basic UI design.
 
--> Watch a demo video of our home page here: [Home (The Ring)](https://google.com)
-
 ### Notes & To-Do List 
 Notes & to-do lists are meant to satisfy the quick note taking needs of the users. Both pages support simple typing, and the to-do list supports an additional checkbox feature. The todo list has a tap to delete task function, and to view different todo lists, users only have to swipe (like Tinder) to view the next or previous todo lists. 
 For notes, the user can add and delete notes. All notes will be visible in one screen and users can scroll to view their notes.
