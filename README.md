@@ -136,7 +136,7 @@ Music: Copyright-free music
 
 ## Demo Video 
 
-### **Track My Day App Demo Video:** [Track My Day](https://google.com)  
+### **Track My Day App Demo Video:** [Track My Day](https://drive.google.com/file/d/13lR93NBInvt_tWf-X_ulitdGavE_lX1m/view?usp=sharing)  
 <br>
 
 ## Timeline & Progress Chart 
@@ -158,3 +158,5 @@ Going forward, for Milestone 2, we plan to:
 - Start working on Notifications
 - Add a button to share progress on social media
 
+## Milestone 1 Poster 
+![alt text](https://github.com/lihuicham/nus-orbital-project-2022/blob/main/TRACK_MY_DAY/readme_images/milestone-1-poster.png "Milestone 1 Poster")  
