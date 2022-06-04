@@ -19,7 +19,7 @@ import ViewDetails from "./routes/ViewDetails";
 export default function App() {
   return (
     <NavigationContainer>
-      <LoginStackScreen />
+      <SettingStackScreen />
     </NavigationContainer>
   );
 }
