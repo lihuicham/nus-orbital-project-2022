@@ -40,13 +40,13 @@ export default function Home() {
           />
         </View>
 
-        <View style={styles.wrapper}>
+{/*         <View style={styles.wrapper}>
           <Button
             style={styles.button}
             title="Logout"
             onPress={handleLogout}
           />
-        </View>
+        </View> */}
       </View>
     </TouchableWithoutFeedback>
   );
