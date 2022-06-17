@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 
 const numOfCols = 2;
 
@@ -22,7 +23,8 @@ const formatData = (data, numCols) => {
 
   return data;
 };
-const habits = [
+
+const HABITS = [
   {
     habitImage: require("../assets/habit-images/water.png"),
     habitName: "WATER",
@@ -83,41 +85,60 @@ const habits = [
     habitUnit: "yes/no",
     empty: false,
   },
+
+  {
+    habitImage: require("../assets/habit-images/plants.png"),
+    habitName: "PLANTS",
+    habitUnit: "yes/no",
+    empty: false,
+  },
 ];
 
-export default class Dashboard extends React.Component {
-  renderItem = ({ item, index }) => {
-    if (item.empty === true) {
-      return <View style={[styles.itemWrapper, styles.itemInvisible]} />;
-    }
-    return (
-      <View style={styles.itemWrapper}>
-        <Image source={item.habitImage} style={styles.image} />
-        <Text style={styles.name}>{item.habitName}</Text>
-        <Text style={styles.unit}>{item.habitUnit}</Text>
-        <TouchableOpacity style={styles.detailsWrapper} onPress={() => {}}>
-          <Text>View Details</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
+const Item = ({habitImage, habitName, habitUnit, empty }) => {
+  const navigation = useNavigation();
 
-  render() {
-    return (
-      <SafeAreaView>
-        <FlatList
-          numColumns={numOfCols}
-          keyExtractor={(item, index) => index.toString()}
-          data={formatData(habits, numOfCols)}
-          renderItem={this.renderItem}
-          style={styles.list}
-        ></FlatList>
-      </SafeAreaView>
-    );
+  const toViewDetails = () => {
+    navigation.navigate("ViewDetails");
+  };
+  if (empty === true) {
+    return <View style={[styles.itemWrapper, styles.itemInvisible]} />;
   }
-}
+  return (
+    <View style={styles.itemWrapper}>
+      <Image source={habitImage} style={styles.image} />
+      <Text style={styles.name}>{habitName}</Text>
+      <Text style={styles.unit}>{habitUnit}</Text>
+      <TouchableOpacity style={styles.detailsWrapper} onPress={() => toViewDetails()}>
+        <Text>View Details</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+export default function Dashboard() {
+  const renderItem = ({ item }) => (
+    <Item habitImage={item.habitImage} habitName={item.habitName} habitUnit={item.habitUnit} empty={item.empty}/>
+  );
+
+  return (
+    <SafeAreaView>
+    <FlatList
+      numColumns={numOfCols}
+      keyExtractor={(item, index) => index.toString()}
+      data={formatData(HABITS, numOfCols)}
+      renderItem={renderItem}
+      style={styles.list}
+    ></FlatList>
+  </SafeAreaView>
+  )
+};
+
 
 const styles = StyleSheet.create({
+  list: {
+    backgroundColor: "#533326"
+  },
+
   itemWrapper: {
     backgroundColor: "#d7d4cb",
     alignItems: "center",

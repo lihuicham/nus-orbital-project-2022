@@ -7,7 +7,7 @@ const HomeStack = createStackNavigator();
 
 const HomeStackScreen = () => {
     return (
-        <HomeStack.Navigator screenOptions={{headerShown: false}}>
+        <HomeStack.Navigator screenOptions={{headerShown: false, headerStyle: {backgroundColor: "#264653"}, headerTintColor: "#fff"}}>
             <HomeStack.Screen name="Home" component={Dashboard} options={{title: "Home"}}/>
             <HomeStack.Screen name="ViewDetails" component={ViewDetails} options={{title: "ViewDetails"}} />
         </HomeStack.Navigator>
