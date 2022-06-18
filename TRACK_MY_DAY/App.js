@@ -19,7 +19,7 @@ import Dashboard from "./screens/Dashboard";
 export default function App() {
   return (
     <NavigationContainer>
-      <LoginStackScreen />
+      <Drawer />
     </NavigationContainer>
   );
 }
