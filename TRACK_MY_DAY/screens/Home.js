@@ -11,14 +11,6 @@ export default function Home() {
     navigation.navigate("ViewDetails");
   };
 
-  const handleLogout = () => {
-    console.log("Logout: " + authentication.currentUser?.email)
-    authentication
-    .signOut()
-    .then(() => {navigation.replace("Login")})
-    .catch((error) => alert(error.message))
-  }
-
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -40,13 +32,6 @@ export default function Home() {
           />
         </View>
 
-{/*         <View style={styles.wrapper}>
-          <Button
-            style={styles.button}
-            title="Logout"
-            onPress={handleLogout}
-          />
-        </View> */}
       </View>
     </TouchableWithoutFeedback>
   );

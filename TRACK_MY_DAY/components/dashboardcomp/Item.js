@@ -8,13 +8,28 @@ import {
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SliderPicker } from 'react-native-slider-picker';
+import { db } from "../../firebase-config";
+import { collection, addDoc, doc, Timestamp, setDoc } from "firebase/firestore";
+
+//firestore habits Collection Reference
+const habitsColRef = collection(db, "habits");
 
 const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
   const navigation = useNavigation();
+  const [habitId, newhabitId] = useState();
 
   const toViewDetails = () => {
     navigation.navigate("ViewDetails");
   };
+
+  const handleConfirm = (val) => {
+    addDoc(habitsColRef, {
+      habitName: habitName,
+      habitValue: val,
+      habitDate: Timestamp.fromDate(new Date())
+    })
+  }; 
+
   const [value, setValue] = useState(0);
 
 
@@ -32,10 +47,11 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
             <Text style={styles.unitText}>{value}   {habitUnit}</Text>
             <TouchableOpacity
               style={styles.confirmWrapper}
-              onPress={() => {}}
+              onPress={() => {handleConfirm(value)}}
             >
               <Text style={styles.confirmText}>Confirm</Text>
             </TouchableOpacity>
+          
           </View>
           
           <SliderPicker

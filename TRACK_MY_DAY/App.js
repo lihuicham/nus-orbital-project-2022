@@ -13,6 +13,7 @@ import SettingStackScreen from './routes/SettingsStackScreen';
 import ToDoStackScreen from './routes/ToDoStackScreen';
 import ViewDetails from "./routes/ViewDetails";
 import Dashboard from "./screens/Dashboard";
+import Suggestion from "./screens/Suggestion"
 
 
 
