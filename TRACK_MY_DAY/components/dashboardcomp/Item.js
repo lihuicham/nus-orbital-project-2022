@@ -4,40 +4,49 @@ import {
   View,
   TouchableOpacity,
   Image,
+  Platform,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { SliderPicker } from 'react-native-slider-picker';
+import { SliderPicker } from "react-native-slider-picker";
 import { db } from "../../firebase-config";
-import { collection, addDoc, doc, Timestamp, setDoc } from "firebase/firestore";
+import { doc, Timestamp, setDoc } from "firebase/firestore";
 import { authentication } from "../../firebase-config";
 
-//firestore habits Collection Reference
-const habitsColRef = collection(db, "habits");
+import * as Device from "expo-device";
+import * as Notifications from "expo-notifications";
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
+
+// to create firebase firestore unique day id
+const today = new Date();
+
+let year = today.getFullYear().toLocaleString();
+let month = (today.getMonth() + 1).toLocaleString();
+let day = today.getDate().toLocaleString();
+
+month = month < 10 ? "0" + month : month;
+day = day < 10 ? "0" + day : day;
+
+const dayId = year + month + day;
+
+const user = authentication.currentUser;
 
 const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
   const navigation = useNavigation();
-  
-  const today = new Date();
-
-  let year = today.getFullYear().toLocaleString();
-  let month = (today.getMonth() + 1).toLocaleString();
-  let day = today.getDate().toLocaleString();
-
-  month = month < 10 ? "0" + month : month;
-  day = day < 10 ? "0" + day : day;
-
-  const dayId = year + month + day;
-
-
-  const user = authentication.currentUser;
+  const [value, setValue] = useState(0);
 
   const toViewDetails = () => {
     navigation.navigate("ViewDetails");
   };
 
   const handleConfirm = (val) => {
-    
     const habitRef = doc(db, "habits", habitName);
     setDoc(habitRef, {
       name: habitName,
@@ -52,17 +61,29 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
       unit: habitUnit,
       value: val,
     });
+  };
 
-/*     addDoc(habitsColRef, {
-      name: habitName,
-      unit: habitUnit,
-      value: val,
-      date: Timestamp.fromDate(new Date()),
-      id: dayId,
-    }) */
-  }; 
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
 
-  const [value, setValue] = useState(0);
+  useEffect(() => {
+    registerForPushNotificationsAsync()
+
+    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      setNotification(notification);
+    });
+
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log(response);
+    });
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
 
 
   if (empty === true) {
@@ -76,56 +97,93 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
         <View style={styles.infoWrapper}>
           <Text style={styles.name}>{habitName}</Text>
           <View style={styles.unitWrapper}>
-            <Text style={styles.unitText}>{value}   {habitUnit}</Text>
+            <Text style={styles.unitText}>
+              {value} {habitUnit}
+            </Text>
             <TouchableOpacity
               style={styles.confirmWrapper}
-              onPress={() => {handleConfirm(value)}}
+              onPress={() => {
+                handleConfirm(value);
+              }}
             >
               <Text style={styles.confirmText}>Confirm</Text>
             </TouchableOpacity>
-          
           </View>
-          
+
           <SliderPicker
-          maxValue={habitMax}
-          callback={position => { setValue(position) }}
-          defaultValue={value}
-          labelFontColor={"#6c7682"}
-          labelFontWeight={'600'}
-          labelFontSize={10}
-          showFill={true}
-          fillColor={'green'}
-          showNumberScale={false}
-          showSeparatorScale={false}
-          buttonBackgroundColor={'#fff'}
-          buttonBorderColor={"#6c7682"}
-          buttonBorderWidth={1}
-          scaleNumberFontWeight={'300'}
-          scaleNumberFontSize={10}
-          buttonDimensionsPercentage={6}
-          heightPercentage={1}
-          widthPercentage={50}
-          style={styles.slider}
+            maxValue={habitMax}
+            callback={(position) => {
+              setValue(position);
+            }}
+            defaultValue={value}
+            labelFontColor={"#6c7682"}
+            labelFontWeight={"600"}
+            labelFontSize={10}
+            showFill={true}
+            fillColor={"green"}
+            showNumberScale={false}
+            showSeparatorScale={false}
+            buttonBackgroundColor={"#fff"}
+            buttonBorderColor={"#6c7682"}
+            buttonBorderWidth={1}
+            scaleNumberFontWeight={"300"}
+            scaleNumberFontSize={10}
+            buttonDimensionsPercentage={6}
+            heightPercentage={1}
+            widthPercentage={50}
+            style={styles.slider}
           />
         </View>
       </View>
 
-
-
       <View style={styles.bottomWrapper}>
         <Text style={styles.maxText}>Max: {habitMax}</Text>
-        <TouchableOpacity
-          onPress={() => toViewDetails()}
-        >
+        <TouchableOpacity onPress={() => toViewDetails()}>
           <Text style={styles.viewDetailsText}>View Details</Text>
         </TouchableOpacity>
       </View>
-      
     </View>
-  )
+  );
+};
+
+Notifications.scheduleNotificationAsync({
+    content: {
+      title: "Have you tracked your habits ?",
+      body: 'Record your daily habits using Track My Day !',
+    },
+    trigger: { 
+      hour: 21, 
+      minute: 0, 
+      repeats: true
+    },
+  });
+
+
+async function registerForPushNotificationsAsync() {
+  if (Device.isDevice) {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+  } else {
+    alert('Must use physical device for Push Notifications');
+  }
+
+  if (Platform.OS === 'android') {
+    Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
 }
-
-
 
 export default Item;
 
@@ -151,7 +209,7 @@ const styles = StyleSheet.create({
   contentWrapper: {
     flexDirection: "row",
     justifyContent: "center",
-    alignItems:'center',
+    alignItems: "center",
   },
 
   infoWrapper: {
@@ -159,8 +217,8 @@ const styles = StyleSheet.create({
   },
 
   imageWrapper: {
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   image: {
@@ -178,16 +236,16 @@ const styles = StyleSheet.create({
 
   unitWrapper: {
     flexDirection: "row",
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: "space-between",
+    alignItems: "center",
     width: 160,
-    marginTop: 10, 
+    marginTop: 10,
   },
 
   confirmWrapper: {
-    backgroundColor: '#D0A78B',
+    backgroundColor: "#D0A78B",
     padding: 5,
-    borderRadius: 20,  
+    borderRadius: 20,
   },
 
   unitText: {
@@ -195,29 +253,25 @@ const styles = StyleSheet.create({
   },
 
   bottomWrapper: {
-    flexDirection: 'row',
-    justifyContent:'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     width: 200,
-    marginLeft: 110, 
+    marginLeft: 110,
   },
 
   maxText: {
     fontSize: 10,
-    color: 'grey'
+    color: "grey",
   },
 
   viewDetailsText: {
     fontSize: 10,
-    fontWeight: '600',
-    color:"#16009a",
+    fontWeight: "600",
+    color: "#16009a",
   },
 
   confirmText: {
-    fontSize: 11
-  }
-
-
-
+    fontSize: 11,
+  },
 });
-

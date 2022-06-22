@@ -103,7 +103,6 @@ export default function Dashboard() {
 const styles = StyleSheet.create({
   list: {
     backgroundColor: "#533326",
-    marginTop: -33, 
     paddingVertical: 8,
   },
 });

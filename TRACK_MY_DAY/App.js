@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { StyleSheet, Text, View, Platform } from "react-native";
+import React, { useState, useEffect, useRef} from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import 'react-native-gesture-handler';
+
 
 import BottomTab from './routes/BottomTab';
 import Drawer from './routes/Drawer';
@@ -14,6 +15,7 @@ import ToDoStackScreen from './routes/ToDoStackScreen';
 import ViewDetails from "./routes/ViewDetails";
 import Dashboard from "./screens/Dashboard";
 import Suggestion from "./screens/Suggestion"
+
 
 
 
