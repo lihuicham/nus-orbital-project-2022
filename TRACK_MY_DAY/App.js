@@ -20,7 +20,7 @@ import Suggestion from "./screens/Suggestion"
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer />
+      <LoginStackScreen />
     </NavigationContainer>
   );
 }

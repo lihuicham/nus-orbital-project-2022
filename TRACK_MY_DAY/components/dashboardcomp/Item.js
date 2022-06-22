@@ -10,24 +10,56 @@ import { useNavigation } from "@react-navigation/native";
 import { SliderPicker } from 'react-native-slider-picker';
 import { db } from "../../firebase-config";
 import { collection, addDoc, doc, Timestamp, setDoc } from "firebase/firestore";
+import { authentication } from "../../firebase-config";
 
 //firestore habits Collection Reference
 const habitsColRef = collection(db, "habits");
 
 const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
   const navigation = useNavigation();
-  const [habitId, newhabitId] = useState();
+  
+  const today = new Date();
+
+  let year = today.getFullYear().toLocaleString();
+  let month = (today.getMonth() + 1).toLocaleString();
+  let day = today.getDate().toLocaleString();
+
+  month = month < 10 ? "0" + month : month;
+  day = day < 10 ? "0" + day : day;
+
+  const dayId = year + month + day;
+
+
+  const user = authentication.currentUser;
 
   const toViewDetails = () => {
     navigation.navigate("ViewDetails");
   };
 
   const handleConfirm = (val) => {
-    addDoc(habitsColRef, {
-      habitName: habitName,
-      habitValue: val,
-      habitDate: Timestamp.fromDate(new Date())
-    })
+    
+    const habitRef = doc(db, "habits", habitName);
+    setDoc(habitRef, {
+      name: habitName,
+      userId: user.uid,
+    });
+
+    const dayRef = doc(db, "habits", habitName, "days", dayId);
+    setDoc(dayRef, {
+      date: Timestamp.fromDate(new Date()),
+      id: dayId,
+      name: habitName,
+      unit: habitUnit,
+      value: val,
+    });
+
+/*     addDoc(habitsColRef, {
+      name: habitName,
+      unit: habitUnit,
+      value: val,
+      date: Timestamp.fromDate(new Date()),
+      id: dayId,
+    }) */
   }; 
 
   const [value, setValue] = useState(0);
