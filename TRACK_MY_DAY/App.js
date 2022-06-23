@@ -15,14 +15,14 @@ import ToDoStackScreen from './routes/ToDoStackScreen';
 import ViewDetails from "./routes/ViewDetails";
 import Dashboard from "./screens/Dashboard";
 import Suggestion from "./screens/Suggestion"
-
+import Graphs from "./screens/Graphs";
 
 
 
 export default function App() {
   return (
     <NavigationContainer>
-      <LoginStackScreen />
+      <Graphs />
     </NavigationContainer>
   );
 }

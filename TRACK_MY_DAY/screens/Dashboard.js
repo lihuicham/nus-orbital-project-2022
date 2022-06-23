@@ -8,6 +8,7 @@ import {
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Item from "../components/dashboardcomp/Item";
+import { flexbox } from "@mui/system";
 
 
 const numOfCols = 1;

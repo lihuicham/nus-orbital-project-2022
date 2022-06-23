@@ -48,6 +48,7 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
 
   const handleConfirm = (val) => {
     const habitRef = doc(db, "habits", habitName);
+    console.log(user)
     setDoc(habitRef, {
       name: habitName,
       userId: user.uid,
