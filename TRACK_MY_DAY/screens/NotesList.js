@@ -19,7 +19,7 @@ export default function NotesList() {
   const [notesItems, setNotesItems] = useState([]);
   const [searchText, setSearchText] = useState('');
   //FIXME - consider to change the way darkMode is implemented 
-  const [darkMode, setDarkMode] = useState(false);
+  
 
   // to count the character limit 
   const characterLimit = 200;
@@ -45,7 +45,7 @@ export default function NotesList() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Header handleDarkMode={() => setDarkMode}/>
+        <Header/>
         <Search handleSearchNote={setSearchText}/>
         {/*Add notes*/}
         <KeyboardAvoidingView

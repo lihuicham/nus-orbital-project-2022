@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { SliderPicker } from "react-native-slider-picker";
 import { db } from "../../firebase-config";
 import { doc, Timestamp, setDoc } from "firebase/firestore";
-import { authentication } from "../../firebase-config";
+import { getAuth } from "firebase/auth";
 
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
@@ -36,19 +36,21 @@ day = day < 10 ? "0" + day : day;
 
 const dayId = year + month + day;
 
-const user = authentication.currentUser;
+const auth = getAuth()
+const user = auth.currentUser;
 
 const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
   const navigation = useNavigation();
   const [value, setValue] = useState(0);
 
   const toViewDetails = () => {
-    navigation.navigate("ViewDetails");
+    navigation.navigate(habitName.replace(/\s+/g, ''))
+    
   };
 
   const handleConfirm = (val) => {
     const habitRef = doc(db, "habits", habitName);
-    console.log(user)
+    //console.log(user)
     setDoc(habitRef, {
       name: habitName,
       userId: user.uid,

@@ -4,18 +4,16 @@ import { Dimensions } from "react-native";
 
 import { LineChart } from "react-native-chart-kit";
 
-import { collection, getDoc, getDocs } from "firebase/firestore";
-import { db } from "../firebase-config";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase-config";
 
 
-
-
-const Graphs = () => {
+const SOCIALMEDIA = () => {
 
     const [ourData, setOurData] = useState([0]);
 
     const getDays = async () => {
-        const colRef = await getDocs(collection(db, "habits", "PET TIME", "days"));
+        const colRef = await getDocs(collection(db, "habits", "SOCIAL MEDIA", "days"));
         let arr = [];
         for (let doc of colRef.docs) {
             arr.push(doc.data().value)
@@ -54,7 +52,7 @@ const Graphs = () => {
             strokeWidth: 2, // optional
           },
         ],
-        legend: ["Exercise Hours"], // optional
+        legend: ["Social Media Hours"], // optional
       };
       
 
@@ -74,7 +72,7 @@ const Graphs = () => {
 
 
 
-export default Graphs;
+export default SOCIALMEDIA;
 
 
 const styles = StyleSheet.create({

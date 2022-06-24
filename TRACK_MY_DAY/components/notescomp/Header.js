@@ -1,15 +1,10 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 
-const Header = ({ handleDarkMode }) => {
+const Header = () => {
   return (
     <View style={styles.headerwrapper}>
       <Text style={styles.header}>My Notes</Text>
-      <TouchableOpacity onPress={() => handleDarkMode((prevDarkMode) => !prevDarkMode)}>
-        <View style={styles.togglewrapper}>
-          <Text style={styles.toggle}>Day/Night</Text>
-        </View>
-      </TouchableOpacity>
     </View>
   );
 };

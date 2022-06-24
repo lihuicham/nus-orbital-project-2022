@@ -4,13 +4,11 @@ import { Dimensions } from "react-native";
 
 import { LineChart } from "react-native-chart-kit";
 
-import { collection, getDoc, getDocs } from "firebase/firestore";
-import { db } from "../firebase-config";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase-config";
 
 
-
-
-const Graphs = () => {
+const PETTIME = () => {
 
     const [ourData, setOurData] = useState([0]);
 
@@ -74,7 +72,7 @@ const Graphs = () => {
 
 
 
-export default Graphs;
+export default PETTIME;
 
 
 const styles = StyleSheet.create({

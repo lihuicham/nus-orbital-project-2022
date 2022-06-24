@@ -4,18 +4,16 @@ import { Dimensions } from "react-native";
 
 import { LineChart } from "react-native-chart-kit";
 
-import { collection, getDoc, getDocs } from "firebase/firestore";
-import { db } from "../firebase-config";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase-config";
 
 
-
-
-const Graphs = () => {
+const EXERCISE = () => {
 
     const [ourData, setOurData] = useState([0]);
 
     const getDays = async () => {
-        const colRef = await getDocs(collection(db, "habits", "PET TIME", "days"));
+        const colRef = await getDocs(collection(db, "habits", "EXERCISE", "days"));
         let arr = [];
         for (let doc of colRef.docs) {
             arr.push(doc.data().value)
@@ -36,8 +34,6 @@ const Graphs = () => {
         backgroundGradientTo: "#08130D",
         backgroundGradientToOpacity: 1,
         decimalPlaces: 0, 
-        yAxisLabel: "Hours", 
-        xAxisLabel: "Days",
         color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
         strokeWidth: 2, // optional, default 3
         barPercentage: 0.5,
@@ -74,7 +70,7 @@ const Graphs = () => {
 
 
 
-export default Graphs;
+export default EXERCISE;
 
 
 const styles = StyleSheet.create({

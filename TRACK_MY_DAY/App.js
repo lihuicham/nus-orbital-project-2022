@@ -22,7 +22,7 @@ import Graphs from "./screens/Graphs";
 export default function App() {
   return (
     <NavigationContainer>
-      <Graphs />
+      <LoginStackScreen />
     </NavigationContainer>
   );
 }
