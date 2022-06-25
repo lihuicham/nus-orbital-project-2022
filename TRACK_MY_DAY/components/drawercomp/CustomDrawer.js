@@ -1,12 +1,13 @@
 import { ImageBackground, StyleSheet, Text, View, Image, TouchableOpacity, Linking } from "react-native";
-import React from "react";
+import React, { useState, useEffect} from "react";
 import { DrawerContentScrollView, DrawerItemList} from "@react-navigation/drawer";
-
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { authentication } from "../../firebase-config";
+import { db, authentication } from "../../firebase-config";
 import { useNavigation } from "@react-navigation/native";
+
+import { doc, getDoc } from "firebase/firestore";
 
 export default function CustomDrawer(props) {
   const navigation = useNavigation();
@@ -23,6 +24,35 @@ export default function CustomDrawer(props) {
     .catch((error) => alert(error.message))
   }
 
+  const [username, setUsername] = useState("");
+  const [favQuote, setFavQuote] = useState("")
+
+  const user = authentication.currentUser
+
+
+    const getData = async () => {
+        const docRef = doc(db, "users", user.uid)
+        const docSnap = await getDoc(docRef);
+        let name = "";
+        let quote = "";
+        
+        name = docSnap.data().username;
+        quote = docSnap.data().favQuote;
+        
+        setUsername(name);
+        setFavQuote(quote);
+
+    };
+    
+    useEffect(() => {
+      try {
+        getData();
+      } catch(err) {
+        console.log(err.message)
+      }
+        
+    }, [])
+
   return (
     <View style={styles.container}>
       <DrawerContentScrollView 
@@ -36,9 +66,9 @@ export default function CustomDrawer(props) {
           style={styles.userImage}
           />
 
-          <Text style={styles.userName}>{authentication.currentUser?.email}</Text>
+          <Text style={styles.userName}>{username}</Text>
           <View style={styles.statusWrapper}>
-            <Text style={styles.userStatus}>Work hard, play hard.</Text>
+            <Text style={styles.userStatus}>{favQuote}</Text>
             <FontAwesome5 name="coins" size={14} color="#fff" style={styles.statusIcon}/>
           </View>
         </ImageBackground>
@@ -82,12 +112,10 @@ const styles = StyleSheet.create({
   },
 
   userName: {
-    backgroundColor: 'black',
     marginTop: 10, 
-    color: 'white',
+    color: '#FFBB1C',
     width: '80%',
     padding: 2,
-    textAlign: 'center', 
     fontWeight: 'bold',
     fontSize: 18, 
     borderRadius: 20, 

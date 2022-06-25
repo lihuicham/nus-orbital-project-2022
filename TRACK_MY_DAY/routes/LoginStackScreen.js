@@ -3,6 +3,7 @@ import Login from '../screens/Login';
 import Drawer from './Drawer';
 import Register from '../screens/Register';
 import ForgotPassword from '../screens/ForgotPassword';
+import Profile from '../screens/Profile'
 
 const LoginStack = createStackNavigator();
 
@@ -11,8 +12,9 @@ const LoginStackScreen = () => {
         <LoginStack.Navigator>
             <LoginStack.Screen name="Login" component={Login} options={{title: "Login", headerShown: false}}/>
             <LoginStack.Screen name="Drawer" component={Drawer} options={{title: "Home", headerShown: false}}/>
-            <LoginStack.Screen name="Register" component={Register} options={{title: "Register"}}/>
-            <LoginStack.Screen name="ForgotPassword" component={ForgotPassword} options={{title: "ForgotPassword"}}/>
+            <LoginStack.Screen name="Register" component={Register} options={{title: "Register", headerShown: false}}/>
+            <LoginStack.Screen name="Profile" component={Profile} options={{title: "Profile", headerShown: false}}/>
+            <LoginStack.Screen name="ForgotPassword" component={ForgotPassword} options={{title: "Forgot Password", headerShown: false}}/>
         </LoginStack.Navigator>
     )
 }

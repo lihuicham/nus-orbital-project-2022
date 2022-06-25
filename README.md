@@ -135,7 +135,7 @@ Notes & to-do lists are meant to satisfy the quick note taking needs of the user
 
 As both pages are meant for quick and simple note taking, we do not intend to add more features such as bolded words, add a photo or link function. We wish to maintain the simplicity of the features and minimalistic design of the app.  
 
-**Current Progress:** Normal note & todo list functions done. With basic UI design.
+**Current Progress:** Normal notes & todo list functions done. With basic UI design. Incomplete functions: Search function (unable to filter) and delete button in Notes page, for now, tap anywhere in the yellow box to delete. 
 
 #### Notes
 For notes, the user can add and delete notes. All notes will be visible in one screen and users can scroll to view their notes. Users can swipe to delete the notes.  

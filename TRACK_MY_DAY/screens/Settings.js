@@ -1,77 +1,50 @@
-import { StyleSheet, Text, View, Button, ScrollView, Switch } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View, Switch, TouchableOpacity } from 'react-native'
+import { React, useState } from 'react'
+import ModalChangeEmailPassword from '../components/ModalChangeEmailPassword';
+import ModalDeleteAccount from '../components/ModalDeleteAccount';
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
 
-  const [isNotification, setIsNotification] = useState(false);
-  const [notificationText, setNotificationText] = useState("Off")
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
-  const toggleNotification = () => {
-    setIsNotification(prevState => !prevState);
-    if (isNotification) {
-      setNotificationText("Off")
-    } else {
-      setNotificationText("On")
-    }
+  const toChangeDetails = () => {
+    navigation.navigate("ChangeDetails")
   }
-
-  const [isSound, setIsSound] = useState(false);
-  const [soundText, setSoundText] = useState("Off")
-
-  const toggleSound = () => {
-    setIsSound(prevState => !prevState);
-    if (isSound) {
-      setSoundText("Off")
-    } else {
-      setSoundText("On")
-    }
-  }
-
-
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <View style={styles.itemWrapper}>
-
-          <View style={styles.item}>
-            <View style={styles.titleWrapper}>
-              <Text style={styles.itemTitle}>Notification</Text>
-              <Text style={styles.itemSubtitle}>Turn on/off notification</Text>
-            </View>
-            <View style={styles.switchWrapper}>
-              <Text style={styles.switchTitle}>{notificationText}</Text>
-              <Switch
-              trackColor={{ false: "#767577", true: "#81b0ff" }}
-              thumbColor={isNotification ? "#f5dd4b" : "#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleNotification}
-              value={isNotification}
-              />
-            </View>
-          </View>
-
-          <View style={styles.item}>
-            <View style={styles.titleWrapper}>
-              <Text style={styles.itemTitle}>Sound</Text>
-              <Text style={styles.itemSubtitle}>Turn on/off sound</Text>
-            </View>
-            <View style={styles.switchWrapper}>
-              <Text style={styles.switchTitle}>{soundText}</Text>
-              <Switch
-              trackColor={{ false: "#767577", true: "#81b0ff" }}
-              thumbColor={isSound ? "#f5dd4b" : "#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSound}
-              value={isSound}
-              />
-            </View>
-          </View>
-
+    <View style={styles.container}>
+      
+      <View style={styles.row}>
+        <Text style={styles.text}>Notifications</Text>
+        <View style={styles.switch}>
+          <Switch
+            trackColor={{ false: "#767577", true: "#81b0ff" }}
+            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+          />
         </View>
       </View>
-    </ScrollView> 
 
+
+      <View style={styles.buttonWrapper}>
+        <TouchableOpacity 
+        style={styles.button} 
+        onPress={toChangeDetails}
+        >
+          <View style={styles.row}>
+          <Text style={styles.text}> Update Personal Details</Text>
+          <Text style={styles.arrow}>☞</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      
+      <ModalChangeEmailPassword/>
+      <ModalDeleteAccount />
+
+    </View>
   )
 }
 
@@ -80,37 +53,39 @@ export default Settings
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    backgroundColor: '#dccdc3' //512e1d //dccdc3 //3e615d
   },
-
-  itemWrapper: {
-    width: '100%', 
-    marginTop: 40, 
-    justifyContent: 'center', 
-    //borderWidth: 2
-  }, 
-
-  item: {
+  text: {
+    fontSize: 17,
+    marginLeft: 10
+  },
+  switch: {
+    justifyContent: 'flex-end',
+    marginLeft: 166, //150,
+    transform: [{ scaleX: 1.5 }, { scaleY: 1.3 }]
+  },
+  row: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center', 
-    marginBottom: 10, 
-    //borderBottomWidth: 2
+    alignItems: 'center',
+    marginHorizontal:20,
+    marginTop: 20,
+    backgroundColor: '#ffffff',
+    padding: 4,
+    borderRadius: 10,
+    opacity: 0.8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 5, 
+    justifyContent: "space-between"
+
   },
-
-  itemTitle: {
-    fontSize: 30,
-    marginBottom: 10
-  }, 
-
-  switchWrapper: {
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    marginTop: 30
-  }, 
-  
-  switchTitle: {
-    fontSize: 20, 
+  arrow: {
+    fontSize: 33,
+    //marginLeft: 86 //70
   }
-
-})
+});

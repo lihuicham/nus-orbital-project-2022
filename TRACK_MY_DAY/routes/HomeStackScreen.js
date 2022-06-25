@@ -1,6 +1,4 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import Home from "../screens/Home";
-// import ViewDetails from "./ViewDetails";
 import Dashboard from "../screens/Dashboard";
 import EXERCISE from "../screens/ViewDetails/EXERCISE";
 import PETTIME from "../screens/ViewDetails/PETTIME";

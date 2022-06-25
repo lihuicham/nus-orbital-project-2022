@@ -1,14 +1,10 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-
 import BottomTab from "./BottomTab";
 import SettingsStackScreen from "./SettingsStackScreen";
-//import ProfileStackScreen from './ProfileStackScreen';
-
 import CustomDrawer from "../components/drawercomp/CustomDrawer";
-
-
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { color } from "react-native-reanimated";
+
+
 
 const DrawerObj = createDrawerNavigator();
 
@@ -31,11 +27,6 @@ const Drawer = () => {
                     <Ionicons name="home-outline" size={22} color={color} />
                 )
             }}/>
-{/*             <DrawerObj.Screen name="ProfileStackScreen" component={ProfileStackScreen} options={{title: "Profile",
-                drawerIcon: ({color}) => (
-                    <Ionicons name="person-outline" size={22} color={color} />
-                ) 
-            }}/> */}
             <DrawerObj.Screen name="SettingsStackScreen" component={SettingsStackScreen} options={{title: "Settings",
                 drawerIcon: ({color}) => (
                     <Ionicons name="settings-outline" size={22} color={color} />

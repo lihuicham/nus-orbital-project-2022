@@ -10,9 +10,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SliderPicker } from "react-native-slider-picker";
 import { db } from "../../firebase-config";
-import { app } from "../../firebase-config";
 import { doc, Timestamp, setDoc } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
 
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
@@ -37,8 +35,6 @@ day = day < 10 ? "0" + day : day;
 
 const dayId = year + month + day;
 
-const auth = getAuth(app)
-const user = auth.currentUser;
 
 const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
   const navigation = useNavigation();
@@ -54,7 +50,7 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
     //console.log(user)
     setDoc(habitRef, {
       name: habitName,
-      userId: user.uid,
+      
     });
 
     const dayRef = doc(db, "habits", habitName, "days", dayId);
@@ -203,7 +199,7 @@ const styles = StyleSheet.create({
     width: 330,
     height: 170,
     borderRadius: 10,
-    marginHorizontal: 20,
+    marginHorizontal: 16,
   },
 
   itemInvisible: {

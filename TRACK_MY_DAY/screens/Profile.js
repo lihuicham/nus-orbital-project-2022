@@ -1,25 +1,28 @@
-import { Button, Pressable, Platform, Alert, StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
+import { Button, TouchableOpacity, Platform, Alert, StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
 import React, { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import SleepPicker from '../components/SleepPicker'; 
-import WaterPicker from '../components/WaterPicker'; 
+import { db } from '../firebase-config';
+import { collection, doc, setDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import Slider from '@react-native-community/slider';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Profile({ navigation }) {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [repeatPassword, setrepeatPassword] = useState('');
-    const [email, setEmail] = useState('');
-    const [occupation, setOccupation] = useState('');
-    const [favQuote, setFavQuote] = useState('');
+
+    const [users, setUsers] = useState([]);
+    const usersCollectionRef = collection(db, "users");
+
+    const auth = getAuth();
+    const user = auth.currentUser;
 
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
     const [birthday, setBirthday] = useState('Empty');
 
-    // don't need later - dummy function for Register button
-    const printAlert = () => {
-        Alert.alert('Pressable Called ...')}
+    const toHome = () => {
+        navigation.replace("Drawer");
+    }
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
@@ -36,101 +39,154 @@ export default function Profile({ navigation }) {
     const showMode = (currentMode) => {
         setShow(true);
         setMode(currentMode);
+
     }
-    
-    // this can also be deleted because Firebase will handle this
-    const passwordLength = (password) => {
-        if(password.length < 7) {
-            Alert.alert('Password should be at least 8 characters')
-        } else {
-            Alert.alert('Correct Password Length - continue')
-        }
+
+    // creating new user in firebase
+    const [username, setUsername] = useState("")
+    const [favQuote, setFavQuote] = useState("")
+    const [sleepGoal, setSleepGoal] = useState("0")
+    const [waterGoal, setWaterGoal] = useState("0")
+    const [exerciseGoal, setExerciseGoal] = useState("0")
+    const [studyGoal, setStudyGoal] = useState("0")
+
+    const updateProfile = async () => {
+        await setDoc(doc(db, "users", user.uid), {
+            username: username, favQuote: favQuote, birthday: birthday, 
+            sleepGoal: sleepGoal, waterGoal: waterGoal, exerciseGoal: exerciseGoal,
+            studyGoal: studyGoal, id: user.uid
+          })
+          .then(username && Alert.alert("Profile registered!"))
+          .catch((error) => 
+            alert(error.message));
     }
+
 
     return (
         <TouchableWithoutFeedback onPress={() => {
             Keyboard.dismiss();
         }}>
-            <ScrollView style={{backgroundColor: '#fff'}}>
-                <View style={styles.container}>
+            <ScrollView style={{backgroundColor: '#264653'}}> 
+            <View style={styles.section}>
+                
+                <Text style={styles.heading}> ABOUT ME </Text>
 
-                    <Text>Enter email:</Text>
-                    <TextInput
-                    style={styles.input}
-                    placeholder='e.g. johndoe@gmail.com'
-                    onChangeText={(val) => setEmail(val)}/>
+                <View style={styles.container}>
                     
-                    <Text>Enter username:</Text>
+                    <Text style={styles.text}>Enter username:</Text>
                     <TextInput
                     style={styles.input}
                     placeholder='e.g. johndoe'
                     onChangeText={(val) => setUsername(val)}/>
 
-                    <Text>Enter password:</Text>
-                    <TextInput
-                    style={styles.input}
-                    onChangeText={(val) => setPassword(val)}
-                    secureTextEntry />
-
-                    <Text>Repeat password:</Text>
-                    <TextInput
-                    style={styles.input}
-                    onChangeText={(val) => setrepeatPassword(val)}
-                    secureTextEntry />
-
-                    <Text>Enter birthday:</Text>
-                        
-                    <View style={{margin:20}}>
-                        <Button title='Select Date' onPress={() => showMode('date')} />
-                    </View>
-
-                    { show && (
-                        <DateTimePicker
-                        testID='dateTimePicker'
-                        value={ date }
-                        mode={ mode }
-                        display='default'
-                        onChange = { onChange }
-                    />)}
-
-                    <Text>Enter occupation:</Text>
-                    <TextInput
-                    style={styles.input}
-                    onChangeText={(val) => setOccupation(val)}/>
-
-                    <Text>Enter your favourite quote:</Text>
-                    <TextInput
-                    multiline
-                    style={styles.input}
-                    onChangeText={(val) => setFavQuote(val)}/>
-
-                    <Text>Sleep goal:</Text>
-                    <SleepPicker />
-
-                    <Text>Water goal:</Text>
-                    <WaterPicker />
-{/* 
-                    <View style={styles.pressBox}>
-                        <Pressable
-                            onPress={passwordLength} // change to function when Register button is pressed
-                            style={({ pressed }) => ({
-                            backgroundColor: pressed ? '#FF3D00' : '#0080FF'
+                        <Text style={styles.text}>Enter birthday:</Text>
                             
-                            })}>
+                        <View style={styles.dateSelector}>
+                            <Button title='Select Date' onPress={() => showMode('date')} />
+                        </View>
 
-                            {({ pressed }) => (
-                                <Text style={styles.pressable_text}>Register</Text>
-                            )}
-                                
-                        </Pressable>
-                    </View>   */}
+                        { show && (
+                            <DateTimePicker
+                            testID='dateTimePicker'
+                            value={ date }
+                            mode={ mode }
+                            display='default'
+                            onChange = { onChange }
+                        />)}
+
+                        <Text style={styles.birthdayText}>Selected date: { birthday }</Text> 
+
+                        <Text style={styles.text}>Enter your favourite quote:</Text>
+                        <TextInput
+                        multiline
+                        style={styles.input}
+                        onChangeText={(val) => setFavQuote(val)}/>
+                    </View>
+                </View>
+
+                <View style={styles.section}>
+                    <Text style={styles.heading}> MY GOALS </Text>    
+
+                    <View style={styles.container}>
+                        <Text style={styles.text}>Water goal:</Text>
+                        <View style={styles.sliderBox}>
+                        <Slider
+                        style={{width: 200, height: 40}}
+                        minimumValue={0}
+                        maximumValue={10}
+                        step={1}
+                        minimumTrackTintColor="#3b7cff"
+                        maximumTrackTintColor="#000000"
+                        onValueChange={(val) => setWaterGoal(val)}
+                        />
+                        <Text style={styles.goals}>{waterGoal} litres</Text>
+                        </View>
+
+                        <Text style={styles.text}>Sleep goal:</Text>
+                        <View style={styles.sliderBox}>
+                        <Slider
+                        style={{width: 200, height: 40}}
+                        minimumValue={0}
+                        maximumValue={24}
+                        step={1}
+                        minimumTrackTintColor="#3b7cff"
+                        maximumTrackTintColor="#000000"
+                        onValueChange={(val) => setSleepGoal(val)}
+                        />
+                        <Text style={styles.goals}>{sleepGoal} hours</Text>
+                        </View>
+
+                        <Text style={styles.text}>Exercise goal:</Text>
+                        <View style={styles.sliderBox}>
+                        <Slider
+                        style={{width: 200, height: 40}}
+                        minimumValue={0}
+                        maximumValue={12}
+                        step={0.5}
+                        minimumTrackTintColor="#3b7cff"
+                        maximumTrackTintColor="#000000"
+                        onValueChange={(val) => setExerciseGoal(val)}
+                        />
+                        <Text style={styles.goals}>{exerciseGoal} hours</Text>
+                        </View>
+
+                        <Text style={styles.text}>Study goal:</Text>
+                        <View style={styles.sliderBox}>
+                        <Slider
+                        style={{width: 200, height: 40}}
+                        minimumValue={0}
+                        maximumValue={24}
+                        step={1}
+                        minimumTrackTintColor="#3b7cff"
+                        maximumTrackTintColor="#000000"
+                        onValueChange={(val) => setStudyGoal(val)}
+                        />
+                        <Text style={styles.goals}>{studyGoal} hours</Text>
+                        </View>
+
+                    </View>
+                    </View>
+               
                     
-                    {/*Confirm button is just a dummy button, no functionality*/}
                     <View style={styles.buttonWrapper}>
-                        <Button style={styles.button} title="Confirm" /> 
+                        <TouchableOpacity 
+                        style={styles.button} 
+                        onPress={updateProfile}
+                        >
+                            <Text style={styles.buttonText}>CONFIRM</Text>
+                        </TouchableOpacity>
                     </View>
 
-                </View>
+                    <View style={styles.buttonWrapper}>
+                        <TouchableOpacity 
+                        style={styles.buttonHome} 
+                        onPress={() => toHome()}
+                        >
+                            <Text style={styles.buttonText}>Back to Home</Text>
+                        </TouchableOpacity>
+                    </View>
+            
+
             </ScrollView>
         </TouchableWithoutFeedback>
     );
@@ -139,22 +195,38 @@ export default function Profile({ navigation }) {
 const styles = StyleSheet.create({
     container: { 
       flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop: 50
+      backgroundColor: '#e8dad1',
+      alignItems: 'flex-start',
+      marginTop: 10,
+      marginLeft: 30,
+      marginRight: 30
+    },
+
+    section: {
+        borderWidth: 0.6,
+        borderRadius: 15,
+        borderColor: "#e5cfc7",
+        margin: 20,
+        backgroundColor: '#e8dad1',
+        paddingBottom: 20
     },
 
     input: {
       borderWidth: 1,
       borderColor: '#777',
       padding: 8,
-      margin: 10,
-      width: 200
+      marginTop: 15,
+      marginBottom: 15,
+      width: 250
     },
 
     datePickerStyle: {
         width: 230
+    },
+
+    dateSelector: {
+        marginTop: 15,
+        marginBottom: 15
     },
 
     pressable_text: {
@@ -166,41 +238,71 @@ const styles = StyleSheet.create({
     
     pressBox: {
         marginTop: 10,
-        marginBottom: 10
+        marginBottom: 10,
     },
 
     buttonWrapper: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
       },
     
-      button: {
-        margin: 15,
-        padding: 10, 
-      }
+    button: {
+        margin: 7,
+        backgroundColor: "#159947",
+        padding: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        borderRadius: 20
+    },
 
+    buttonHome: {
+        margin: 7,
+        backgroundColor: "#ec791e",
+        padding: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        borderRadius: 20
+    },
+      
+    buttonText: {
+        fontWeight: "600",
+        color: '#ffffff',
+        fontSize: 15
+    },
+
+    heading: {
+        fontSize: 26,
+        fontWeight: 'bold',
+        marginTop: 20,
+        marginLeft: 20,
+        color:'#653e25',
+        letterSpacing: 1.3
+    },
+
+    text: {
+        marginTop: 10,
+        color: '#264653', 
+        fontSize: 15,
+    },
+
+    birthdayText: {
+        color: "#575454",
+        paddingBottom: 10,
+    },
+
+    goals: {
+        color: "#575454",
+        marginBottom: 20,
+        // marginLeft: 130
+    },
+
+    buttonContainer: {
+        flex: 1,
+        alignItems: 'flex-start',
+        marginLeft: 30,
+    },
+
+    sliderBox: {
+        flexDirection: "row",
+    }
   });
-
-
-
-/* import { StyleSheet, Text, View, Button } from 'react-native'
-import React from 'react'
-
-const Profile = () => {
-  return (
-    <View style={styles.wrapper}>
-      <Text>Profile</Text>
-    </View>
-  )
-}
-
-export default Profile
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-}) */
