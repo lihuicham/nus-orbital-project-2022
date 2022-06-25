@@ -1,16 +1,32 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-
 import { Picker } from "@react-native-picker/picker";
+
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function SleepPicker() {
   const [sleepPicker, setSleepPicker] = useState('Unknown');
+
+  //console.log(sleepPicker)
+  const navigation = useNavigation();
+  const [sleepHours, setSleepHours] = useState("0");
+  const sleepData = () => {
+    navigation.navigate("Profile", sleepHours)
+  }
+
+  
+  // console.log("sleepPicker sleepData: ", sleepData())
+  // console.log("sleepHours: ", sleepHours)
+ 
+    
+    
 
   return (
     <View style={styles.screen}>
       <Picker
         selectedValue={sleepPicker}
-        onValueChange={(value, index) => setSleepPicker(value)}
+        onValueChange={(value, index) => {setSleepPicker(value); setSleepHours(value)}}
         mode="dropdown" // Android only
         style={styles.picker}
       >

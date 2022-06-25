@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-
 import { Picker } from "@react-native-picker/picker";
+
+import { useNavigation } from '@react-navigation/native';
 
 export default function SleepPicker() {
   const [waterPicker, setWaterPicker] = useState('Unknown');
+
+  const navigation = useNavigation();
+  const [waterAmt, setWaterAmt] = useState("0");
+  const waterData = () => {
+    navigation.navigate("Profile", waterAmt)
+  }
+
 
   return (
     <View style={styles.screen}>
       <Picker
         selectedValue={waterPicker}
-        onValueChange={(value, index) => setWaterPicker(value)}
+        onValueChange={(value, index) => {setWaterPicker(value); setWaterAmt(value)}}
         mode="dropdown" // Android only
         style={styles.picker}
       >

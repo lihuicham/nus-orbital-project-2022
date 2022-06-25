@@ -27,7 +27,7 @@ export default function Home() {
     >
       <View style={styles.container}>
         {/* replace name with user's name here */}
-        <Text style={styles.welcome}>Welcome {authentication.currentUser?.email}!</Text>
+        <Text style={styles.welcome}>Welcome {authentication.currentUser?.email}!</Text> 
         <View style={styles.ring}>
           <Ring />
         </View>
