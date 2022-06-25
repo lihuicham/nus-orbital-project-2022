@@ -2,9 +2,9 @@
 ### **An Orbital project by Cham Li Hui and Pwint Thiri Ko.**  
 [Github Repository](https://github.com/lihuicham/nus-orbital-project-2022)  
 
-[Google Drive for Milestone 2](https://drive.google.com/drive/folders/1Mq71KuNAYKe8AkgMO25qQXlOgMgQXA0N?usp=sharing) (for images, demo videos, project log poster and full video)  
+[Google Drive for Milestone 2](https://drive.google.com/drive/folders/1Mq71KuNAYKe8AkgMO25qQXlOgMgQXA0N?usp=sharing)  
 
-_Note: We recommend you to view our GitHub README for the latest update of the app. To view a collection of images and demo videos of the app, visit our Google Drive._
+_Note: We recommend you to view our GitHub README for the latest update of the app. To view a collection of images, demo videos, project log, poster and full video of the app, visit our Google Drive._
 
 ## Team Name 
 ### **Track My Day**  
@@ -23,9 +23,13 @@ Track My Day is a mobile app with a primary focus on tracking habits, such as ex
 
 ## User Stories & Experience 
 As a young adult who wants to transform into a better person, namely with good habits, I want a simple but aesthetically pleasing tracker that is able to assist me on that.  
+
 As an individual who wants to improve efficiency, I want a tracker that can show me my progress for the habits that I wish to pick up in a simplest and most straightforward way.  
+
 As a modern user of digital devices, I wish to see a simplistic and minimalistic design in productivity and self-improvement mobile apps.  
+
 As a student who is always on the go, I want an app that can allow me to take down quick notes or checklists, and viewing them should be easy.  
+
 As a user of productivity apps, I want to have an awesome user experience on such apps. Along with functional user interface and aesthetically pleasing design, these features will greatly motivate me to stick with my goals and habits.  
 
 
@@ -84,6 +88,7 @@ The user enters their email in the Forgot Password page. This page has been link
 
 ### Profile Page 
 The app will also collect the user’s personal details and goals which will be used in the Analysis page. The user can set their username, birthday and enter a favorite quote here. They can also set goals such as amount of sleep per night, amount of water drunk per day and amount of time spent studying or exercising daily.  
+
 The user will only encounter this page once immediately after registration. After registration, the user will be guided to the Profile page where they fill in these details. Upon pressing the button to register, a pop up will appear to confirm that the user has registered their details. The user will be added into the Firestore database with these details recorded. Afterwards, if the user wants to make any changes, they can do so in ‘Settings’ where a separate page is created for changing these details. Any updates will also be recorded in Firestore.  
 
 **Current progress:** Complete.  
@@ -103,14 +108,18 @@ Users can delete their account in the app. There will be a delete account button
 
 ### Tiles (Home Page)
 The home page serves the main function of this app - tracking habits. The trackers include water tracker, sleep tracker, read tracker etc. We redesigned the home page in Milestone 2. We call the home page - “Tiles”, named according to the appearance and layout of the trackers in the home page.  
+
 The trackers can have different units and maximum values e.g. 24 hours, 10 liters, 50 kilograms and so on. This allows the trackers to be flexible in tracking all sorts of habits. Other than default trackers, users can customize their own trackers too.  
 We use a slider to increase the value of each tracker instead of a dropdown menu or a picker. The slider is included for the user to adjust the value. Each tracker has its own unit that is suitable for the habit that the tracker is tracking. This feature greatly enhances the user experience.  
+
 There will also be a “View Details” button at the bottom right corner of each tile (habit tracker) and clicking it will navigate to the view details page of each tracker.  
 When the user clicks the “Confirm” button, the value of each tracker will be recorded or “written” into our backend database (Firebase Firestore). More details about write, read and update in the following section - Firebase Firestore. 
 
 _Note:  
 **From The Ring to Tiles** - We understand that the changes in the layout of the home page is the biggest change in our app. Previously (in Liftoff and Milestone 1), we decided that the trackers should be designed as different proportions of a ring, and hence our home page will only contain “The Ring”.  
+
 However, we tested the ring design, consulted the tutor from the UI/UX workshop and discussed between us, we decided that the ring design was limiting the number of habit trackers we can have on The Ring (home page). Since it is just a hollow circle shape (literally, a ring shape), it can only be divided into at most 5 sections if the user wishes to have an aesthetically pleasing UI. We experimented with more trackers, which simulated the real-life use of the app. However, The Ring became really messy and packed because each tracker shared a small chunk of the circle ring. This greatly impacted the UI and UX of the app, and limited the app’s habit tracking ability and deviated from the project’s purpose.  
+
 Hence, we took a step back and redesigned the habit trackers and the home page. Going forward, we will be implementing the habit trackers as “tiles” in the home page._  
 
 **Current progress:** Basic habits - water, sleep, read, exercise and etc have been added to Tiles. All components - slider confirm button and view details button are completed. Integrated frontend (confirm button) with backend database (Firebase Firestore). Completed all working features and UI design.  
@@ -121,6 +130,7 @@ Hence, we took a step back and redesigned the habit trackers and the home page. 
 
 ### Notes & To-Do List 
 Notes & to-do lists are meant to satisfy the quick note taking needs of the users. Both pages support simple typing, and the to-do list supports an additional checkbox feature.  
+
 As both pages are meant for quick and simple note taking, we do not intend to add more features such as bolded words, add a photo or link function. We wish to maintain the simplicity of the features and minimalistic design of the app.  
 
 **Current Progress:** Normal note & todo list functions done. With basic UI design.
@@ -128,22 +138,23 @@ As both pages are meant for quick and simple note taking, we do not intend to ad
 #### Notes
 For notes, the user can add and delete notes. All notes will be visible in one screen and users can scroll to view their notes. Users can swipe to delete the notes.  
 
---> Watch a demo video of To-Do List: [Notes 📺]()  
+--> Watch a demo video of Notes: [Notes 📺]()  
 
 ![Notes](./readme_assets/Notes.jpg)  
 
+<br>
 
 #### To-Do List
 The todo list has a tap to delete task function, and to view different todo lists, users only have to swipe (like Tinder) to view the next or previous todo lists.  
 
---> Watch a demo video of Notes: [To-Do List 📺]()  
+--> Watch a demo video of To-Do List: [To-Do List 📺]()  
 
 ![To-Do](./readme_assets/Todo.jpg)  
 
 ### Drawer 
 Drawer can be viewed when the user swipe right on any of the screens or pages. The drawer consists of three sections - user details, navigation tabs, and footer. 
 
-1. **User details:** It shows the user’s profile image and status. 
+1. **User details:** It shows the user’s profile image and favourite quote. 
 2. **Navigation tabs:** Home and Settings. 
 3. **Footer:** Report Issues (contact developers via email) and Log Out. 
 
@@ -225,6 +236,7 @@ We consider that millennials like to share their daily moments on social media, 
 - When a new user registers their personal details, a document will be added to the users collection in Firebase with these details.
 - The document ID for each new document is set as the currently logged in user’s ID in order to read, delete or update the user’s information which requires the document ID of the document the operation would be performed on. 
 - User ID is also unique, meaning that each user will only have one document created for them.  
+
 ![Firestore User](./readme_assets/FirestoreUser.png)
 
 
@@ -297,7 +309,7 @@ To be completed in Milestone 3
 ### Project Log
 Project Log provides description on the tasks distribution of Cham Li Hui and Pwint Thiri Ko and their respective time spent on developing the app.  
 
-[Project Log]()
+[Read our Project Log]()
 
 
 ## Tech Stack for Milestone 2 
