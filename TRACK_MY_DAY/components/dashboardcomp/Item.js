@@ -10,6 +10,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SliderPicker } from "react-native-slider-picker";
 import { db } from "../../firebase-config";
+import { app } from "../../firebase-config";
 import { doc, Timestamp, setDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
@@ -36,7 +37,7 @@ day = day < 10 ? "0" + day : day;
 
 const dayId = year + month + day;
 
-const auth = getAuth()
+const auth = getAuth(app)
 const user = auth.currentUser;
 
 const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {

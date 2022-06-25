@@ -38,7 +38,7 @@ export default function CustomDrawer(props) {
 
           <Text style={styles.userName}>{authentication.currentUser?.email}</Text>
           <View style={styles.statusWrapper}>
-            <Text style={styles.userStatus}>User</Text>
+            <Text style={styles.userStatus}>Work hard, play hard.</Text>
             <FontAwesome5 name="coins" size={14} color="#fff" style={styles.statusIcon}/>
           </View>
         </ImageBackground>
