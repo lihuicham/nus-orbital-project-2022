@@ -1,8 +1,8 @@
 # NUS ORBITAL PROJECT 2022 - Track My Day 
 ### **An Orbital project by Cham Li Hui and Pwint Thiri Ko.**  
-[Github Repository](https://github.com/lihuicham/nus-orbital-project-2022)  
+**[Github Repository](https://github.com/lihuicham/nus-orbital-project-2022)**    
 
-[Google Drive for Milestone 2](https://drive.google.com/drive/folders/1Mq71KuNAYKe8AkgMO25qQXlOgMgQXA0N?usp=sharing)  
+**[Google Drive for Milestone 2](https://drive.google.com/drive/folders/1Mq71KuNAYKe8AkgMO25qQXlOgMgQXA0N?usp=sharing)**  
 
 _Note: We recommend you to view our GitHub README for the latest update of the app. To view a collection of images, demo videos, project log, poster and full video of the app, visit our Google Drive._
 
@@ -36,12 +36,14 @@ As a user of productivity apps, I want to have an awesome user experience on suc
 ## Project Scope
 Our Orbital project will be an application that can be run on mobile or tablet.
 <br> 
-The scope of our project can be divided into these parts:
-1. **Authentication:** Authentication, Login, Registration, Forgot Password, Profile pages and Delete Account
-2. **Core Features:** Home page, Notes page, To-do list page, Drawer**, Navigation, Settings
-3. **Extended Features:** Notification, View details (Calendar & Analysis), Share Your Progress  
-4. **Firebase Firestore (database):** Structure of Data, Create Data, Read Data, Update Data, Delete Data 
-5. **Testing:** Unit, Integration, End-to-end (E2E), System, User Testing 
+The scope of our project can be divided into 5 parts. Click the links to jump to each section. 
+
+1. **[Authentication:](#1-authentication)** Authentication, Login, Registration, Forgot Password, Profile pages and Delete Account
+
+2. **[Core Features:](#2-core-features-of-app)** Home page, Notes page, To-do list page, Drawer**, Navigation, Settings
+3. **[Extended Features:](#3-extended-features-of-app)** Notification, View details (Calendar & Analysis), Share Your Progress  
+4. **[Firebase Firestore (database):](#4-firebase-firestore-database)** Structure of Data, Create Data, Read Data, Update Data, Delete Data 
+5. [**Testing:**](#5-testing) Unit, Integration, End-to-end (E2E), System, User Testing 
 
 ** _Note: Drawer includes user details, navigation tabs, report issues and log out._
 <br><br>
@@ -63,7 +65,7 @@ Resetting the password also makes use of Firebase authentication and after a new
 
 **Current Progress:** Completed frontend UI and integration with Firebase Authentication database.  
 
---> Watch a demo video of our authentication page: [Authentication]()
+**--> Watch a demo video of our authentication page: [Authentication]()**
 
 ### Login Page 
 The login page is the first page the user is brought to upon opening the app. This page allows the user to switch to the Register page as well as the Forgot Password page. The user logs in using their email and password, and authentication is implemented as mentioned above. Upon logging in, the user will be brought to the Home page. 
@@ -124,7 +126,7 @@ Hence, we took a step back and redesigned the habit trackers and the home page. 
 
 **Current progress:** Basic habits - water, sleep, read, exercise and etc have been added to Tiles. All components - slider confirm button and view details button are completed. Integrated frontend (confirm button) with backend database (Firebase Firestore). Completed all working features and UI design.  
 
---> Watch a demo video of Tiles: [Tiles 📺]()  
+**--> Watch a demo video of Tiles: [Tiles 📺]()**  
 
 ![Tiles](./readme_assets/Home.jpg)  
 
@@ -138,7 +140,7 @@ As both pages are meant for quick and simple note taking, we do not intend to ad
 #### Notes
 For notes, the user can add and delete notes. All notes will be visible in one screen and users can scroll to view their notes. Users can swipe to delete the notes.  
 
---> Watch a demo video of Notes: [Notes 📺]()  
+**--> Watch a demo video of Notes: [Notes 📺]()**  
 
 ![Notes](./readme_assets/Notes.jpg)  
 
@@ -147,7 +149,7 @@ For notes, the user can add and delete notes. All notes will be visible in one s
 #### To-Do List
 The todo list has a tap to delete task function, and to view different todo lists, users only have to swipe (like Tinder) to view the next or previous todo lists.  
 
---> Watch a demo video of To-Do List: [To-Do List 📺]()  
+**--> Watch a demo video of To-Do List: [To-Do List 📺]()**  
 
 ![To-Do](./readme_assets/Todo.jpg)  
 
@@ -162,7 +164,7 @@ Report Issues button will open the default mailing app on the user’s phone (e.
 
 **Current Progress:** Navigation tabs are completed and working. Report Issue and Log Out button are completed and working. UI design of drawer completed.  
 
---> Watch a demo video of Drawer: [Drawer 📺]()  
+**--> Watch a demo video of Drawer: [Drawer 📺]()**  
 
 ![Drawer](./readme_assets/Drawer.jpg)  
 
@@ -175,7 +177,7 @@ Track My Day uses React Navigation package to navigate between different screens
 
 **Current Progress:** Completed. Able to navigate between different pages. 
 
---> Watch a demo video of Navigation: [Navigation 📺]()  
+**--> Watch a demo video of Navigation: [Navigation 📺]()**  
 
 ### Settings 
 Like all apps, there must be a Settings button. Things that are included in Settings are: change personal details, change email and password, delete account and turn on/off notification. This page is heavily linked to Firebase and Firestore.  
@@ -184,7 +186,7 @@ The user will be prompted to log in again before they can perform critical actio
 
 **Current Progress:** This page has the following sections: Notifications toggle on/off, Update personal details, Change email or password and Delete Account. Completed sections: Update personal details, change email or password and delete account. Will navigate to respective pages when clicked.  
 
---> Watch a demo video of Settings: [Settings 📺]()  
+**--> Watch a demo video of Settings: [Settings 📺]()**  
 
 ![Settings](./readme_assets/Settings.jpeg)  
 
@@ -194,12 +196,13 @@ The user will be prompted to log in again before they can perform critical actio
 Once the user clicks the “View Details” button at the bottom right of the icon, the user will be directed to a details page. We include the following components in the “View details” page.  
 
 1. **Calendar:** Although our app tracks the daily progress of the user’s habits, we want a calendar to track the monthly or even yearly progress of the user’s habits. The calendar is designed for the visualization of the user’s progress and encourages the user’s to keep up with their streaks. 
+
 2. **Analytics:** Since habits are tracked in terms of days in Tiles, the data size collected for the habits are suitable for analysis. Using a water tracker as an example, the analysis will be on the number of water consumption (liters) in a day. We use a line chart that shows the user’s progress in tracking his/her water consumption habit for visualization of analytics. The data for the line chart is read from the Firebase Firestore. 
 Calendar and Analysis are placed together in the same “View details” page. By highlighting a certain period of days in the calendar, the analytics will show a line graph of values within this period of days, for the respective habits tracked.  
 
 **Current Progress:** Completed Analytics - able to read data from database and present data as line chart. Basic UI done.  
 
---> Watch a demo video of View Details: [View Details 📺]()  
+**--> Watch a demo video of View Details: [View Details 📺]()**  
 
 ![View Details](./readme_assets/Analytics.jpg)  
 
@@ -292,7 +295,7 @@ To be completed in Milestone 3
 
 
 ## Demo Video of Full App 
-[Track My Day 📺]()
+**[Track My Day 📺]()**
 
 ## Timeline and Progress Chart
 
@@ -309,7 +312,7 @@ To be completed in Milestone 3
 ### Project Log
 Project Log provides description on the tasks distribution of Cham Li Hui and Pwint Thiri Ko and their respective time spent on developing the app.  
 
-[Read our Project Log]()
+**[Read our Project Log]()**
 
 
 ## Tech Stack for Milestone 2 
