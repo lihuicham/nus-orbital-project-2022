@@ -299,7 +299,7 @@ To be completed in Milestone 3
 
 
 ## Demo Video of Full App 
-**[Track My Day 📺](https://drive.google.com/file/d/1p0KqW4MfgQQVyySroa85c7JAG8oZjNxD/view?usp=sharing)**
+**[Track My Day 📺](https://youtu.be/-wzJrKG1zDc)**
 
 ## Timeline and Progress Chart
 
