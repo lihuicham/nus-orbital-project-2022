@@ -327,10 +327,11 @@ We used these tools to create the project:
 - Development: React Native, React Native Navigation 
 - Backend database: Firebase Authentication, Firestore
 - Languages: JavaScript, HTML, CSS  
-- UI design: dopelycolors, icons8 
-- Version Control: Git 
+- UI design: dopelycolors, icons8, OUCH
+- Version Control: Git, GitHub 
 - Software and Devices: Andriod, Expo Go 
 - CLI: Expo  
+- Poster & Video: Canva, Adobe Premiere Pro 
 
 ## What We Intend to Achieve in Milestone 3? 
 Going forward, for Milestone 3, we plan to: 
@@ -342,7 +343,7 @@ Going forward, for Milestone 3, we plan to:
 - UI design: Uniform theme color and font family 
 
 ## Milestone 2 Poster 
-![Milestone 2 Poster]()
+![Milestone 2 Poster](./readme_assets/5295%20Track%20My%20Day%20Poster.png)
 
 
 
