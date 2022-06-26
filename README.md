@@ -4,6 +4,8 @@
 
 **[Google Drive for Milestone 2](https://drive.google.com/drive/folders/1Mq71KuNAYKe8AkgMO25qQXlOgMgQXA0N?usp=sharing)**  
 
+**[Track My Day App Video 📺](https://youtu.be/-wzJrKG1zDc)**  
+
 _Note:  
 We recommend viewing our **GitHub README** for the latest update of the app.  
 To view a collection of images, demo videos, project log, poster and full video of the app, visit our **Google Drive**. For best viewing experience (high resolution), watch the videos in full screen._
