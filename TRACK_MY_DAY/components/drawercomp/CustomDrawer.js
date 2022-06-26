@@ -67,9 +67,10 @@ export default function CustomDrawer(props) {
           />
 
           <Text style={styles.userName}>{username}</Text>
+          <Text style={styles.email}>{authentication.currentUser?.email}</Text>
           <View style={styles.statusWrapper}>
             <Text style={styles.userStatus}>{favQuote}</Text>
-            <FontAwesome5 name="coins" size={14} color="#fff" style={styles.statusIcon}/>
+            <FontAwesome5 name="coins" size={14} color="#b8f50a" style={styles.statusIcon}/>
           </View>
         </ImageBackground>
 
@@ -121,9 +122,13 @@ const styles = StyleSheet.create({
     borderRadius: 20, 
   },
 
+  email: {
+    color: 'white',
+  },
+
   userStatus: {
     marginTop: 5, 
-    color: 'white',
+    color: '#b8f50a',
     padding: 2,
     textAlign: 'center', 
     fontWeight: 'bold',

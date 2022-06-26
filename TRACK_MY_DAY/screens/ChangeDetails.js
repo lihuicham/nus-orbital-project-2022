@@ -170,7 +170,7 @@ export default function ChangeDetails({ navigation }) {
                     style={styles.button} 
                     onPress={() => updateSleepGoal(user.uid, newSleepGoal)}
                     >
-                    <Text style={styles.buttonText}>Update water goal</Text>
+                    <Text style={styles.buttonText}>Update sleep goal</Text>
                 </TouchableOpacity>
             </View>
 
@@ -193,7 +193,7 @@ export default function ChangeDetails({ navigation }) {
                     style={styles.button} 
                     onPress={() => updateExerciseGoal(user.uid, newExerciseGoal)}
                     >
-                    <Text style={styles.buttonText}>Update water goal</Text>
+                    <Text style={styles.buttonText}>Update exercise goal</Text>
                 </TouchableOpacity>
             </View>
 
@@ -217,7 +217,7 @@ export default function ChangeDetails({ navigation }) {
                     style={styles.button} 
                     onPress={() => updateStudyGoal(user.uid, newStudyGoal)}
                     >
-                    <Text style={styles.buttonText}>Update water goal</Text>
+                    <Text style={styles.buttonText}>Update study goal</Text>
                 </TouchableOpacity>
             </View>
 

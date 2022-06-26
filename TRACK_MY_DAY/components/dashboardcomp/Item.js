@@ -12,7 +12,7 @@ import { SliderPicker } from "react-native-slider-picker";
 import { db } from "../../firebase-config";
 import { doc, Timestamp, setDoc } from "firebase/firestore";
 
-import * as Device from "expo-device";
+/* import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 
 Notifications.setNotificationHandler({
@@ -21,7 +21,7 @@ Notifications.setNotificationHandler({
     shouldPlaySound: true,
     shouldSetBadge: true,
   }),
-});
+}); */
 
 // to create firebase firestore unique day id
 const today = new Date();
@@ -63,7 +63,7 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
     });
   };
 
-  const [notification, setNotification] = useState(false);
+/*   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
 
@@ -83,7 +83,7 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
       Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
-
+ */
 
 
   if (empty === true) {
@@ -146,7 +146,7 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
   );
 };
 
-Notifications.scheduleNotificationAsync({
+/* Notifications.scheduleNotificationAsync({
     content: {
       title: "Have you tracked your habits ?",
       body: 'Record your daily habits using Track My Day !',
@@ -183,7 +183,7 @@ async function registerForPushNotificationsAsync() {
       lightColor: '#FF231F7C',
     });
   }
-}
+} */
 
 export default Item;
 

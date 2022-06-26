@@ -88,13 +88,13 @@ export default function Dashboard() {
 
   return (
     <SafeAreaView>
-    <FlatList
-      numColumns={numOfCols}
-      keyExtractor={(item, index) => index.toString()}
-      data={formatData(HABITS, numOfCols)}
-      renderItem={renderItem}
-      style={styles.list}
-    ></FlatList>
+      <FlatList
+        numColumns={numOfCols}
+        keyExtractor={(item, index) => index.toString()}
+        data={formatData(HABITS, numOfCols)}
+        renderItem={renderItem}
+        style={styles.list}
+      ></FlatList>
   </SafeAreaView>
   )
 };
