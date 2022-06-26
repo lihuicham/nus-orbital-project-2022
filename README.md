@@ -4,7 +4,9 @@
 
 **[Google Drive for Milestone 2](https://drive.google.com/drive/folders/1Mq71KuNAYKe8AkgMO25qQXlOgMgQXA0N?usp=sharing)**  
 
-_Note: We recommend you to view our GitHub README for the latest update of the app. To view a collection of images, demo videos, project log, poster and full video of the app, visit our Google Drive._
+_Note:  
+We recommend viewing our **GitHub README** for the latest update of the app.  
+To view a collection of images, demo videos, project log, poster and full video of the app, visit our **Google Drive**. For best viewing experience (high resolution), watch the videos in full screen._
 
 ## Team Name 
 ### **Track My Day**  
@@ -126,7 +128,7 @@ Hence, we took a step back and redesigned the habit trackers and the home page. 
 
 **Current progress:** Basic habits - water, sleep, read, exercise and etc have been added to Tiles. All components - slider confirm button and view details button are completed. Integrated frontend (confirm button) with backend database (Firebase Firestore). Completed all working features and UI design.  
 
-**--> Watch a demo video of Tiles: [Tiles 📺]()**  
+**--> Watch a demo video of Tiles: [Tiles 📺](https://drive.google.com/file/d/1qjN_XWHHIvRYA-MAlK9ewGo7MXftWZag/view?usp=sharing)**  
 
 ![Tiles](./readme_assets/Home.jpg)  
 
@@ -140,7 +142,7 @@ As both pages are meant for quick and simple note taking, we do not intend to ad
 #### Notes
 For notes, the user can add and delete notes. All notes will be visible in one screen and users can scroll to view their notes. Users can swipe to delete the notes.  
 
-**--> Watch a demo video of Notes: [Notes 📺]()**  
+**--> Watch a demo video of Notes: [Notes 📺](https://drive.google.com/file/d/1qhzXf-iBGun7XZjSQATp-M0N9kCZG8qk/view?usp=sharing)**  
 
 ![Notes](./readme_assets/Notes.jpg)  
 
@@ -149,7 +151,7 @@ For notes, the user can add and delete notes. All notes will be visible in one s
 #### To-Do List
 The todo list has a tap to delete task function, and to view different todo lists, users only have to swipe (like Tinder) to view the next or previous todo lists.  
 
-**--> Watch a demo video of To-Do List: [To-Do List 📺]()**  
+**--> Watch a demo video of To-Do List: [To-Do List 📺](https://drive.google.com/file/d/1qgq1DNexN3jURlnbD-Zb8ezk21bAvj7l/view?usp=sharing)**  
 
 ![To-Do](./readme_assets/Todo.jpg)  
 
@@ -164,7 +166,7 @@ Report Issues button will open the default mailing app on the user’s phone (e.
 
 **Current Progress:** Navigation tabs are completed and working. Report Issue and Log Out button are completed and working. UI design of drawer completed.  
 
-**--> Watch a demo video of Drawer: [Drawer 📺]()**  
+**--> Watch a demo video of Drawer: [Drawer 📺](https://drive.google.com/file/d/1qiom-aAh2lUH_4pg5RtMkqOxREYMw7xt/view?usp=sharing)**  
 
 ![Drawer](./readme_assets/Drawer.jpg)  
 
@@ -177,7 +179,7 @@ Track My Day uses React Navigation package to navigate between different screens
 
 **Current Progress:** Completed. Able to navigate between different pages. 
 
-**--> Watch a demo video of Navigation: [Navigation 📺]()**  
+**--> Watch a demo video of Navigation: [Navigation 📺](https://drive.google.com/file/d/1qijlm3A3TTf4v0Yy_p9OZWEHRXnU3_ac/view?usp=sharing)**  
 
 ### Settings 
 Like all apps, there must be a Settings button. Things that are included in Settings are: change personal details, change email and password, delete account and turn on/off notification. This page is heavily linked to Firebase and Firestore.  
@@ -201,8 +203,6 @@ Once the user clicks the “View Details” button at the bottom right of the ic
 Calendar and Analysis are placed together in the same “View details” page. By highlighting a certain period of days in the calendar, the analytics will show a line graph of values within this period of days, for the respective habits tracked.  
 
 **Current Progress:** Completed Analytics - able to read data from database and present data as line chart. Basic UI done.  
-
-**--> Watch a demo video of View Details: [View Details 📺]()**  
 
 ![View Details](./readme_assets/Analytics.jpg)  
 
@@ -240,6 +240,8 @@ We consider that millennials like to share their daily moments on social media, 
 - The document ID for each new document is set as the currently logged in user’s ID in order to read, delete or update the user’s information which requires the document ID of the document the operation would be performed on. 
 - User ID is also unique, meaning that each user will only have one document created for them.  
 
+**--> Watch a demo video of Firestore Habits: [Firestore User 📺]()**  
+
 ![Firestore User](./readme_assets/FirestoreUser.png)
 
 
@@ -258,6 +260,8 @@ We consider that millennials like to share their daily moments on social media, 
 - used in Analytics in “View details” page 
 - Data is retrieved from Firestore and is specific to each habit, with their respective paths. 
 - We use the “value” field in each document for analysis  
+
+**--> Watch a demo video of Firestore Habits: [Firestore Habits 📺](https://drive.google.com/file/d/1mQhwyXvufG-RMuEUdkKmk4a4hg7tD5N_/view?usp=sharing)**  
 
 ![Firestore Habits](./readme_assets/FirestoreHabits.PNG)  
 
@@ -295,7 +299,7 @@ To be completed in Milestone 3
 
 
 ## Demo Video of Full App 
-**[Track My Day 📺]()**
+**[Track My Day 📺](https://drive.google.com/file/d/1mQhwyXvufG-RMuEUdkKmk4a4hg7tD5N_/view?usp=sharing)**
 
 ## Timeline and Progress Chart
 
@@ -312,7 +316,7 @@ To be completed in Milestone 3
 ### Project Log
 Project Log provides description on the tasks distribution of Cham Li Hui and Pwint Thiri Ko and their respective time spent on developing the app.  
 
-**[Read our Project Log]()**
+**[Read our Project Log](https://docs.google.com/document/d/1lzUOJ71JTVQP_y-cWFw_vw1JclCSUFteBu6YtgPo6-A/edit?usp=sharing)**
 
 
 ## Tech Stack for Milestone 2 
