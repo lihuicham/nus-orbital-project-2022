@@ -331,8 +331,11 @@ E2E Testing starts from the end user’s perspective and simulates real-world sc
 
 ### System Testing 
 Types of Testing: 
-![System Test 1](./readme_assets/SystemTest1.png)
-Tested types of System Testing:
+ 
+![System Test 1](./readme_assets/SystemTest1.png)  
+
+Tested types of System Testing:  
+
 ![System Test 2](./readme_assets/SystemTest2.png)
 ![System Test 3](./readme_assets/SystemTest3.png)
 ![System Test 4](./readme_assets/SystemTest4.png)
