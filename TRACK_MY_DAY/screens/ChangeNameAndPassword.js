@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TextInput, Pressable, ScrollView, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 import React, { useState } from "react";
 import { db } from '../firebase-config';
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { collection } from 'firebase/firestore';
 import { getAuth, updateEmail, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
 
 export default function ChangeNameAndPassword({ navigation }) {
@@ -168,7 +168,7 @@ export default function ChangeNameAndPassword({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#533521", //d1dfe8
+    backgroundColor: "#533521",
     alignItems: "flex-start",
     marginLeft: 30
   },
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: 'bold',
     marginTop: 20,
-    color: '#F4A261', //F4A261
+    color: '#F4A261',
     letterSpacing: 1.3,
     textShadowColor: '#2A9D8F',
     textShadowRadius: 0.1,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   button: {
-    backgroundColor: "#264653", //#2A9D8F
+    backgroundColor: "#264653",
     borderRadius: 30,
     paddingHorizontal: 15,
     paddingVertical: 7,

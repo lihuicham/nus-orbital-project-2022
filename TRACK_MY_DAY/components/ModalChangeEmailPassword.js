@@ -33,6 +33,9 @@ export default function ModalChangeEmailPassword() {
             else if (error.code === 'auth/internal-error') {
               Alert.alert("Password field empty", "Please fill up the password or reset your password.")
             }
+            else if (email === '' || password === '') {
+              Alert.alert("Empty field", "Please enter both fields.")
+            }
             else {
               Alert.alert("Error", "Something went wrong, please try again.")
             //alert(error.message)
@@ -99,8 +102,6 @@ export default function ModalChangeEmailPassword() {
 
 const styles = StyleSheet.create({
   centeredView: {
-    // justifyContent: "center",
-    // alignItems: "center",
     margin: 22
   },
 
@@ -173,6 +174,6 @@ const styles = StyleSheet.create({
   },
   arrow: {
     fontSize: 33,
-    marginLeft: 68 //52
+    marginLeft: 68
   }
 });
