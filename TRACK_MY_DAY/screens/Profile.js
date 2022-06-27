@@ -56,9 +56,21 @@ export default function Profile({ navigation }) {
             sleepGoal: sleepGoal, waterGoal: waterGoal, exerciseGoal: exerciseGoal,
             studyGoal: studyGoal, id: user.uid
           })
-          .then(username && Alert.alert("Profile registered!"))
+          .then(
+              username && 
+              Alert.alert("Profile Registered!", "",
+            [
+              {
+                text: "Go to Home",
+                onPress: () => toHome()
+              },
+            ]
+          ))
           .catch((error) => 
             alert(error.message));
+        if (username == "") {
+            Alert.alert("Username empty", "Please enter a username.")
+        }
     }
 
 
@@ -176,16 +188,6 @@ export default function Profile({ navigation }) {
                             <Text style={styles.buttonText}>CONFIRM</Text>
                         </TouchableOpacity>
                     </View>
-
-                    <View style={styles.buttonWrapper}>
-                        <TouchableOpacity 
-                        style={styles.buttonHome} 
-                        onPress={() => toHome()}
-                        >
-                            <Text style={styles.buttonText}>Back to Home</Text>
-                        </TouchableOpacity>
-                    </View>
-            
 
             </ScrollView>
         </TouchableWithoutFeedback>

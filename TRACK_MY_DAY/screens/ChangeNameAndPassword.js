@@ -37,6 +37,9 @@ export default function ChangeNameAndPassword({ navigation }) {
           if (error.code === 'auth/invalid-email') {
             Alert.alert("Invalid email", "Please enter a valid email.")
           }
+          else if (error.code === 'auth/email-already-in-use') {
+            Alert.alert("Email already in use", "Please enter a different email.")
+          }
           else {
             Alert.alert("Error", "Something went wrong, please try again.")
           //alert(error.message)

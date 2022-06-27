@@ -45,6 +45,9 @@ export default function Register({ navigation }) {
             else if (error.code === 'auth/internal-error') {
               Alert.alert("Password field empty", "Please fill up the password.")
             }
+            else if (error.code === 'auth/email-already-in-use') {
+                Alert.alert("Email already in use", "Please log in or register using a different email.")
+            }
             else {
               Alert.alert("Error", "Something went wrong, please try again.")
             //alert(error.message)
