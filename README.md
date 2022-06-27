@@ -284,18 +284,59 @@ We consider that millennials like to share their daily moments on social media, 
 ## 5. Testing 
 
 ### Unit Testing 
+Note column:
+1. Specific reason on testing (if not obvious)
+2. Testing steps (if not obvious) 
+3. Plan to improve (if pass)
+4. Expected results (if fail)
 
+![Unit Test 1](./readme_assets/UnitTest1.png)
+![Unit Test 2](./readme_assets/UnitTest2.png)
+![Unit Test 3](./readme_assets/UnitTest3.png)
+![Unit Test 4](./readme_assets/UnitTest4.png)
+![Unit Test 5](./readme_assets/UnitTest5.png)
+![Unit Test 6](./readme_assets/UnitTest6.png)
+![Unit Test 7](./readme_assets/UnitTest7.png)
+![Unit Test 8](./readme_assets/UnitTest8.png)
+![Unit Test 9](./readme_assets/UnitTest9.png)
+![Unit Test 10](./readme_assets/UnitTest10.png)
 
 ### Integration Testing 
-
+![Int Test 1](./readme_assets/IntTest1.png)
+![Int Test 2](./readme_assets/IntTest2.png)
+![Int Test 3](./readme_assets/IntTest3.png)
+![Int Test 4](./readme_assets/IntTest4.png)
+![Int Test 5](./readme_assets/IntTest5.png)
+![Int Test 6](./readme_assets/IntTest6.png)
+![Int Test 7](./readme_assets/IntTest7.png)
+![Int Test 8](./readme_assets/IntTest8.png)
+![Int Test 9](./readme_assets/IntTest9.png)
+![Int Test 10](./readme_assets/IntTest10.png)
 
 
 ### End-to-end (E2E) Testing 
 
+E2E Testing starts from the end user’s perspective and simulates real-world scenarios. This testing aims to validate the system under test and its components for integration and data integrity. 
+![E2E Test 1](./readme_assets/E2E1.png)
+![E2E Test 2](./readme_assets/E2E2.png)
+![E2E Test 3](./readme_assets/E2E3.png)
+![E2E Test 4](./readme_assets/E2E4.png)
+![E2E Test 5](./readme_assets/E2E5.png)
+![E2E Test 6](./readme_assets/E2E6.png)
+![E2E Test 7](./readme_assets/E2E7.png)
+![E2E Test 8](./readme_assets/E2E8.png)
+![E2E Test 9](./readme_assets/E2E9.png)
+
 
 
 ### System Testing 
-
+Types of Testing: 
+![System Test 1](./readme_assets/SystemTest1.png)
+Tested types of System Testing:
+![System Test 2](./readme_assets/SystemTest2.png)
+![System Test 3](./readme_assets/SystemTest3.png)
+![System Test 4](./readme_assets/SystemTest4.png)
+![System Test 5](./readme_assets/SystemTest5.png)
 
 
 ### User Testing
