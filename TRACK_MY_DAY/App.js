@@ -16,8 +16,6 @@ import ToDoStackScreen from './routes/ToDoStackScreen';
 import Dashboard from "./screens/Dashboard";
 import Profile from "./screens/Profile";
 
-
-
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,

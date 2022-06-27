@@ -67,9 +67,12 @@ export default function ModalDeleteAccount() {
             else if (error.code === 'auth/wrong-password') {
               Alert.alert("Incorrect password", "Please re-enter your password or reset your password.")
             }
+            else if (email === '' || password === '') {
+              Alert.alert("Empty field", "Please enter both fields.")
+            }
             else {
-              Alert.alert("Error", "Something went wrong, please try again.")
-            //alert(error.message)
+               Alert.alert("Error", "Something went wrong, please try again.")
+            // alert(error.message)
             }
           })
           
@@ -207,6 +210,6 @@ const styles = StyleSheet.create({
   },
   arrow: {
     fontSize: 33,
-    marginLeft: 155//139
+    marginLeft: 155
   }
 });

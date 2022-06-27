@@ -69,7 +69,7 @@ Resetting the password also makes use of Firebase authentication and after a new
 
 **Current Progress:** Completed frontend UI and integration with Firebase Authentication database.  
 
-**--> Watch a demo video of our authentication page: [Authentication]()**
+**--> Watch a demo video of our authentication page: [Authentication](https://drive.google.com/file/d/1xWIzDYKHUzd6D6qKcYUCSQ4jK0D9KHmg/view?usp=sharing)**
 
 ### Login Page 
 The login page is the first page the user is brought to upon opening the app. This page allows the user to switch to the Register page as well as the Forgot Password page. The user logs in using their email and password, and authentication is implemented as mentioned above. Upon logging in, the user will be brought to the Home page. 
@@ -88,7 +88,9 @@ A new user registers using their email and password at the Register page. The re
 ### Forgot Password Page 
 The user enters their email in the Forgot Password page. This page has been linked to Firebase and the user receives an email with a link to reset their password. Upon resetting their password, the user can only login with the new password.  
 
-**Current progress:** Complete.  
+**Current progress:** Complete.
+
+**--> Watch a demo video of our Forgot Password page: [forgotPassword](https://drive.google.com/file/d/1R_w4zVejvdAYDRRyeUPJz_24s--Pl0rT/view?usp=sharing)** 
 
 ![Forgot Password Page](./readme_assets/ForgotPassword.jpeg)  
 
@@ -190,7 +192,7 @@ The user will be prompted to log in again before they can perform critical actio
 
 **Current Progress:** This page has the following sections: Notifications toggle on/off, Update personal details, Change email or password and Delete Account. Completed sections: Update personal details, change email or password and delete account. Will navigate to respective pages when clicked.  
 
-**--> Watch a demo video of Settings: [Settings 📺]()**  
+**--> Watch a demo video of Settings: [Settings 📺](https://drive.google.com/file/d/1P72npPYSDLMmft3HQdRFFsz4LRE_oPin/view?usp=sharing)**  
 
 ![Settings](./readme_assets/Settings.jpeg)  
 
@@ -263,7 +265,10 @@ We consider that millennials like to share their daily moments on social media, 
 - Data is retrieved from Firestore and is specific to each habit, with their respective paths. 
 - We use the “value” field in each document for analysis  
 
-**--> Watch a demo video of Firestore Habits: [Firestore Habits 📺](https://drive.google.com/file/d/1mQhwyXvufG-RMuEUdkKmk4a4hg7tD5N_/view?usp=sharing)**  
+**--> Watch a demo video of Firestore Habits: [Firestore Habits 📺](https://drive.google.com/file/d/1mQhwyXvufG-RMuEUdkKmk4a4hg7tD5N_/view?usp=sharing)** 
+
+**--> Watch a demo video of Firestore Profile: [Firestore Profile 📺](https://drive.google.com/file/d/1zqaltEo0c0DqQUBuxWPkDJJ9SFnVFlkp/view?usp=sharing)** 
+
 
 ![Firestore Habits](./readme_assets/FirestoreHabits.PNG)  
 

@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: '#28978e', //2A9D8F
+    backgroundColor: '#28978e',
     borderRadius: 2,
     marginHorizontal: 1,
     padding: 10,
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   },
 
   registerButton: {
-    backgroundColor: '#28978e', //2A9D8F
+    backgroundColor: '#28978e',
     borderRadius: 20,
     paddingVertical: 7,
     paddingHorizontal: 81,
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
   },
 
   loginButton: {
-    backgroundColor: '#f36541', //#E76F51
+    backgroundColor: '#f36541',
     borderRadius: 20,
     paddingVertical: 7,
     paddingHorizontal: 90,

@@ -6,7 +6,6 @@ import { db } from '../firebase-config';
 import { collection } from 'firebase/firestore';
 
 export default function Register({ navigation }) {
-    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setrepeatPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -146,12 +145,8 @@ const styles = StyleSheet.create({
         elevation: 4
     },
 
-    // buttonWrapper: {
-    // flexDirection: 'row',
-    // },
-
     button: {
-        backgroundColor: '#28978e', //2A9D8F
+        backgroundColor: '#28978e',
         borderRadius: 20,
         paddingVertical: 7,
         paddingHorizontal: 64,
@@ -173,7 +168,7 @@ const styles = StyleSheet.create({
     },
 
     registerButton: {
-        backgroundColor: '#f36541', //#E76F51
+        backgroundColor: '#f36541',
         borderRadius: 20,
         paddingVertical: 7,
         paddingHorizontal: 80,

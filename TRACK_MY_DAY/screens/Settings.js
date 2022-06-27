@@ -13,8 +13,7 @@ const Settings = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
-      
+    <View style={styles.container}> 
       <View style={styles.row}>
         <Text style={styles.text}>Notifications</Text>
         <View style={styles.switch}>
@@ -29,17 +28,15 @@ const Settings = ({ navigation }) => {
       </View>
 
 
-      <View style={styles.buttonWrapper}>
-        <TouchableOpacity 
-        style={styles.button} 
-        onPress={toChangeDetails}
-        >
-          <View style={styles.row}>
-          <Text style={styles.text}> Update Personal Details</Text>
-          <Text style={styles.arrow}>☞</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity 
+      onPress={toChangeDetails}
+      >
+        <View style={styles.row}>
+        <Text style={styles.text}> Update Personal Details</Text>
+        <Text style={styles.arrow}>☞</Text>
+        </View>
+      </TouchableOpacity>
+
       
       <ModalChangeEmailPassword/>
       <ModalDeleteAccount />
@@ -53,7 +50,7 @@ export default Settings
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#dccdc3' //512e1d //dccdc3 //3e615d
+    backgroundColor: '#dccdc3'
   },
   text: {
     fontSize: 17,
@@ -69,23 +66,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal:20,
     marginTop: 20,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffffcc',
     padding: 4,
     borderRadius: 10,
-    opacity: 0.8,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 4,
-    elevation: 5, 
-    justifyContent: "space-between"
-
-  },
+   },
   arrow: {
     fontSize: 33,
-    //marginLeft: 86 //70
+    marginLeft: 88
   }
 });
