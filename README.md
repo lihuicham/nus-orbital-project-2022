@@ -244,7 +244,7 @@ We consider that millennials like to share their daily moments on social media, 
 - The document ID for each new document is set as the currently logged in user’s ID in order to read, delete or update the user’s information which requires the document ID of the document the operation would be performed on. 
 - User ID is also unique, meaning that each user will only have one document created for them.  
 
-**--> Watch a demo video of Firestore Habits: [Firestore User 📺](https://drive.google.com/file/d/1zqaltEo0c0DqQUBuxWPkDJJ9SFnVFlkp/view?usp=sharing)**  
+**--> Watch a demo video of Firestore User: [Firestore User 📺](https://drive.google.com/file/d/1zqaltEo0c0DqQUBuxWPkDJJ9SFnVFlkp/view?usp=sharing)**  
 
 ![Firestore User](./readme_assets/FirestoreUser.png)
 
