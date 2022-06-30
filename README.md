@@ -6,6 +6,8 @@
 
 **[Track My Day App Video 📺](https://youtu.be/-wzJrKG1zDc)**  
 
+Proof of Concept: **[Track My Day APK file](https://drive.google.com/file/d/1lDwr11FedZ0Y6-SueD91SYcUzvknMH7O/view?usp=sharing)** - please download it using your mobile device, you can access the file via our google drive (on your phone) and download it. It will show up as a mobile application on your phone screen. Click the app and try out Track My Day. 
+
 _Note:  
 We recommend viewing our **GitHub README** for the latest update of the app.  
 To view a collection of images, demo videos, project log, poster and full video of the app, visit our **Google Drive**. For best viewing experience (high resolution), watch the videos in full screen._
