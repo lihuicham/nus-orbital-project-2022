@@ -1,13 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, StyleSheet, Text, View, TextInput, Image, Keyboard, ScrollView, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
+import { Alert, StyleSheet, Text, View, TextInput, Image, Keyboard, Pressable, ScrollView, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { authentication } from '../firebase-config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordVisibility, setPasswordVisibility] = useState(true);
+  const [rightIcon, setRightIcon] = useState('eye')
+
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -46,14 +50,22 @@ export default function Login() {
       })
   };
 
-
-
   const toForgotPassword = () => {
     navigation.replace("ForgotPassword")
   }
 
   const toRegister = () => {
     navigation.replace("Register")
+  }
+
+  const handlePasswordVisibility = () => {
+    if (rightIcon === 'eye') {
+      setRightIcon('eye-off');
+      setPasswordVisibility(!passwordVisibility);
+    } else if (rightIcon === 'eye-off') {
+        setRightIcon('eye');
+        setPasswordVisibility(!passwordVisibility);
+      }
   }
 
   return (
@@ -67,16 +79,25 @@ export default function Login() {
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             style={styles.login}>
+
               <TextInput
                 style={styles.input}
                 placeholder='Email'
                 onChangeText={(val) => setEmail(val)}/>
-              
-              <TextInput
-                style={styles.input}
-                placeholder='Password'
-                onChangeText={(val) => setPassword(val)}
-                secureTextEntry />
+
+              <View style={styles.password}>
+                <TextInput
+                  style={styles.input}
+                  placeholder='Password'
+                  onChangeText={(val) => setPassword(val)}
+                  secureTextEntry={passwordVisibility} />
+
+                <Pressable 
+                onPress={handlePasswordVisibility}
+                style={{position: 'absolute', marginLeft: 180}}>
+                  <MaterialCommunityIcons name={rightIcon} size={20} color="#232323"/>
+                </Pressable>
+              </View>
 
                 <View style={styles.buttonWrapper}>
                     <TouchableOpacity 
@@ -194,7 +215,7 @@ const styles = StyleSheet.create({
   },
 
   section: {
-    marginHorizontal: 45,
+   marginHorizontal: 45,
   },
 
   loginButton: {
@@ -220,6 +241,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 2,
     elevation: 3
+  },
+  
+  password: {
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 
 });

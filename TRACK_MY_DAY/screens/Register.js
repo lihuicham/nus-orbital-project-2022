@@ -1,14 +1,17 @@
-import { Alert, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
+import { Alert, Image, Pressable, StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
 import React, { useState } from 'react';
 import { authentication } from '../firebase-config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { db } from '../firebase-config';
 import { collection } from 'firebase/firestore';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Register({ navigation }) {
     const [password, setPassword] = useState('');
     const [repeatPassword, setrepeatPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [passwordVisibility, setPasswordVisibility] = useState(true);
+    const [rightIcon, setRightIcon] = useState('eye')
 
     const usersCollectionRef = collection(db, "users");
 
@@ -56,6 +59,16 @@ export default function Register({ navigation }) {
         password != repeatPassword &&
             Alert.alert("Passwords do not match", "Please re-enter your passwords.")
     };
+
+    const handlePasswordVisibility = () => {
+        if (rightIcon === 'eye') {
+          setRightIcon('eye-off');
+          setPasswordVisibility(!passwordVisibility);
+        } else if (rightIcon === 'eye-off') {
+            setRightIcon('eye');
+            setPasswordVisibility(!passwordVisibility);
+          }
+      }
     
     return (
         <TouchableWithoutFeedback onPress={() => {
@@ -72,17 +85,31 @@ export default function Register({ navigation }) {
                         placeholder='Email'
                         onChangeText={(val) => setEmail(val)}/>
 
-                        <TextInput
-                        style={styles.input}
-                        placeholder='Password (min. 6 char)'
-                        onChangeText={(val) => setPassword(val)}
-                        secureTextEntry />
+                        <View style={styles.password}>
+                            <TextInput
+                            style={styles.input}
+                            placeholder='Password (min. 6 char)'
+                            onChangeText={(val) => setPassword(val)}
+                            secureTextEntry={passwordVisibility} />
+                            <Pressable 
+                            onPress={handlePasswordVisibility}
+                            style={{position: 'absolute', marginLeft: 180}}>
+                            <MaterialCommunityIcons name={rightIcon} size={20} color="#232323"/>
+                            </Pressable>
+                        </View>
 
-                        <TextInput
-                        style={styles.input}
-                        placeholder='Repeat password'
-                        onChangeText={(val) => setrepeatPassword(val)}
-                        secureTextEntry />
+                        <View style={styles.password}>
+                            <TextInput
+                            style={styles.input}
+                            placeholder='Repeat password'
+                            onChangeText={(val) => setrepeatPassword(val)}
+                            secureTextEntry={passwordVisibility} />
+                            <Pressable 
+                            onPress={handlePasswordVisibility}
+                            style={{position: 'absolute', marginLeft: 180}}>
+                            <MaterialCommunityIcons name={rightIcon} size={20} color="#232323"/>
+                            </Pressable>
+                        </View>
 
                         
                         <TouchableOpacity 
@@ -181,5 +208,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 2,
         elevation: 3
+    },
+
+    password: {
+        flexDirection: 'row',
+        alignItems: 'center'
     }
 });

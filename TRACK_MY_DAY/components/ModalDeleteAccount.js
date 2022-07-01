@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword, getAuth, deleteUser } from 'firebase/auth';
 import { db, authentication } from '../firebase-config';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function ModalDeleteAccount() {
     const navigation = useNavigation();
@@ -14,7 +15,8 @@ export default function ModalDeleteAccount() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
-    const [isSecureEntry, setIsSecureEntry] = useState(true);
+    const [passwordVisibility, setPasswordVisibility] = useState(true);
+    const [rightIcon, setRightIcon] = useState('eye')
 
     const deleteAccount = async (id) =>  {
       const userDoc = doc(db, "users", id);
@@ -74,9 +76,18 @@ export default function ModalDeleteAccount() {
                Alert.alert("Error", "Something went wrong, please try again.")
             // alert(error.message)
             }
-          })
-          
+          }) 
     };
+
+    const handlePasswordVisibility = () => {
+      if (rightIcon === 'eye') {
+        setRightIcon('eye-off');
+        setPasswordVisibility(!passwordVisibility);
+      } else if (rightIcon === 'eye-off') {
+          setRightIcon('eye');
+          setPasswordVisibility(!passwordVisibility);
+        }
+    }
 
 
     return (
@@ -97,14 +108,19 @@ export default function ModalDeleteAccount() {
                 style={styles.input}
                 placeholder='Email'
                 onChangeText={(val) => setEmail(val)}/>
-                
-                <TextInput
-                style={styles.input}
-                placeholder='Password'
-                onChangeText={(val) => setPassword(val)}
-                secureTextEntry={isSecureEntry}
-                ></TextInput>
-
+              
+                <View style={styles.password}>
+                  <TextInput
+                  style={styles.input}
+                  placeholder='Password'
+                  onChangeText={(val) => setPassword(val)}
+                  secureTextEntry={passwordVisibility} />
+                  <Pressable 
+                  onPress={handlePasswordVisibility}
+                  style={{position: 'absolute', marginLeft: 180}}>
+                    <MaterialCommunityIcons name={rightIcon} size={20} color="#232323"/>
+                  </Pressable>
+                </View>
 
                 <Pressable
                 style={[styles.button, styles.buttonClose]}
@@ -211,5 +227,9 @@ const styles = StyleSheet.create({
   arrow: {
     fontSize: 33,
     marginLeft: 155
+  },
+  password: {
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 });

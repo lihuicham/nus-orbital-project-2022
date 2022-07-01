@@ -3,13 +3,15 @@ import { Alert, Modal, StyleSheet, Text, Pressable, View, TouchableOpacity, Text
 import { authentication } from '../firebase-config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function ModalChangeEmailPassword() {
     const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
-    const [isSecureEntry, setIsSecureEntry] = useState(true);
+    const [passwordVisibility, setPasswordVisibility] = useState(true);
+    const [rightIcon, setRightIcon] = useState('eye')
     
 
     const handleLogin = () => {
@@ -43,6 +45,16 @@ export default function ModalChangeEmailPassword() {
           })
     };
 
+    const handlePasswordVisibility = () => {
+      if (rightIcon === 'eye') {
+        setRightIcon('eye-off');
+        setPasswordVisibility(!passwordVisibility);
+      } else if (rightIcon === 'eye-off') {
+          setRightIcon('eye');
+          setPasswordVisibility(!passwordVisibility);
+        }
+    }
+
 
     return (
         <View style={styles.centeredView}>
@@ -63,12 +75,18 @@ export default function ModalChangeEmailPassword() {
                 placeholder='Email'
                 onChangeText={(val) => setEmail(val)}/>
                 
+                <View style={styles.password}>
                 <TextInput
                 style={styles.input}
                 placeholder='Password'
                 onChangeText={(val) => setPassword(val)}
-                secureTextEntry={isSecureEntry}
-                ></TextInput>
+                secureTextEntry={passwordVisibility} />
+                <Pressable 
+                onPress={handlePasswordVisibility}
+                style={{position: 'absolute', marginLeft: 180}}>
+                  <MaterialCommunityIcons name={rightIcon} size={20} color="#232323"/>
+                </Pressable>
+                </View>
 
 
                 <Pressable
@@ -175,5 +193,9 @@ const styles = StyleSheet.create({
   arrow: {
     fontSize: 33,
     marginLeft: 68
+  },
+  password: {
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 });
