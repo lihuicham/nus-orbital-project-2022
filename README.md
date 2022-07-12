@@ -16,7 +16,7 @@ To view a collection of images, demo videos, project log, poster and full video 
   - Project Introduction  
       - [Team Information](#team-information)  
       - [Project Motivation](#project-motivation)  
-      - [Aim & Vision](#aim-&-vision)  
+      - [Aim & Vision](#aim-and-vision)  
       - [User Stories & Experience](#user-stories-&-experience)  
       - [Project Scope](#project-scope)
   - Features  
