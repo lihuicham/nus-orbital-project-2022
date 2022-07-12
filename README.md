@@ -11,17 +11,55 @@ Proof of Concept: **[Track My Day APK file](https://drive.google.com/file/d/1lDw
 _Note:  
 We recommend viewing our **GitHub README** for the latest update of the app.  
 To view a collection of images, demo videos, project log, poster and full video of the app, visit our **Google Drive**. For best viewing experience (high resolution), watch the videos in full screen._
+  
+  # Table of Contents  
+  - Project Introduction  
+      - [Team Information](#team-information)  
+      - [Project Motivation](#project-motivation)  
+      - [Aim & Vision](#aim-&-vision)  
+      - [User Stories & Experience](#user-stories-&-experience)  
+      - [Project Scope](#project-scope)
+  - Features  
+      - Authentication  
+          - Authentication  
+          - Login Page  
+          - Register Page  
+          - Forgot Password Page  
+          - Profile Page  
+          - Delete Account  
+      - Core Features  
+          - Tiles (Home Page)  
+          - Notes & To-Do List  
+          - Drawer  
+          - Navigation  
+          - Settings  
+      - Extended Features of App  
+          - View Details Page  
+          - Notifications  
+          - Share Your Progress  
+  - Firebase Firestore (Database)  
+      - Structure of Data  
+      - Create Data  
+      - Read Data  
+      - Update Data  
+      - Delete Data  
+  - Testing  
+      - Unit Testing  
+      - Integration Testing  
+      - End-to-end (E2E) Testing  
+      - System Testing  
+  - Demo Video of Full App  
+  - Timeline and Progress Chart  
+  - Project Log  
+  - Tech Stack  
+  - What we intend to achieve in Milestone 3?  
+  - Milestone 2 Poster
+## Team Information  
+#### Team Name: **Track My Day** 
+#### Team Number: **5295**  
+#### Level of Achivement: **Apollo 11**  
 
-## Team Name 
-### **Track My Day**  
-
-## Team Number  
-### **5295**
-
-## Level of Achievement 
-### **Apollo 11**  
-
-## Project Motivation 
+## Project Motivation  
 As students that utilize the chrome extension Momentum, we were inspired by Momentum’s concept and wanted to create an aesthetically pleasing dashboard to enhance user productivity. Initially, we were planning to create a chrome extension, but after further discussion, decided our ideas would be better suited for a mobile app. We wanted to create an app that is both functional and personalizable, such that users would use it daily to help them keep track of their habits and better organize aspects of their lives.
 
 ## Aim & Vision 

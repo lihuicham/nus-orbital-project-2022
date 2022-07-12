@@ -10,7 +10,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVisibility, setPasswordVisibility] = useState(true);
-  const [rightIcon, setRightIcon] = useState('eye')
+  const [rightIcon, setRightIcon] = useState('eye');
 
   const navigation = useNavigation();
 
@@ -121,7 +121,24 @@ export default function Login() {
                     >
                     <Text style={styles.buttonText}>Register</Text>
                 </TouchableOpacity>
+
+
+
+
+
+
+                {/* <View style={styles.buttonWrapper}>
+                    <TouchableOpacity 
+                        style={styles.loginButton} 
+                        onPress={signInWithGoogle}
+                        >
+                        <Text style={styles.buttonText}>Google Login</Text>
+                    </TouchableOpacity>
+                </View> */}
             
+
+
+
           </KeyboardAvoidingView>
         </View>
         
