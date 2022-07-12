@@ -20,8 +20,8 @@ To view a collection of images, demo videos, project log, poster and full video 
       - [User Stories & Experience](#user-stories--experience)  
       - [Project Scope](#project-scope)
   - [Features](#features)  
-      - [Authentication](#authentication)  
-          - [Authentication](#1-authentication)  
+      - [Authentication](#1-authentication)  
+          - [Authentication](#authentication)  
           - [Login Page](#login-page)  
           - [Register Page](#register-page)  
           - [Forgot Password Page](#forgot-password-page)  
@@ -57,7 +57,7 @@ To view a collection of images, demo videos, project log, poster and full video 
     
 <br> 
 
-# Project Information
+# Project Introduction
 ## Team Information  
 #### Team Name: **Track My Day** 
 #### Team Number: **5295**  
