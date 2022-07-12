@@ -21,23 +21,23 @@ To view a collection of images, demo videos, project log, poster and full video 
       - [Project Scope](#project-scope)
   - [Features](#features)  
       - [Authentication](#authentication)  
-          - [Authentication](#authentication)  
+          - [Authentication](#1-authentication)  
           - [Login Page](#login-page)  
           - [Register Page](#register-page)  
           - [Forgot Password Page](#forgot-password-page)  
           - [Profile Page](#profile-page)  
           - [Delete Account](#delete-account)  
-      - [Core Features](#2-core-features)  
-          - [Tiles (Home Page)](#tiles-(home-page))  
+      - [Core Features](#2-core-features-of-app)  
+          - [Tiles (Home Page)](#tiles-home-page)  
           - [Notes And To-Do List](#notes-and-to-do-list)  
           - [Drawer](#drawer)  
           - [Navigation](#navigation)  
           - [Settings](#settings)  
-      - [Extended Features of App](#extended-features-of-app)  
+      - [Extended Features of App](#3-extended-features-of-app)  
           - [View Details Page](#view-details-page)  
           - [Notifications](#notifications)  
           - [Share Your Progress](#share-your-progress)  
-  - [Firebase Firestore (Database)](#firebase-firestore-(database))  
+  - [Firebase Firestore (Database)](#firebase-firestore-database)  
       - [Structure of Data](#structure-of-data)  
       - [Create Data](#create-data)  
       - [Read Data](#read-data)  
@@ -46,7 +46,7 @@ To view a collection of images, demo videos, project log, poster and full video 
   - [Testing](#testing)  
       - [Unit Testing](#unit-testing)  
       - [Integration Testing](#integration-testing)  
-      - [End-to-end (E2E) Testing](#end-to-end-(E2E)-testing)  
+      - [End-to-end (E2E) Testing](#end-to-end-e2e-testing)  
       - [System Testing](#system-testing)  
   - [Demo Video of Full App](#demo-video-of-full-app)  
   - [Timeline and Progress Chart](#timeline-and-progress-chart)  
@@ -67,7 +67,7 @@ To view a collection of images, demo videos, project log, poster and full video 
 ## Project Motivation  
 As students that utilize the chrome extension Momentum, we were inspired by Momentum’s concept and wanted to create an aesthetically pleasing dashboard to enhance user productivity. Initially, we were planning to create a chrome extension, but after further discussion, decided our ideas would be better suited for a mobile app. We wanted to create an app that is both functional and personalizable, such that users would use it daily to help them keep track of their habits and better organize aspects of their lives.
 
-## Aim And Vision 
+## Aim & Vision 
 Track My Day is a mobile app with a primary focus on tracking habits, such as exercise, sleep and water consumption. We will be implementing additional features, namely, to-do lists and notepads that can be sorted easily. Track My Day will be personalized for each user and allows customisation based on users’ preferences. We envision Track My Day to be a convenient, all-in-one productivity app users can utilize on a daily basis, and the features were decided with this goal in mind.
 
 ## User Stories And Experience 
