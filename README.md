@@ -16,8 +16,8 @@ To view a collection of images, demo videos, project log, poster and full video 
   - [Project Introduction](#project-introduction)  
       - [Team Information](#team-information)  
       - [Project Motivation](#project-motivation)  
-      - [Aim & Vision](#aim-and-vision)  
-      - [User Stories & Experience](#user-stories-and-experience)  
+      - [Aim & Vision](#aim--vision)  
+      - [User Stories & Experience](#user-stories--experience)  
       - [Project Scope](#project-scope)
   - [Features](#features)  
       - [Authentication](#authentication)  
@@ -29,7 +29,7 @@ To view a collection of images, demo videos, project log, poster and full video 
           - [Delete Account](#delete-account)  
       - [Core Features](#2-core-features-of-app)  
           - [Tiles (Home Page)](#tiles-home-page)  
-          - [Notes And To-Do List](#notes-and-to-do-list)  
+          - [Notes & To-Do List](#notes--to-do-list)  
           - [Drawer](#drawer)  
           - [Navigation](#navigation)  
           - [Settings](#settings)  
@@ -70,7 +70,7 @@ As students that utilize the chrome extension Momentum, we were inspired by Mome
 ## Aim & Vision 
 Track My Day is a mobile app with a primary focus on tracking habits, such as exercise, sleep and water consumption. We will be implementing additional features, namely, to-do lists and notepads that can be sorted easily. Track My Day will be personalized for each user and allows customisation based on users’ preferences. We envision Track My Day to be a convenient, all-in-one productivity app users can utilize on a daily basis, and the features were decided with this goal in mind.
 
-## User Stories And Experience 
+## User Stories & Experience 
 As a young adult who wants to transform into a better person, namely with good habits, I want a simple but aesthetically pleasing tracker that is able to assist me on that.  
 
 As an individual who wants to improve efficiency, I want a tracker that can show me my progress for the habits that I wish to pick up in a simplest and most straightforward way.  
@@ -182,7 +182,7 @@ When the user clicks the “Confirm” button, the value of each tracker will be
 
 ![Tiles](./readme_assets/Home.jpg)  
 
-### Notes And To-Do List 
+### Notes & To-Do List 
 Notes & to-do lists are meant to satisfy the quick note taking needs of the users. Both pages support simple typing, and the to-do list supports an additional checkbox feature.  
 
 As both pages are meant for quick and simple note taking, we do not intend to add more features such as bolded words, add a photo or link function. We wish to maintain the simplicity of the features and minimalistic design of the app.  
