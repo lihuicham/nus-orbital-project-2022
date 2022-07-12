@@ -13,59 +13,64 @@ We recommend viewing our **GitHub README** for the latest update of the app.
 To view a collection of images, demo videos, project log, poster and full video of the app, visit our **Google Drive**. For best viewing experience (high resolution), watch the videos in full screen._
   
   # Table of Contents  
-  - Project Introduction  
+  - [Project Introduction](#project-introduction)  
       - [Team Information](#team-information)  
       - [Project Motivation](#project-motivation)  
       - [Aim & Vision](#aim-and-vision)  
-      - [User Stories & Experience](#user-stories-&-experience)  
+      - [User Stories & Experience](#user-stories-and-experience)  
       - [Project Scope](#project-scope)
-  - Features  
-      - Authentication  
-          - Authentication  
-          - Login Page  
-          - Register Page  
-          - Forgot Password Page  
-          - Profile Page  
-          - Delete Account  
-      - Core Features  
-          - Tiles (Home Page)  
-          - Notes & To-Do List  
-          - Drawer  
-          - Navigation  
-          - Settings  
-      - Extended Features of App  
-          - View Details Page  
-          - Notifications  
-          - Share Your Progress  
-  - Firebase Firestore (Database)  
-      - Structure of Data  
-      - Create Data  
-      - Read Data  
-      - Update Data  
-      - Delete Data  
-  - Testing  
-      - Unit Testing  
-      - Integration Testing  
-      - End-to-end (E2E) Testing  
-      - System Testing  
-  - Demo Video of Full App  
-  - Timeline and Progress Chart  
-  - Project Log  
-  - Tech Stack  
-  - What we intend to achieve in Milestone 3?  
-  - Milestone 2 Poster
+  - [Features](#features)  
+      - [Authentication](#authentication)  
+          - [Authentication](#authentication)  
+          - [Login Page](#login-page)  
+          - [Register Page](#register-page)  
+          - [Forgot Password Page](#forgot-password-page)  
+          - [Profile Page](#profile-page)  
+          - [Delete Account](#delete-account)  
+      - [Core Features](#2-core-features)  
+          - [Tiles (Home Page)](#tiles-(home-page))  
+          - [Notes And To-Do List](#notes-and-to-do-list)  
+          - [Drawer](#drawer)  
+          - [Navigation](#navigation)  
+          - [Settings](#settings)  
+      - [Extended Features of App](#extended-features-of-app)  
+          - [View Details Page](#view-details-page)  
+          - [Notifications](#notifications)  
+          - [Share Your Progress](#share-your-progress)  
+  - [Firebase Firestore (Database)](#firebase-firestore-(database))  
+      - [Structure of Data](#structure-of-data)  
+      - [Create Data](#create-data)  
+      - [Read Data](#read-data)  
+      - [Update Data](#update-data)  
+      - [Delete Data](#delete-data)  
+  - [Testing](#testing)  
+      - [Unit Testing](#unit-testing)  
+      - [Integration Testing](#integration-testing)  
+      - [End-to-end (E2E) Testing](#end-to-end-(E2E)-testing)  
+      - [System Testing](#system-testing)  
+  - [Demo Video of Full App](#demo-video-of-full-app)  
+  - [Timeline and Progress Chart](#timeline-and-progress-chart)  
+  - [Project Log](#project-log)  
+  - [Tech Stack for Milestone 2](#tech-stack-for-milestone-2)  
+  - [What we intend to achieve in Milestone 3](#what-we-intend-to-achieve-in-milestone-3)  
+  - [Milestone 2 Poster](#milestone-2-poster)  
+    
+<br> 
+
+# Project Information
 ## Team Information  
 #### Team Name: **Track My Day** 
 #### Team Number: **5295**  
 #### Level of Achivement: **Apollo 11**  
 
+
 ## Project Motivation  
 As students that utilize the chrome extension Momentum, we were inspired by Momentum’s concept and wanted to create an aesthetically pleasing dashboard to enhance user productivity. Initially, we were planning to create a chrome extension, but after further discussion, decided our ideas would be better suited for a mobile app. We wanted to create an app that is both functional and personalizable, such that users would use it daily to help them keep track of their habits and better organize aspects of their lives.
 
-## Aim & Vision 
+## Aim And Vision 
 Track My Day is a mobile app with a primary focus on tracking habits, such as exercise, sleep and water consumption. We will be implementing additional features, namely, to-do lists and notepads that can be sorted easily. Track My Day will be personalized for each user and allows customisation based on users’ preferences. We envision Track My Day to be a convenient, all-in-one productivity app users can utilize on a daily basis, and the features were decided with this goal in mind.
 
-## User Stories & Experience 
+## User Stories And Experience 
 As a young adult who wants to transform into a better person, namely with good habits, I want a simple but aesthetically pleasing tracker that is able to assist me on that.  
 
 As an individual who wants to improve efficiency, I want a tracker that can show me my progress for the habits that I wish to pick up in a simplest and most straightforward way.  
@@ -92,6 +97,7 @@ The scope of our project can be divided into 5 parts. Click the links to jump to
 ** _Note: Drawer includes user details, navigation tabs, report issues and log out._
 <br><br>
 
+# Features
 ## 1. Authentication 
 
 ### Authentication
@@ -176,7 +182,7 @@ When the user clicks the “Confirm” button, the value of each tracker will be
 
 ![Tiles](./readme_assets/Home.jpg)  
 
-### Notes & To-Do List 
+### Notes And To-Do List 
 Notes & to-do lists are meant to satisfy the quick note taking needs of the users. Both pages support simple typing, and the to-do list supports an additional checkbox feature.  
 
 As both pages are meant for quick and simple note taking, we do not intend to add more features such as bolded words, add a photo or link function. We wish to maintain the simplicity of the features and minimalistic design of the app.  
@@ -260,7 +266,7 @@ We used local push notifications via Expo CLI for the app’s notification. The 
 ### Share Your Progress
 We consider that millennials like to share their daily moments on social media, hence we wish to implement a “Share Your Progress” function in our app as a bonus feature. This function will connect the app with social media platforms like Instagram, Facebook and Twitter.  
 
-## 4. Firebase Firestore (database)
+# Firebase Firestore (database)
 
 ### Structure of Data 
 
@@ -321,7 +327,7 @@ We consider that millennials like to share their daily moments on social media, 
 - Before an account can be deleted, the user has to sign in again to confirm their identity. A modal will pop up to allow this. Login rules are the same as in the Login page.
 - Deleting an account will delete the user’s data from Firebase authentication as well as Firestore database.
 
-## 5. Testing 
+# Testing 
 
 ### Unit Testing 
 Note column:
