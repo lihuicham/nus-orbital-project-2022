@@ -53,9 +53,8 @@ export default function ModalDeleteAccount() {
               {
                 text: "Go back",
                 onPress: () => console.log("Cancel Pressed"),
-                //style: "cancel"
               },
-              { text: "Delete", onPress: () => deleteAccount(user.uid) }
+              { text: "Delete", onPress: () => deleteAccount(user.uid)}
             ]
           )
           })
@@ -123,7 +122,7 @@ export default function ModalDeleteAccount() {
                 </View>
 
                 <Pressable
-                style={[styles.button, styles.buttonClose]}
+                style={[styles.button, styles.deleteSignInButton]}
                 onPress={handleLogin}
                 >
                 <Text style={styles.modalText}>Sign in</Text>
@@ -189,9 +188,11 @@ const styles = StyleSheet.create({
   buttonOpen: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#D80505',
     padding: 3,
     borderRadius: 10,
+    borderColor: '#E20505',
+    borderWidth: 0.5,
     opacity: 0.8,
     shadowColor: "#000",
     shadowOffset: {
@@ -208,6 +209,12 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     paddingRight: 30
   },
+  deleteSignInButton: {
+    backgroundColor: '#F70606',
+    marginTop: 20,
+    paddingLeft: 30,
+    paddingRight: 30
+  },
   modalText: {
     color: "white",
     fontWeight: "bold",
@@ -215,6 +222,8 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
     fontSize: 17,
     marginLeft: 10
   },
@@ -226,7 +235,7 @@ const styles = StyleSheet.create({
   },
   arrow: {
     fontSize: 33,
-    marginLeft: 155
+    marginLeft: 155,
   },
   password: {
     flexDirection: 'row',

@@ -49,9 +49,13 @@ To view a collection of images, demo videos, project log, poster and full video 
       - [End-to-end (E2E) Testing](#end-to-end-e2e-testing)  
       - [System Testing](#system-testing)  
   - [Demo Video of Full App](#demo-video-of-full-app)  
+  - [Diagrams](#concept-diagrams)  
+      - [Component Interaction](#component-interaction)  
+      - [User Flow Map](#user-flow-map)
   - [Timeline and Progress Chart](#timeline-and-progress-chart)  
   - [Project Log](#project-log)  
-  - [Tech Stack for Milestone 2](#tech-stack-for-milestone-2)  
+  - [Tech Stack for Milestone 2](#tech-stack-for-milestone-2) 
+  - [Software Engineering Practices](#software-engineering-practices)   
   - [What we intend to achieve in Milestone 3](#what-we-intend-to-achieve-in-milestone-3)  
   - [Milestone 2 Poster](#milestone-2-poster)  
     
@@ -395,6 +399,15 @@ To be completed in Milestone 3
 ## Demo Video of Full App 
 **[Track My Day 📺](https://youtu.be/-wzJrKG1zDc)**
 
+## Concept Diagrams  
+### Component Interaction  
+![Component Interaction Diagram](./readme_assets/ComponentInteraction.png)
+
+### User Flow Map  
+
+
+
+
 ## Timeline and Progress Chart
 
 ### Orbital 2022 Timeline 
@@ -424,6 +437,16 @@ We used these tools to create the project:
 - Software and Devices: Andriod, Expo Go 
 - CLI: Expo  
 - Poster & Video: Canva, Adobe Premiere Pro 
+
+## Software Engineering Practices  
+- Iterative development  
+- Follow the 'KISS' principle  
+- Readable code  
+- Unit, Integration, E2E, System Testing  
+- Error messages that are easy to understand  
+- Presence of 'Cancel' and 'Back' buttons  
+- Minimalistic design  
+- Version control with Git  
 
 ## What We Intend to Achieve in Milestone 3? 
 Going forward, for Milestone 3, we plan to: 

@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { authentication, provider } from '../firebase-config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+// import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -51,9 +51,9 @@ export default function Login() {
       })
   };
 
-  const handleGoogleLogin = () => {
+  // const handleGoogleLogin = () => {
     
-  }
+  // }
 
   const toForgotPassword = () => {
     navigation.replace("ForgotPassword")
@@ -134,13 +134,13 @@ export default function Login() {
                     <Text style={styles.buttonText}>Google Login</Text>
                 </TouchableOpacity> */}
 
-                <GoogleSigninButton
+                {/* <GoogleSigninButton
                   style={{ width: 192, height: 48 }}
                   size={GoogleSigninButton.Size.Wide}
                   color={GoogleSigninButton.Color.Dark}
                   onPress={this._signIn}
                   disabled={this.state.isSigninInProgress}
-                />;
+                />; */}
 
 
 
