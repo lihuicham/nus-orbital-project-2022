@@ -1,24 +1,26 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Dimensions } from "react-native";
-
 import { LineChart } from "react-native-chart-kit";
-
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase-config";
+import { getAuth } from 'firebase/auth';
 
 
 const SLEEP = () => {
 
+    const auth = getAuth();
+    const user = auth.currentUser;
+
     const [ourData, setOurData] = useState([0]);
 
     const getDays = async () => {
-        const colRef = await getDocs(collection(db, "habits", "SLEEP", "days"));
+        const colRef = await getDocs(collection(db, "users", user.uid, "habits", "SLEEP", "days"));
         let arr = [];
         for (let doc of colRef.docs) {
             arr.push(doc.data().value)
         };
-        setOurData(arr);
+        setOurData(arr.slice(0, -1)); // remove last item because it's 0 for next day
     };
     
     useEffect(() => {

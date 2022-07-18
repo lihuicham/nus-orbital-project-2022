@@ -36,6 +36,17 @@ day = day < 10 ? "0" + day : day;
 
 const dayId = year + month + day;
 
+// create dayId for tomorrow
+var tomorrow = today
+tomorrow.setDate(tomorrow.getDate()+1);
+
+let tomorrowYear = tomorrow.getFullYear().toLocaleString();
+let tomorrowMonth = (tomorrow.getMonth() + 1).toLocaleString();
+let tomorrowDay = tomorrow.getDate().toLocaleString();
+tomorrowMonth = tomorrowMonth < 10 ? "0" + tomorrowMonth : montomorrowMonthth;
+tomorrowDay = tomorrowDay < 10 ? "0" + tomorrowDay : tomorrowDay;
+const tomorrowDayId = tomorrowYear + tomorrowMonth + tomorrowDay;
+
 
 const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
   const auth = getAuth();
@@ -53,7 +64,6 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
     // const habitRef = doc(db, "habits", habitName);
     // const usersCollectionRef = doc(db, "users", user.uid, "habits", habitName)
 
-    // console.log(user.uid)
     // //console.log(user)
     // //usersCollectionRef.set({habit: habitName})
     // setDoc(usersCollectionRef, {
@@ -62,7 +72,6 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
     // });
 
     // add these fields inside dayId document
-    console.log(user.uid)
     const dayRef = doc(db, "users", user.uid, "habits", habitName, "days", dayId);
     setDoc(dayRef, {
       date: Timestamp.fromDate(new Date()),
@@ -70,6 +79,16 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
       name: habitName,
       unit: habitUnit,
       value: val,
+    });
+
+    // create new document for tomorrow with value 0 - will be overriden when updating the next day
+    const tomorrowDayRef = doc(db, "users", user.uid, "habits", habitName, "days", tomorrowDayId);
+    setDoc(tomorrowDayRef, {
+      date: Timestamp.fromDate(new Date()),
+      id: tomorrowDayId,
+      name: habitName,
+      unit: habitUnit,
+      value: 0,
     });
   };
 
