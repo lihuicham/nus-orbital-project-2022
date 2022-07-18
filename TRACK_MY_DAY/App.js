@@ -16,7 +16,7 @@ import ToDoStackScreen from './routes/ToDoStackScreen';
 import Dashboard from "./screens/Dashboard";
 import Profile from "./screens/Profile";
 import AboutUs from "./screens/AboutUs";
-import Help from "./screens/Help";
+import FAQ from "./screens/FAQ";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -90,7 +90,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <AboutUs />
+      <FAQ />
     </NavigationContainer>
   );
 }
