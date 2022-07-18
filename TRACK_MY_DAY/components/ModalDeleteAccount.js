@@ -139,13 +139,13 @@ export default function ModalDeleteAccount() {
             </View>
             </View>
         </Modal>
-        <Pressable
+        <TouchableOpacity
             style={[styles.button, styles.buttonOpen]}
             onPress={() => setModalVisible(true)}
         >
             <Text style={styles.buttonText}>Delete Account</Text>
             <Text style={styles.arrow}>☞</Text>
-        </Pressable>
+        </TouchableOpacity>
         
         </View>
   );

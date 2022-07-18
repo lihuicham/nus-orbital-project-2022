@@ -107,13 +107,13 @@ export default function ModalChangeEmailPassword() {
             </View>
             </View>
         </Modal>
-        <Pressable
+        <TouchableOpacity
             style={[styles.button, styles.buttonOpen]}
             onPress={() => setModalVisible(true)}
         >
             <Text style={styles.buttonText}>Change Email or Password</Text>
             <Text style={styles.arrow}>☞</Text>
-        </Pressable>
+        </TouchableOpacity>
         </View>
   );
 };

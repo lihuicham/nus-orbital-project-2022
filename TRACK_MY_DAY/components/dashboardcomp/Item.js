@@ -10,7 +10,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SliderPicker } from "react-native-slider-picker";
 import { db } from "../../firebase-config";
-import { doc, Timestamp, setDoc } from "firebase/firestore";
+import { collection, doc, Timestamp, setDoc } from "firebase/firestore";
+import { getAuth } from 'firebase/auth';
 
 /* import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
@@ -37,6 +38,9 @@ const dayId = year + month + day;
 
 
 const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  
   const navigation = useNavigation();
   const [value, setValue] = useState(0);
 
@@ -46,14 +50,20 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
   };
 
   const handleConfirm = (val) => {
-    const habitRef = doc(db, "habits", habitName);
-    //console.log(user)
-    setDoc(habitRef, {
-      name: habitName,
-      
-    });
+    // const habitRef = doc(db, "habits", habitName);
+    // const usersCollectionRef = doc(db, "users", user.uid, "habits", habitName)
 
-    const dayRef = doc(db, "habits", habitName, "days", dayId);
+    // console.log(user.uid)
+    // //console.log(user)
+    // //usersCollectionRef.set({habit: habitName})
+    // setDoc(usersCollectionRef, {
+    //   name: "days",
+      
+    // });
+
+    // add these fields inside dayId document
+    console.log(user.uid)
+    const dayRef = doc(db, "users", user.uid, "habits", habitName, "days", dayId);
     setDoc(dayRef, {
       date: Timestamp.fromDate(new Date()),
       id: dayId,
