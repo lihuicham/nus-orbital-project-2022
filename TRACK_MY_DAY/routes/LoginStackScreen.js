@@ -3,7 +3,7 @@ import Login from '../screens/Login';
 import Drawer from './Drawer';
 import Register from '../screens/Register';
 import ForgotPassword from '../screens/ForgotPassword';
-import Profile from '../screens/Profile'
+import Profile from '../screens/Profile';
 
 const LoginStack = createStackNavigator();
 

@@ -9,7 +9,7 @@ const AboutUs = () => {
       <Text  
         style={{
             fontFamily: 'monospace',
-            marginTop: -40,
+            marginTop: -30,
             padding: 20, 
             color: '#fff7d8',
             fontSize: 16, }}
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        margin: 35,
+        margin: 15,
         fontSize: 40,
         color: '#face05',
         textShadowColor: '#598598',

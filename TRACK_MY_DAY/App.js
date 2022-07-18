@@ -90,7 +90,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <FAQ />
+      <LoginStackScreen />
     </NavigationContainer>
   );
 }

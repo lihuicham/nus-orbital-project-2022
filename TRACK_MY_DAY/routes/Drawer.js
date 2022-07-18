@@ -3,6 +3,8 @@ import BottomTab from "./BottomTab";
 import SettingsStackScreen from "./SettingsStackScreen";
 import CustomDrawer from "../components/drawercomp/CustomDrawer";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AboutUs from "../screens/AboutUs";
+import FAQ from "../screens/FAQ";
 
 
 
@@ -30,6 +32,16 @@ const Drawer = () => {
             <DrawerObj.Screen name="SettingsStackScreen" component={SettingsStackScreen} options={{title: "Settings",
                 drawerIcon: ({color}) => (
                     <Ionicons name="settings-outline" size={22} color={color} />
+                )
+            }}/>
+            <DrawerObj.Screen name="AboutUs" component={AboutUs} options={{title: "About Us",
+                drawerIcon: ({color}) => (
+                    <Ionicons name="information-circle-outline" size={22} color={color} />
+                )
+            }}/>
+            <DrawerObj.Screen name="FAQ" component={FAQ} options={{title: "FAQ",
+                drawerIcon: ({color}) => (
+                    <Ionicons name="help-circle-outline" size={22} color={color} />
                 )
             }}/>
         </DrawerObj.Navigator>

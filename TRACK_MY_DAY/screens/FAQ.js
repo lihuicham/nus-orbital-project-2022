@@ -57,12 +57,12 @@ const CONTENT = [
   {
     title: 'There\'s an issue with the app ! Please fix it ! ',
     content:
-      'Swipe right to reveal the Menu drawer for the app and click the Report Issues button to write the issue to us ! We will fix the bug as soon as possible and publish an update on our GitHub README.'
+      'Swipe right to reveal the Menu drawer and click the Report Issues button to write the issue to us ! We will fix the bug as soon as possible and publish an update on our GitHub README.'
   },
   {
     title: 'Need more help ?',
     content: 
-        'Swipe right to reveal the Menu drawer for the app and click the Report Issues button. Simply write an email to us stating your question or problem, we will respond to you in 3 working days.'
+        'Swipe right to reveal the Menu drawer and click the Report Issues button. Simply write an email to us stating your question or problem, we will respond to you in 3 working days.'
   },
 ];
 
@@ -107,7 +107,7 @@ const FAQ = () => {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <Text style={styles.faq}>
-            FAQ
+            Frequently Asked Questions
         </Text>
         <Text style={styles.expandTitle}>
             Please click the below options to expand. 
@@ -134,12 +134,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f9db6e',
-    paddingTop: 25,
   },
   faq: {
     color: '#643202',
-    fontSize: 50,
-    margin: 20, 
+    fontSize: 35,
+    marginVertical: 10, 
+    marginLeft: 20,  
     fontWeight: "bold"
   },
   header: {
