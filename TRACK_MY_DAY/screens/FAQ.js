@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 17,
-    fontWeight: '500',
+    fontWeight: '300',
     marginVertical: 7,
     marginHorizontal: 10,  
   },
@@ -171,14 +171,14 @@ const styles = StyleSheet.create({
   activeHeader: {
     color: '#ff9b16',
     fontSize: 22, 
-    fontWeight: '300'
+    fontWeight: '500'
   },
   inactiveHeader: {
     color: 'black',
   },
   expandTitle: {
     fontSize: 13,
-    fontWeight: '500',
+    fontWeight: '400',
     marginBottom: 10, 
     textAlign: 'center',
     color: '#969393'
