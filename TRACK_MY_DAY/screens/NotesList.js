@@ -18,11 +18,10 @@ export default function NotesList() {
   const [notes, setNotes] = useState('');
   const [notesItems, setNotesItems] = useState([]);
   const [searchText, setSearchText] = useState('');
-  //FIXME - consider to change the way darkMode is implemented 
   
 
   // to count the character limit 
-  const characterLimit = 200;
+  const characterLimit = 700;
 
   const handleChange = (text) => {
     if (characterLimit - text.length >= 0) {

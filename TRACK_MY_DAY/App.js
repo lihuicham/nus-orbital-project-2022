@@ -17,6 +17,7 @@ import Dashboard from "./screens/Dashboard";
 import Profile from "./screens/Profile";
 import AboutUs from "./screens/AboutUs";
 import FAQ from "./screens/FAQ";
+import Notes from "./screens/Notes";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -90,7 +91,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <LoginStackScreen />
+      <Notes />
     </NavigationContainer>
   );
 }
