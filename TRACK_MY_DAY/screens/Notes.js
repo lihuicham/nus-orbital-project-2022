@@ -12,6 +12,7 @@ import {
   Modal,
   TextInput,
   TouchableOpacity,
+  KeyboardAvoidingView
 } from "react-native";
 
 const Notes = () => {
@@ -66,11 +67,17 @@ const Notes = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar />
       <View style={[styles.viewChoiceContainer]}>
-        <Button
-          title={listView ? "Full View" : "List View"}
-          onPress={() => setListView(!listView)}
-          color="#2B4C59"
-        />
+        <View>
+          <Text style={styles.title}>Notes</Text> 
+        </View>
+        <View>
+          <Button
+            title={listView ? "Full View" : "List View"}
+            onPress={() => setListView(!listView)}
+            color="#2B4C59"
+          />
+        </View>
+
       </View>
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}
@@ -97,33 +104,36 @@ const Notes = () => {
           </View>
         </TouchableOpacity>
       </View>
+
       <Modal visible={isNoteModalOpen}>
-        <View style={styles.modalContainer}>
-          <View style={styles.modalHeadingContainer}>
-            <Text style={styles.modalHeading}>Add a note</Text>
+        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+          <View style={styles.modalContainer}>
+            <View style={styles.modalHeadingContainer}>
+              <Text style={styles.modalHeading}>Add a note</Text>
+            </View>
+            <TextInput
+              onChangeText={setText}
+              value={text}
+              multiline
+              placeholder="Write your ideas down!"
+              style={styles.input}
+            />
+            <View style={styles.actionButtonContainer}>
+              <View style={styles.actionButton}>
+                <Button color="green" onPress={onSaveNote} title={"Save"} />
+              </View>
+              <View style={styles.actionButton}>
+                <Button
+                  onPress={() => setNoteModalOpen(false)}
+                  title={"Cancel"}
+                />
+              </View>
+              <View style={styles.actionButton}>
+                <Button color="red" onPress={onDeleteNote} title={"Delete"} />
+              </View>
+            </View>
           </View>
-          <TextInput
-            onChangeText={setText}
-            value={text}
-            multiline
-            placeholder="Write your ideas down!"
-            style={styles.input}
-          />
-          <View style={styles.actionButtonContainer}>
-            <View style={styles.actionButton}>
-              <Button color="green" onPress={onSaveNote} title={"Save"} />
-            </View>
-            <View style={styles.actionButton}>
-              <Button
-                onPress={() => setNoteModalOpen(false)}
-                title={"Cancel"}
-              />
-            </View>
-            <View style={styles.actionButton}>
-              <Button color="red" onPress={onDeleteNote} title={"Delete"} />
-            </View>
-          </View>
-        </View>
+        </KeyboardAvoidingView>
       </Modal>
     </SafeAreaView>
   );
@@ -149,12 +159,22 @@ const styles = StyleSheet.create({
   noteListView: {
     height: 80,
   },
+
   viewChoiceContainer: {
-    paddingTop: 20,
+    paddingTop: 10,
     paddingBottom: 10,
     paddingRight: 20,
-    alignItems: "flex-end",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
+  title: {
+    marginTop: -8,
+    fontSize: 40, 
+    paddingLeft: 10,
+    fontWeight: "bold"
+  },
+
   addNoteContainer: {
     bottom: 80,
     right: 20,

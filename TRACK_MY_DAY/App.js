@@ -91,7 +91,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Notes />
+      <LoginStackScreen />
     </NavigationContainer>
   );
 }
