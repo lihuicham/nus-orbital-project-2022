@@ -4,6 +4,7 @@ import { db } from '../firebase-config';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { getAuth } from "firebase/auth";
 import Slider from '@react-native-community/slider';
+import { getDatabase, ref, update } from "firebase/database";
 
 export default function ChangeDetails({ navigation }) {
 
@@ -66,6 +67,21 @@ export default function ChangeDetails({ navigation }) {
     .then(Alert.alert("Study goal updated!"))
   }
 
+  // Realtime Database
+  function usernameRealTime(userId, newUsername) {
+    const db = getDatabase();
+    update(ref(db, 'users/' + userId), {
+      username: newUsername,
+    });
+  }
+
+  function quoteRealTime(userId, newFavQuote) {
+    const db = getDatabase();
+    update(ref(db, 'users/' + userId), {
+      favQuote: newFavQuote,
+    });
+  }
+
 
   return (
     <TouchableWithoutFeedback onPress={() => {
@@ -103,7 +119,7 @@ export default function ChangeDetails({ navigation }) {
                 <View style={styles.buttonWrapper}>
                     <TouchableOpacity 
                         style={styles.button} 
-                        onPress={() => updateUsername(user.uid, newUsername)}
+                        onPress={() => { updateUsername(user.uid, newUsername); usernameRealTime(user.uid, newUsername) }}
                         >
                         <Text style={styles.buttonText}>Update username</Text>
                     </TouchableOpacity>
@@ -118,7 +134,7 @@ export default function ChangeDetails({ navigation }) {
                 <View style={styles.buttonWrapper}>
                     <TouchableOpacity 
                         style={styles.button} 
-                        onPress={() => updateQuote(user.uid, newFavQuote)}
+                        onPress={() => { updateQuote(user.uid, newFavQuote); quoteRealTime(user.uid, newFavQuote) }}
                         >
                         <Text style={styles.buttonText}>Update quote</Text>
                     </TouchableOpacity>

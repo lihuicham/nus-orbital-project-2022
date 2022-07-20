@@ -3,11 +3,10 @@ import React, { useState, useEffect} from "react";
 import { DrawerContentScrollView, DrawerItemList} from "@react-navigation/drawer";
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 import { db, authentication } from "../../firebase-config";
 import { useNavigation } from "@react-navigation/native";
-
 import { doc, getDoc } from "firebase/firestore";
+import { getDatabase, ref, onValue} from "firebase/database";
 
 export default function CustomDrawer(props) {
   const navigation = useNavigation();
@@ -30,19 +29,29 @@ export default function CustomDrawer(props) {
   const user = authentication.currentUser
 
 
-    const getData = async () => {
-        const docRef = doc(db, "users", user.uid)
-        const docSnap = await getDoc(docRef);
-        let name = "";
-        let quote = "";
-        
-        name = docSnap.data().username;
-        quote = docSnap.data().favQuote;
-        
-        setUsername(name);
-        setFavQuote(quote);
+    // const getData = async () => {
+    //     const docRef = doc(db, "users", user.uid)
+    //     const docSnap = await getDoc(docRef);
+    //     let name = "";
+    //     let quote = "";
 
-    };
+        // name = docSnap.data().username;
+        // quote = docSnap.data().favQuote;
+        
+        // setUsername(name);
+        // setFavQuote(quote);
+
+    // };
+
+    const getData = () => {
+      const db = getDatabase();
+      const usernameRef = ref(db, 'users/' + user.uid);
+      onValue(usernameRef, (snapshot) => {
+        const data = snapshot.val();
+        setUsername(data.username);
+        setFavQuote(data.favQuote);
+      });
+    }
     
     useEffect(() => {
       try {
@@ -67,7 +76,7 @@ export default function CustomDrawer(props) {
           />
 
           <Text style={styles.userName}>{username}</Text>
-          <Text style={styles.email}>{authentication.currentUser?.email}</Text>
+          <Text style={styles.email}>{authentication.currentUser?.email}</Text> 
           <View style={styles.statusWrapper}>
             <Text style={styles.userStatus}>{favQuote}</Text>
             <FontAwesome5 name="coins" size={14} color="#b8f50a" style={styles.statusIcon}/>

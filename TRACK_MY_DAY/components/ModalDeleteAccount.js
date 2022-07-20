@@ -3,6 +3,7 @@ import { Alert, Modal, StyleSheet, Text, Pressable, View, TouchableOpacity, Text
 import { signInWithEmailAndPassword, getAuth, deleteUser } from 'firebase/auth';
 import { db, authentication } from '../firebase-config';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc, setDoc } from 'firebase/firestore';
+import { getDatabase, ref, remove } from "firebase/database";
 import { useNavigation } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -20,7 +21,9 @@ export default function ModalDeleteAccount() {
 
     const deleteAccount = async (id) =>  {
       const userDoc = doc(db, "users", id);
+      // delete User documents from Firestore
       await deleteDoc(userDoc);  
+      // delete User from Firebase Authentication
       deleteUser(user).then(() => {
         handleLogout()
         console.log("user deleted")
@@ -54,7 +57,7 @@ export default function ModalDeleteAccount() {
                 text: "Go back",
                 onPress: () => console.log("Cancel Pressed"),
               },
-              { text: "Delete", onPress: () => deleteAccount(user.uid)}
+              { text: "Delete", onPress: () => { deleteData(), deleteAccount(user.uid) }}
             ]
           )
           })
@@ -86,6 +89,11 @@ export default function ModalDeleteAccount() {
           setRightIcon('eye');
           setPasswordVisibility(!passwordVisibility);
         }
+    }
+
+    function deleteData () {
+      const db = getDatabase();
+      remove(ref(db, 'users/' + user.uid));
     }
 
 

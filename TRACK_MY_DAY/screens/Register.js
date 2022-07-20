@@ -68,7 +68,7 @@ export default function Register({ navigation }) {
             setRightIcon('eye');
             setPasswordVisibility(!passwordVisibility);
           }
-      }
+    }
     
     return (
         <TouchableWithoutFeedback onPress={() => {

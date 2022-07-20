@@ -35,6 +35,8 @@ To view a collection of images, demo videos, project log, poster and full video 
           - [Settings](#settings)  
       - [Extended Features of App](#3-extended-features-of-app)  
           - [View Details Page](#view-details-page)  
+          - [About Us Page](#about-us-page)  
+          - [FAQ Page](#faq-page)  
           - [Notifications](#notifications)  
           - [Share Your Progress](#share-your-progress)  
   - [Firebase Firestore (Database)](#firebase-firestore-database)  
@@ -43,6 +45,7 @@ To view a collection of images, demo videos, project log, poster and full video 
       - [Read Data](#read-data)  
       - [Update Data](#update-data)  
       - [Delete Data](#delete-data)  
+  - Firebase Realtime Database
   - [Testing](#testing)  
       - [Unit Testing](#unit-testing)  
       - [Integration Testing](#integration-testing)  
@@ -258,7 +261,12 @@ Calendar and Analysis are placed together in the same “View details” page. B
 
 **Current Progress:** Completed Analytics - able to read data from database and present data as line chart. Basic UI done.  
 
-![View Details](./readme_assets/Analytics.jpg)  
+![View Details](./readme_assets/Analytics.jpg) 
+
+### About Us Page  
+This page contains 
+
+### FAQ Page
 
 ### Notifications 
 We used local push notifications via Expo CLI for the app’s notification. The app will notify the user everyday at 9pm to use Track My Day.  

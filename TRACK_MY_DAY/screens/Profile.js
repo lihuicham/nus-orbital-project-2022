@@ -6,6 +6,7 @@ import { collection, doc, setDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
+import { getDatabase, ref, set } from "firebase/database";
 
 export default function Profile({ navigation }) {
 
@@ -42,6 +43,18 @@ export default function Profile({ navigation }) {
 
     }
 
+    // add data to Firebase Realtime Database
+    function writeUserData(userId, username, email, favQuote) {
+        const db = getDatabase();
+        set(ref(db, 'users/' + userId), {
+          username: username,
+          email: email,
+          favQuote: favQuote,
+        //   profile_picture : imageUrl - add imageUrl as arg to writeUserData
+        // quote
+        });
+    }
+
     // creating new user in firebase
     const [username, setUsername] = useState("")
     const [favQuote, setFavQuote] = useState("")
@@ -56,6 +69,9 @@ export default function Profile({ navigation }) {
             sleepGoal: sleepGoal, waterGoal: waterGoal, exerciseGoal: exerciseGoal,
             studyGoal: studyGoal, id: user.uid
           })
+          .then(
+            writeUserData(user.uid, username, user.email, favQuote) // this should create a new branch in rt db
+          )
           .then(
               username && 
               Alert.alert("Profile Registered!", "",
