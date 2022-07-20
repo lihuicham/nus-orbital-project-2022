@@ -2,11 +2,11 @@
 ### **An Orbital project by Cham Li Hui and Pwint Thiri Ko.**  
 **[Github Repository](https://github.com/lihuicham/nus-orbital-project-2022)**    
 
-**[Google Drive for Milestone 2](https://drive.google.com/drive/folders/1Mq71KuNAYKe8AkgMO25qQXlOgMgQXA0N?usp=sharing)**  
+**[Google Drive for Milestone 3](https://drive.google.com/drive/folders/1hbSiGgI8AQzhq_WigtTu3QDPAddWhNlb?usp=sharing)**  
 
-**[Track My Day App Video 📺](https://youtu.be/-wzJrKG1zDc)**  
+**[Track My Day App Video 📺]()**  
 
-Proof of Concept: **[Track My Day APK file](https://drive.google.com/file/d/1lDwr11FedZ0Y6-SueD91SYcUzvknMH7O/view?usp=sharing)** - please download it using your mobile device, you can access the file via our google drive (on your phone) and download it. It will show up as a mobile application on your phone screen. Click the app and try out Track My Day. 
+Proof of Concept: **[Track My Day APK file]()** - please download it using your mobile device, you can access the file via our google drive (on your phone) and download it. It will show up as a mobile application on your phone screen. Click the app and try out Track My Day. 
 
 _Note:  
 We recommend viewing our **GitHub README** for the latest update of the app.  
@@ -45,7 +45,7 @@ To view a collection of images, demo videos, project log, poster and full video 
       - [Read Data](#read-data)  
       - [Update Data](#update-data)  
       - [Delete Data](#delete-data)  
-  - Firebase Realtime Database
+  - [Firebase Realtime Database](#firebase-realtime-database)  
   - [Testing](#testing)  
       - [Unit Testing](#unit-testing)  
       - [Integration Testing](#integration-testing)  
@@ -57,10 +57,9 @@ To view a collection of images, demo videos, project log, poster and full video 
       - [User Flow Map](#user-flow-map)
   - [Timeline and Progress Chart](#timeline-and-progress-chart)  
   - [Project Log](#project-log)  
-  - [Tech Stack for Milestone 2](#tech-stack-for-milestone-2) 
-  - [Software Engineering Practices](#software-engineering-practices)   
-  - [What we intend to achieve in Milestone 3](#what-we-intend-to-achieve-in-milestone-3)  
-  - [Milestone 2 Poster](#milestone-2-poster)  
+  - [Tech Stack](#tech-stack) 
+  - [Software Engineering Practices](#software-engineering-practices)    
+  - [Milestone 3 Poster](#milestone-3-poster)  
     
 <br> 
 
@@ -264,9 +263,18 @@ Calendar and Analysis are placed together in the same “View details” page. B
 ![View Details](./readme_assets/Analytics.jpg) 
 
 ### About Us Page  
-This page contains 
+This page contains information about our motivations for creating Track My Day, what the user can do on the app and **links to our GitHub repository, Milestone poster and video as well as a blog post about our journey**.  
 
-### FAQ Page
+**Current Progress:** Completed.
+
+**--> Watch a demo video of About Us Page: [About Us Page 📺]()**  
+
+### FAQ Page  
+Sometimes, users may have questions or suggestions to improve our app. The FAQ page uses bounce-in animation and contains answers to the most common questions. There is also a question on 'Need more help?' for users to reach out if the questions in the page do not adequately address the user's concern.  
+
+**Current Progress:** Completed.  
+
+**--> Watch a demo video of FAQ Page: [FAQ Page 📺]()**  
 
 ### Notifications 
 We used local push notifications via Expo CLI for the app’s notification. The app will notify the user everyday at 9pm to use Track My Day.  
@@ -286,14 +294,18 @@ We consider that millennials like to share their daily moments on social media, 
 - db/users/{userId} in Firestore database
 - userId (string) = the randomly generated user.uid where user is the currently logged in user
 - Collection: users ; Document: userId
-- Each userId document field: birthday, exerciseGoal, favQuote, id, sleepGoal, studyGoal, username, waterGoal
+- Each userId document field: birthday, exerciseGoal, favQuote, id, sleepGoal, studyGoal, username, waterGoal  
+
+![Firestore User]()
 
 #### For View Details: 
-- db/habits/{habitName}/days/{dayId} in Firestore database
+- db/users/{userId}/habits/{habitName}/days/{dayId} in Firestore database
 - habitName (string) = name of each habit, as shown in Tiles. Eg. READ, EXERCISE, WATER and etc. 
 - dayId (string) = date of the day Eg. 20220624 for June 24, 2022. 
-- Collection: habit & days ; Document: habitName, dayId
+- Collection: users, habits, days ; Document: userId, habitName, dayId
 - Each dayId document field: date, id, name, unit, value  
+
+![Firestore Habits](./readme_assets/FirestoreHabits.PNG) 
 
 ### Create Data 
 
@@ -303,8 +315,6 @@ We consider that millennials like to share their daily moments on social media, 
 - User ID is also unique, meaning that each user will only have one document created for them.  
 
 **--> Watch a demo video of Firestore User: [Firestore User 📺](https://drive.google.com/file/d/1zqaltEo0c0DqQUBuxWPkDJJ9SFnVFlkp/view?usp=sharing)**  
-
-![Firestore User](./readme_assets/FirestoreUser.png)
 
 
 #### For View Details: 
@@ -323,9 +333,7 @@ We consider that millennials like to share their daily moments on social media, 
 - Data is retrieved from Firestore and is specific to each habit, with their respective paths. 
 - We use the “value” field in each document for analysis  
 
-**--> Watch a demo video of Firestore Habits: [Firestore Habits 📺](https://drive.google.com/file/d/1mQhwyXvufG-RMuEUdkKmk4a4hg7tD5N_/view?usp=sharing)** 
-
-![Firestore Habits](./readme_assets/FirestoreHabits.PNG)  
+**--> Watch a demo video of Firestore Habits: [Firestore Habits 📺](https://drive.google.com/file/d/1mQhwyXvufG-RMuEUdkKmk4a4hg7tD5N_/view?usp=sharing)**  
 
 ### Update Data 
 
@@ -337,7 +345,12 @@ We consider that millennials like to share their daily moments on social media, 
 
 #### For Profile: 
 - Before an account can be deleted, the user has to sign in again to confirm their identity. A modal will pop up to allow this. Login rules are the same as in the Login page.
-- Deleting an account will delete the user’s data from Firebase authentication as well as Firestore database.
+- Deleting an account will delete the user’s data from Firebase authentication as well as Firestore database.  
+
+# Firebase Realtime Database  
+When the user updates their details, such as email, username and favourite quote, the Realtime Database will track these changes. These changes can be read immediately and will be reflected in the drawer.  
+
+![Firebase Realtime Database](./readme_assets/RealtimeDatabase.png)
 
 # Testing 
 
@@ -405,7 +418,7 @@ To be completed in Milestone 3
 
 
 ## Demo Video of Full App 
-**[Track My Day 📺](https://youtu.be/-wzJrKG1zDc)**
+**[Track My Day 📺]()**
 
 ## Concept Diagrams  
 ### Component Interaction  
@@ -434,11 +447,11 @@ Project Log provides description on the tasks distribution of Cham Li Hui and Pw
 **[Read our Project Log](https://docs.google.com/document/d/1lzUOJ71JTVQP_y-cWFw_vw1JclCSUFteBu6YtgPo6-A/edit?usp=sharing)**
 
 
-## Tech Stack for Milestone 2 
+## Tech Stack  
 We used these tools to create the project:  
 
 - Development: React Native, React Native Navigation 
-- Backend database: Firebase Authentication, Firestore
+- Backend database: Firebase Authentication, Firestore, Firebase Realtime Database
 - Languages: JavaScript, HTML, CSS  
 - UI design: dopelycolors, icons8, OUCH
 - Version Control: Git, GitHub 
@@ -456,17 +469,8 @@ We used these tools to create the project:
 - Minimalistic design  
 - Version control with Git  
 
-## What We Intend to Achieve in Milestone 3? 
-Going forward, for Milestone 3, we plan to: 
-- Swiping animation and functionality for to-do list 
-- Custom Tracker 
-- Calendar for analytics in View Details page
-- Share Your Progress
-- System & User testing 
-- UI design: Uniform theme color and font family 
-
-## Milestone 2 Poster 
-![Milestone 2 Poster](./readme_assets/5295%20Track%20My%20Day%20Poster.png)
+## Milestone 3 Poster 
+![Milestone 3 Poster]()
 
 
 
