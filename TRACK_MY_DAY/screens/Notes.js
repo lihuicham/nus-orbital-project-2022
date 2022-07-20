@@ -1,3 +1,4 @@
+import { style } from "@mui/system";
 import React, { useState, useCallback } from "react";
 import {
   SafeAreaView,
@@ -12,7 +13,6 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import { set } from "react-native-reanimated";
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
@@ -63,14 +63,15 @@ const Notes = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
+      <StatusBar />
       <View style={[styles.viewChoiceContainer]}>
         <Button
           title={listView ? "Full View" : "List View"}
           onPress={() => setListView(!listView)}
+          color="#2B4C59"
         />
       </View>
-
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}
         keyboardShouldPersistTaps="handled"
@@ -87,34 +88,40 @@ const Notes = () => {
       </ScrollView>
 
       <View style={styles.addNoteContainer}>
-        <Button
-          title="Add Note"
-          onPress={() => {
-            setText("");
-            setNoteModalOpen(true);
-          }}
-        />
+        <TouchableOpacity onPress={() => {
+          setText("");
+          setNoteModalOpen(true);
+          }}>
+          <View style={styles.plusWrapper}>
+            <Text style={styles.plus}>+</Text>
+          </View>
+        </TouchableOpacity>
       </View>
       <Modal visible={isNoteModalOpen}>
-        <View style={styles.modalHeadingContainer}>
-          <Text style={styles.modalHeading}>Add a note</Text>
-        </View>
-        <TextInput
-          onChangeText={setText}
-          value={text}
-          multiline
-          placeholder="Write your ideas down!"
-          style={styles.input}
-        />
-        <View style={styles.actionButtonContainer}>
-          <View style={styles.actionButton}>
-            <Button color="green" onPress={onSaveNote} title={"Save"} />
+        <View style={styles.modalContainer}>
+          <View style={styles.modalHeadingContainer}>
+            <Text style={styles.modalHeading}>Add a note</Text>
           </View>
-          <View style={styles.actionButton}>
-            <Button onPress={() => setNoteModalOpen(false)} title={"Cancel"} />
-          </View>
-          <View style={styles.actionButton}>
-            <Button color="red" onPress={onDeleteNote} title={"Delete"} />
+          <TextInput
+            onChangeText={setText}
+            value={text}
+            multiline
+            placeholder="Write your ideas down!"
+            style={styles.input}
+          />
+          <View style={styles.actionButtonContainer}>
+            <View style={styles.actionButton}>
+              <Button color="green" onPress={onSaveNote} title={"Save"} />
+            </View>
+            <View style={styles.actionButton}>
+              <Button
+                onPress={() => setNoteModalOpen(false)}
+                title={"Cancel"}
+              />
+            </View>
+            <View style={styles.actionButton}>
+              <Button color="red" onPress={onDeleteNote} title={"Delete"} />
+            </View>
           </View>
         </View>
       </Modal>
@@ -123,7 +130,12 @@ const Notes = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#C1D1D1'
+  },
+
   notesContainer: {
+    marginTop: 10,
     padding: 10,
     paddingRight: 20,
   },
@@ -138,7 +150,8 @@ const styles = StyleSheet.create({
     height: 80,
   },
   viewChoiceContainer: {
-    paddingTop: 10,
+    paddingTop: 20,
+    paddingBottom: 10,
     paddingRight: 20,
     alignItems: "flex-end",
   },
@@ -155,6 +168,12 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
+
+  modalContainer: {
+    backgroundColor: "#F7EDE2",
+    height: '100%'
+  },
+
   modalHeading: {
     fontSize: 30,
     fontWeight: "bold",
@@ -167,6 +186,20 @@ const styles = StyleSheet.create({
   input: {
     paddingVertical: 15,
     paddingHorizontal: 15,
+  },
+
+  plusWrapper: {
+    width: 60,
+    height: 60,
+    backgroundColor: "#FFF",
+    borderRadius: 60,
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "#C0C0C0",
+    borderWidth: 1,
+  },
+  plus: {
+      fontSize: 30,
   },
 });
 
