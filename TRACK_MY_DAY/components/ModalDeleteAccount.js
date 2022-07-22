@@ -57,7 +57,7 @@ export default function ModalDeleteAccount() {
                 text: "Go back",
                 onPress: () => console.log("Cancel Pressed"),
               },
-              { text: "Delete", onPress: () => { deleteData(), deleteAccount(user.uid) }}
+              { text: "Delete", onPress: () => { deleteData(), deleteAccount(user.uid) }  }
             ]
           )
           })

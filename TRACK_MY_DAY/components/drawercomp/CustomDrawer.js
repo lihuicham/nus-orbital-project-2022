@@ -6,7 +6,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { db, authentication } from "../../firebase-config";
 import { useNavigation } from "@react-navigation/native";
 import { doc, getDoc } from "firebase/firestore";
-import { getDatabase, ref, onValue} from "firebase/database";
+import { getDatabase, ref, onValue, update } from "firebase/database";
+import * as ImagePicker from 'expo-image-picker';
 
 export default function CustomDrawer(props) {
   const navigation = useNavigation();
@@ -28,21 +29,6 @@ export default function CustomDrawer(props) {
 
   const user = authentication.currentUser
 
-
-    // const getData = async () => {
-    //     const docRef = doc(db, "users", user.uid)
-    //     const docSnap = await getDoc(docRef);
-    //     let name = "";
-    //     let quote = "";
-
-        // name = docSnap.data().username;
-        // quote = docSnap.data().favQuote;
-        
-        // setUsername(name);
-        // setFavQuote(quote);
-
-    // };
-
     const getData = () => {
       const db = getDatabase();
       const usernameRef = ref(db, 'users/' + user.uid);
@@ -50,6 +36,7 @@ export default function CustomDrawer(props) {
         const data = snapshot.val();
         setUsername(data.username);
         setFavQuote(data.favQuote);
+        setImage(data.profilePic);
       });
     }
     
@@ -62,6 +49,34 @@ export default function CustomDrawer(props) {
         
     }, [])
 
+    // Image Picker
+  const [image, setImage] = useState(null);
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+      updateProfilePic(user.uid, result.uri);
+    }
+  };
+
+  // Realtime Database
+  function updateProfilePic(userId, pic) {
+    const db = getDatabase();
+    update(ref(db, 'users/' + userId), {
+      profilePic: pic,
+    });
+  }
+
   return (
     <View style={styles.container}>
       <DrawerContentScrollView 
@@ -70,10 +85,23 @@ export default function CustomDrawer(props) {
           source={require('../../assets/drawer-pattern.png')} 
           style={styles.drawerPattern}>
           
-          <Image 
+          {/* <Image 
           source={require('../../assets/user-image.png')}
           style={styles.userImage}
-          />
+          /> */}
+
+          {image && <Image source={{ uri: image }} style={styles.userImage} />}
+
+          <View style={styles.profilePicWrapper}>
+          <TouchableOpacity 
+            onPress={pickImage}>
+            <View style={styles.addProfilePic}>
+              <FontAwesome5 name="camera" size={13} color="#5195bd" style={{ padding: 7 }}/>
+            </View>
+          </TouchableOpacity>
+          </View>
+          
+          
 
           <Text style={styles.userName}>{username}</Text>
           <Text style={styles.email}>{authentication.currentUser?.email}</Text> 
@@ -119,6 +147,8 @@ const styles = StyleSheet.create({
   userImage: {
     height: 100, 
     width: 100,
+    borderRadius: 50,
+    // position: 'absolute'
   },
 
   userName: {
@@ -183,5 +213,19 @@ const styles = StyleSheet.create({
   logOutText: {
     marginLeft: 15, 
     fontSize: 15, 
+  },
+
+  addProfilePic: {
+    borderRadius: 20,
+    borderColor: '#BDBDBD',
+    borderWidth: 1.5,
+    backgroundColor: '#fafafc'
+  },
+
+  profilePicWrapper: {
+    position: 'absolute',
+    marginTop: 90,
+    marginLeft: 90
   }
+  
 });

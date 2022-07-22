@@ -50,8 +50,7 @@ export default function Profile({ navigation }) {
           username: username,
           email: email,
           favQuote: favQuote,
-        //   profile_picture : imageUrl - add imageUrl as arg to writeUserData
-        // quote
+          profilePic: 'file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540pwintthiriko%252FTRACK_MY_DAY/ImagePicker/14e51d93-05af-4cc9-8cdb-0fcbaef98f31.jpg' //
         });
     }
 
