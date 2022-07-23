@@ -6,13 +6,20 @@
 
 **[Track My Day App Video 📺]()**  
 
-Proof of Concept: **[Track My Day APK file]()** - please download it using your mobile device, you can access the file via our google drive (on your phone) and download it. It will show up as a mobile application on your phone screen. Click the app and try out Track My Day. 
+Proof of Concept: **[Track My Day APK file]()** - please download it using your mobile device, you can access the file via our google drive (on your phone) and download it. It will show up as a mobile application on your phone screen. Click the app and try out Track My Day.  
+
+**Sample account** with saved data for habits to display visualisation:  
+email: hearts@gmail.com  
+password: 123456  
+
+_The profile picture is not going to appear on this account (we'll figure out how to fix it later!) but uploading a profile picture works. If you create a new account, you will be able to see a default profile picture and change it as well._
 
 _Note:  
 We recommend viewing our **GitHub README** for the latest update of the app.  
 To view a collection of images, demo videos, project log, poster and full video of the app, visit our **Google Drive**. For best viewing experience (high resolution), watch the videos in full screen._
   
   # Table of Contents  
+  - [What's new in Milestone 3?](#whats-new-in-milestone-3)
   - [Project Introduction](#project-introduction)  
       - [Team Information](#team-information)  
       - [Project Motivation](#project-motivation)  
@@ -31,14 +38,14 @@ To view a collection of images, demo videos, project log, poster and full video 
           - [Tiles (Home Page)](#tiles-home-page)  
           - [Notes & To-Do List](#notes--to-do-list)  
           - [Drawer](#drawer)  
+          - [User Details](#user-details)  
           - [Navigation](#navigation)  
           - [Settings](#settings)  
       - [Extended Features of App](#3-extended-features-of-app)  
           - [View Details Page](#view-details-page)  
           - [About Us Page](#about-us-page)  
           - [FAQ Page](#faq-page)  
-          - [Notifications](#notifications)  
-          - [Share Your Progress](#share-your-progress)  
+          - [Notifications](#notifications)   
   - [Firebase Firestore (Database)](#firebase-firestore-database)  
       - [Structure of Data](#structure-of-data)  
       - [Create Data](#create-data)  
@@ -46,15 +53,15 @@ To view a collection of images, demo videos, project log, poster and full video 
       - [Update Data](#update-data)  
       - [Delete Data](#delete-data)  
   - [Firebase Realtime Database](#firebase-realtime-database)  
+  - [Diagrams](#concept-diagrams)  
+      - [Component Interaction](#component-interaction)  
+      - [User Flow Map](#user-flow-map)
   - [Testing](#testing)  
       - [Unit Testing](#unit-testing)  
       - [Integration Testing](#integration-testing)  
       - [End-to-end (E2E) Testing](#end-to-end-e2e-testing)  
       - [System Testing](#system-testing)  
   - [Demo Video of Full App](#demo-video-of-full-app)  
-  - [Diagrams](#concept-diagrams)  
-      - [Component Interaction](#component-interaction)  
-      - [User Flow Map](#user-flow-map)
   - [Timeline and Progress Chart](#timeline-and-progress-chart)  
   - [Project Log](#project-log)  
   - [Tech Stack](#tech-stack) 
@@ -62,6 +69,8 @@ To view a collection of images, demo videos, project log, poster and full video 
   - [Milestone 3 Poster](#milestone-3-poster)  
     
 <br> 
+
+# What's New in Milestone 3?
 
 # Project Introduction
 ## Team Information  
@@ -124,14 +133,18 @@ Resetting the password also makes use of Firebase authentication and after a new
 **--> Watch a demo video of our authentication page: [Authentication](https://drive.google.com/file/d/1xWIzDYKHUzd6D6qKcYUCSQ4jK0D9KHmg/view?usp=sharing)**
 
 ### Login Page 
-The login page is the first page the user is brought to upon opening the app. This page allows the user to switch to the Register page as well as the Forgot Password page. The user logs in using their email and password, and authentication is implemented as mentioned above. Upon logging in, the user will be brought to the Home page. 
+The login page is the first page the user is brought to upon opening the app. This page allows the user to switch to the Register page as well as the Forgot Password page. The eye icon allows toggling of password visibility.      
+
+The user logs in using their email and password, and authentication is implemented as mentioned above. Upon logging in, the user will be brought to the Home page.  
 
 **Current progress:** Complete.   
 
 ![Login Page](./readme_assets/Login.jpeg)  
 
 ### Register Page
-A new user registers using their email and password at the Register page. The repeat password field ensures that the user enters the correct password both times and an error message will appear if the passwords are different. After registration, the user is guided to the Profile page to register their personal details which will be stored in the Firestore database.  
+A new user registers using their email and password at the Register page. The repeat password field ensures that the user enters the correct password both times and an error message will appear if the passwords are different. This page also has eye icons for password visibility toggling.  
+
+After registration, the user is guided to the Profile page to register their personal details which will be stored in the Firestore database.  
 
 **Current progress:** Complete  
 
@@ -147,16 +160,18 @@ The user enters their email in the Forgot Password page. This page has been link
 ![Forgot Password Page](./readme_assets/ForgotPassword.jpeg)  
 
 ### Profile Page 
-The app will also collect the user’s personal details and goals which will be used in the Analysis page. The user can set their username, birthday and enter a favorite quote here. They can also set goals such as amount of sleep per night, amount of water drunk per day and amount of time spent studying or exercising daily.  
+The app will also collect the user’s personal details and goals which will be used in the Analysis page. The user can set their username, birthday and enter a favorite quote here. They can also set goals such as amount of sleep per night, amount of water drunk per day and amount of time spent studying, exercising or reading daily.  
 
-The user will only encounter this page once immediately after registration. After registration, the user will be guided to the Profile page where they fill in these details. Upon pressing the button to register, a pop up will appear to confirm that the user has registered their details. The user will be added into the Firestore database with these details recorded. Afterwards, if the user wants to make any changes, they can do so in ‘Settings’ where a separate page is created for changing these details. Any updates will also be recorded in Firestore.  
+The user will only encounter this page once immediately after registration. After registration, the user will be guided to the Profile page where they fill in these details. Upon pressing the button to register, a pop up will appear to confirm that the user has registered their details. The user will be added into the Firestore database and Realtime Database with these details recorded. Afterwards, if the user wants to make any changes, they can do so in ‘Settings’ where a separate page is created for changing these details. Any updates will also be recorded in Firestore and Realtime Database.  
 
 **Current progress:** Complete.  
 
 ![Profile Page](./readme_assets/Profile.jpeg)  
 
 ### Delete Account
-Users can delete their account in the app. There will be a delete account button at the settings and when clicked, the users will have to log in again with the correct username and password. After logging in, there will be an alert to remind the user that deleting the account is an irreversible action. If the user chooses to delete the account, the user will be removed from the Firebase Authentication and Firestore.  
+Users can delete their account in the app. There will be a red 'Delete Account' button at the Settings and when clicked, the users will have to log in again with the correct username and password for additional safety.  
+
+After logging in, there will be an alert to remind the user that deleting the account is an irreversible action. If the user chooses to delete the account, the user will be removed from the Firebase Authentication, Firestore and Realtime Database.  
 
 **Current progress:** Complete.
 
@@ -189,14 +204,14 @@ When the user clicks the “Confirm” button, the value of each tracker will be
 ![Tiles](./readme_assets/Home.jpg)  
 
 ### Notes & To-Do List 
-Notes & to-do lists are meant to satisfy the quick note taking needs of the users. Both pages support simple typing, and the to-do list supports an additional checkbox feature.  
+Notes & to-do lists are meant to satisfy the quick note taking needs of the users. Both pages support simple typing.  
 
-As both pages are meant for quick and simple note taking, we do not intend to add more features such as bolded words, add a photo or link function. We wish to maintain the simplicity of the features and minimalistic design of the app.  
+As both pages are meant for simple note taking, we do not intend to add more features such as bolded / italic words, add a photo or link function. We wish to maintain the simplicity of the features and minimalistic design of  the app.  
 
-**Current Progress:** Normal notes & todo list functions done. With basic UI design. Incomplete functions: Search function (unable to filter) and delete button in Notes page, for now, tap anywhere in the yellow box to delete. 
-
-#### Notes
-For notes, the user can add and delete notes. All notes will be visible in one screen and users can scroll to view their notes. Users can swipe to delete the notes.  
+Current progress: Both pages completed with full functions. 
+ 
+#### Notes  
+For notes, the user can add (save), edit and delete notes. When the “+” button at the bottom right corner is clicked, a new page (which is a modal) for adding & editing the notes will be visible. All notes are arranged in one screen and users can scroll to view their notes. Users can also choose to view the notes in “Full View” or “List View” (collapsed notes).  
 
 **--> Watch a demo video of Notes: [Notes 📺](https://drive.google.com/file/d/1qhzXf-iBGun7XZjSQATp-M0N9kCZG8qk/view?usp=sharing)**  
 
@@ -205,7 +220,7 @@ For notes, the user can add and delete notes. All notes will be visible in one s
 <br>
 
 #### To-Do List
-The todo list has a tap to delete task function, and to view different todo lists, users only have to swipe (like Tinder) to view the next or previous todo lists.  
+Users can add a new todo item by typing in the text box and pressing the “+” button. Users can delete individual todo items by tapping on each of them.  
 
 **--> Watch a demo video of To-Do List: [To-Do List 📺](https://drive.google.com/file/d/1qgq1DNexN3jURlnbD-Zb8ezk21bAvj7l/view?usp=sharing)**  
 
@@ -214,9 +229,9 @@ The todo list has a tap to delete task function, and to view different todo list
 ### Drawer 
 Drawer can be viewed when the user swipe right on any of the screens or pages. The drawer consists of three sections - user details, navigation tabs, and footer. 
 
-1. **User details:** It shows the user’s profile image and favourite quote. 
-2. **Navigation tabs:** Home and Settings. 
-3. **Footer:** Report Issues (contact developers via email) and Log Out. 
+1. **User details:** It shows the user’s profile image, username, email and favourite quote. 
+2. **Navigation tabs:** Home, Settings, About Us and FAQ. 
+3. **Footer:** Report Issues (contact developers via email) and Log Out.  
 
 Report Issues button will open the default mailing app on the user’s phone (e.g. Gmail or Outlook) and send an email titled “Issues With Track My Day” to the developer of this app.  
 
@@ -226,11 +241,16 @@ Report Issues button will open the default mailing app on the user’s phone (e.
 
 ![Drawer](./readme_assets/Drawer.jpg)  
 
+### User Details  
+When a new accout is created, the default profile picture will be applied. The user can change their profile picture by clicking on the camera icon beside the profile picture.  
+
+Whenever a user updates their email, username or favourite quote, it will be reflected in the drawer immediately.
+
 ### Navigation
 Track My Day uses React Navigation package to navigate between different screens. The types of navigation we are using are: stack, drawer and material bottom tabs.  
 
-1. **Stack navigation:** All buttons (eg. to View details button) 
-2. **Drawer navigation:**  Home page (Tiles), Settings, Log Out 
+1. **Stack navigation:** All buttons (e.g. to View Details button) 
+2. **Drawer navigation:**  Home page (Tiles), Settings, About Us page, FAQ page, Log Out 
 3. **Material Bottom tabs navigation:** Home page (Tiles), To-do page, Notes page 
 
 **Current Progress:** Completed. Able to navigate between different pages. 
@@ -242,7 +262,7 @@ Like all apps, there must be a Settings button. Things that are included in Sett
 
 The user will be prompted to log in again before they can perform critical actions such as changing email or password, or deleting their account. This is to ensure that the correct user is authorizing these actions. When changing their email, if the new email is already taken, the user will be informed via an error message and the change will not be carried out. Before account deletion, the user will be informed that the action is irreversible and they can choose to go back or proceed with the deletion.  
 
-**Current Progress:** This page has the following sections: Notifications toggle on/off, Update personal details, Change email or password and Delete Account. Completed sections: Update personal details, change email or password and delete account. Will navigate to respective pages when clicked.  
+**Current Progress:** This page has the following sections: Notifications toggle on/off, Update personal details, Change email or password and Delete Account. All sections are complete except Notifications toggle.
 
 **--> Watch a demo video of Settings: [Settings 📺](https://drive.google.com/file/d/1P72npPYSDLMmft3HQdRFFsz4LRE_oPin/view?usp=sharing)**  
 
@@ -251,14 +271,17 @@ The user will be prompted to log in again before they can perform critical actio
 ## 3. Extended Features of App 
 
 ### View Details Page 
-Once the user clicks the “View Details” button at the bottom right of the icon, the user will be directed to a details page. We include the following components in the “View details” page.  
+Once the user clicks the “View Details” button at the bottom right of the icon, the user will be directed to a details page. We include the following components in the “View Details” page.  
 
-1. **Calendar:** Although our app tracks the daily progress of the user’s habits, we want a calendar to track the monthly or even yearly progress of the user’s habits. The calendar is designed for the visualization of the user’s progress and encourages the user’s to keep up with their streaks. 
+1. **Analytics:** Since habits are tracked in terms of days in Tiles, the data size collected for the habits are suitable for analysis. Here, the user can see the percentage of their goal that they have achieved so far.   
 
-2. **Analytics:** Since habits are tracked in terms of days in Tiles, the data size collected for the habits are suitable for analysis. Using a water tracker as an example, the analysis will be on the number of water consumption (liters) in a day. We use a line chart that shows the user’s progress in tracking his/her water consumption habit for visualization of analytics. The data for the line chart is read from the Firebase Firestore. 
-Calendar and Analysis are placed together in the same “View details” page. By highlighting a certain period of days in the calendar, the analytics will show a line graph of values within this period of days, for the respective habits tracked.  
+2. **Circular Progress Chart:** This animated chart shows how far the user has come in achieving their goal. The number in the middle of the ring is the average of their logged data (data for each day/number of days) whereas the entire ring adds up to their goal amount. For example, if the user's sleep goal is 8 hours, the ring will be complete at 8 hours. If the user has slept for 6, 7, 8 hours in the past 3 days, the number in the middle will show (6+7+8/3) = 7. The units will be in hours for sleep.
 
-**Current Progress:** Completed Analytics - able to read data from database and present data as line chart. Basic UI done.  
+3. **Calendar:** Although our app tracks the daily progress of the user’s habits, we want a calendar to track the monthly progress of the user’s habits. Each day, a square will only be filled in when the user achieves their goal for the day. The calendar is designed for the visualization of the user’s progress and encourages the users to keep up with their streaks.   
+
+4. **Chart:** We use a line chart that shows the user’s progress in tracking his/her water consumption habit for visualization of analytics. The data for the line chart is read from the Firebase Firestore.
+
+**Current Progress:** Completed.
 
 ![View Details](./readme_assets/Analytics.jpg) 
 
@@ -279,12 +302,9 @@ Sometimes, users may have questions or suggestions to improve our app. The FAQ p
 ### Notifications 
 We used local push notifications via Expo CLI for the app’s notification. The app will notify the user everyday at 9pm to use Track My Day.  
 
-**Current Progress:** Completed.  
+**Current Progress:** Completed. Toggling on/off is not yet complete.  
 
-![Notifications](./readme_assets/Notification.jpg)  
-
-### Share Your Progress
-We consider that millennials like to share their daily moments on social media, hence we wish to implement a “Share Your Progress” function in our app as a bonus feature. This function will connect the app with social media platforms like Instagram, Facebook and Twitter.  
+![Notifications](./readme_assets/Notification.jpg)   
 
 # Firebase Firestore (database)
 
@@ -348,9 +368,21 @@ We consider that millennials like to share their daily moments on social media, 
 - Deleting an account will delete the user’s data from Firebase authentication as well as Firestore database.  
 
 # Firebase Realtime Database  
-When the user updates their details, such as email, username and favourite quote, the Realtime Database will track these changes. These changes can be read immediately and will be reflected in the drawer.  
+When the user updates their details, such as email, username, favourite quote, and goals, the Realtime Database will track these changes.  
+
+These changes can be read immediately and changes to email, username and favourite quote will be reflected in the drawer. Changes to goals will be used in the View Details page to calculate the user's progress.
 
 ![Firebase Realtime Database](./readme_assets/RealtimeDatabase.png)
+
+
+## Concept Diagrams  
+### Component Interaction  
+This diagram shows the interaction of the files in the app.
+![Component Interaction Diagram](./readme_assets/ComponentInteraction.png)
+
+### User Flow Map  
+The User Flow Map depicts the possible actions a user can take in our app and the results.
+![User Flow Map](./readme_assets/UserFlowMap.png)
 
 # Testing 
 
@@ -419,15 +451,6 @@ To be completed in Milestone 3
 
 ## Demo Video of Full App 
 **[Track My Day 📺]()**
-
-## Concept Diagrams  
-### Component Interaction  
-![Component Interaction Diagram](./readme_assets/ComponentInteraction.png)
-
-### User Flow Map  
-
-
-
 
 ## Timeline and Progress Chart
 
