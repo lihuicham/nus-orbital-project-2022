@@ -117,14 +117,14 @@ export default function CustomDrawer(props) {
       </DrawerContentScrollView>
 
       <View style={styles.drawerBottom}>
-        <TouchableOpacity onPress={() => {contactDeveloper()}} style={styles.reportIssuesButton}>
+        <TouchableOpacity onPress={() => {contactDeveloper()}} style={styles.lowerButton}>
           <Ionicons name="construct" size={22} />
-          <Text style={styles.reportIssuesText}>Report Issues</Text>
+          <Text style={styles.lowerText}>Report Issues</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => {handleLogout()}} style={styles.logOutButton}>
+        <TouchableOpacity onPress={() => {handleLogout()}} style={styles.lowerButton}>
           <Ionicons name="exit" size={22} />
-          <Text style={styles.logOutText}>Log Out</Text>
+          <Text style={styles.lowerText}>Log Out</Text>
         </TouchableOpacity>
 
       </View>
@@ -194,23 +194,13 @@ const styles = StyleSheet.create({
     borderTopColor: '#ccc',
   },
 
-  reportIssuesButton: {
+  lowerButton: {
     flexDirection: 'row', 
     alignItems:'center', 
+    marginBottom: 20, 
   },
 
-  reportIssuesText: {
-    marginLeft: 15, 
-    fontSize: 15, 
-  },
-
-  logOutButton: {
-    flexDirection: 'row', 
-    alignItems:'center', 
-    marginTop: 20, 
-  },
-
-  logOutText: {
+  lowerText: {
     marginLeft: 15, 
     fontSize: 15, 
   },
