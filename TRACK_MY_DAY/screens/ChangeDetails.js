@@ -24,6 +24,7 @@ export default function ChangeDetails({ navigation }) {
   const [newWaterGoal, setNewWaterGoal] = useState("0")
   const [newExerciseGoal, setNewExerciseGoal] = useState("0")
   const [newStudyGoal, setNewStudyGoal] = useState("0")
+  const [newReadGoal, setNewReadGoal] = useState("0")
 
   const updateUsername = async (id, newUsername) => {
     const newFields = {username: newUsername}
@@ -67,6 +68,13 @@ export default function ChangeDetails({ navigation }) {
     .then(Alert.alert("Study goal updated!"))
   }
 
+  const updateReadGoal = async (id, newReadGoal) => {
+    const newFields = {readGoal: newReadGoal}
+    const userDoc = doc(db, "users", id)
+    await updateDoc(userDoc, newFields)
+    .then(Alert.alert("Read goal updated!"))
+  }
+
   // Realtime Database
   function usernameRealTime(userId, newUsername) {
     const db = getDatabase();
@@ -107,6 +115,13 @@ export default function ChangeDetails({ navigation }) {
     const db = getDatabase();
     update(ref(db, 'users/' + userId), {
       studyGoal: goal
+    });
+  }
+
+  function readRealTime(userId, goal) {
+    const db = getDatabase();
+    update(ref(db, 'users/' + userId), {
+      readGoal: goal
     });
   }
 
@@ -263,6 +278,29 @@ export default function ChangeDetails({ navigation }) {
                     onPress={() => { updateStudyGoal(user.uid, newStudyGoal); studyRealTime(user.uid, newStudyGoal) }}
                     >
                     <Text style={styles.buttonText}>Update study goal</Text>
+                </TouchableOpacity>
+            </View>
+
+            <Text style={styles.text}>New read goal:</Text>
+            <View style={styles.sliderBox}>
+                <Slider
+                style={{width: 200, height: 40}}
+                minimumValue={0}
+                maximumValue={24}
+                step={1}
+                minimumTrackTintColor="#3b7cff"
+                maximumTrackTintColor="#000000"
+                onValueChange={(val) => setNewReadGoal(val)}
+                />
+                <Text>{newReadGoal} hours</Text>
+            </View>
+
+            <View style={styles.buttonWrapper}>
+                <TouchableOpacity 
+                    style={styles.button} 
+                    onPress={() => { updateReadGoal(user.uid, newReadGoal); readRealTime(user.uid, newReadGoal) }}
+                    >
+                    <Text style={styles.buttonText}>Update read goal</Text>
                 </TouchableOpacity>
             </View>
 

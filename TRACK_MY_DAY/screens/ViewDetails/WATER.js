@@ -6,9 +6,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { getAuth } from 'firebase/auth';
-import { getDatabase, ref, onValue, update } from "firebase/database";
-import CalendarHeatmap from 'react-native-calendar-heatmap';
-
+import { getDatabase, ref, onValue } from "firebase/database";
 
 const WATER = () => {
 
@@ -24,9 +22,14 @@ const WATER = () => {
         const colRef = await getDocs(collection(db, "users", user.uid, "habits", "WATER", "days"));
         let arr = [];
         let dateArr = [];
+        
         for (let doc of colRef.docs) {
             arr.push(doc.data().value)
-            dateArr.push(doc.data().date.toDate())
+
+            // push only if goal is met for the day
+            if (doc.data().value >= waterGoal) {
+              dateArr.push(doc.data().date.toDate())
+            }
         };
 
         setOurData(arr.slice(0, -1)); // remove last item because it's 0 for next day
@@ -82,9 +85,8 @@ const WATER = () => {
         color: (opacity = 1) => `rgba(124, 130, 226, ${opacity})`,
     };
 
-
     const data = {
-        labels: [],
+      labels: [],
         datasets: [
           {
             data: ourData, 
@@ -96,7 +98,7 @@ const WATER = () => {
       };
 
     // Contribution Graph
-    const calendarData = []
+    const calendarData = [];
 
     for (let i of dateArray) {
       calendarData.push({date: i, count: 1 });
@@ -155,16 +157,13 @@ const WATER = () => {
   );
 };
 
-
-
 export default WATER;
 
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    flex: 1,
-    // alignItems: "center"
+    flex: 1
   },
 
   text: {
@@ -201,6 +200,3 @@ const styles = StyleSheet.create({
     marginRight: 20
   }
 });
-
-
-

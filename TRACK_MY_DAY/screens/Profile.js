@@ -48,7 +48,7 @@ export default function Profile({ navigation }) {
     const userImgUri = Image.resolveAssetSource(userImg).uri
 
     // add data to Firebase Realtime Database
-    function writeUserData(userId, username, email, favQuote, sleepGoal, waterGoal, exerciseGoal, studyGoal) {
+    function writeUserData(userId, username, email, favQuote, sleepGoal, waterGoal, exerciseGoal, studyGoal, readGoal) {
         const db = getDatabase();
         set(ref(db, 'users/' + userId), {
           username: username,
@@ -58,7 +58,8 @@ export default function Profile({ navigation }) {
           sleepGoal: sleepGoal,
           waterGoal: waterGoal,
           exerciseGoal: exerciseGoal,
-          studyGoal: studyGoal
+          studyGoal: studyGoal,
+          readGoal: readGoal
         });
     }
 
@@ -69,15 +70,16 @@ export default function Profile({ navigation }) {
     const [waterGoal, setWaterGoal] = useState("0")
     const [exerciseGoal, setExerciseGoal] = useState("0")
     const [studyGoal, setStudyGoal] = useState("0")
+    const [readGoal, setReadGoal] = useState("0")
 
     const updateProfile = async () => {
         await setDoc(doc(db, "users", user.uid), {
             username: username, favQuote: favQuote, birthday: birthday, 
             sleepGoal: sleepGoal, waterGoal: waterGoal, exerciseGoal: exerciseGoal,
-            studyGoal: studyGoal, id: user.uid
+            studyGoal: studyGoal, readGoal: readGoal, id: user.uid
           })
           .then(
-            writeUserData(user.uid, username, user.email, favQuote) // this should create a new branch in rt db
+            writeUserData(user.uid, username, user.email, favQuote, sleepGoal, waterGoal, exerciseGoal, studyGoal, readGoal) // this should create a new branch in rt db
           )
           .then(
               username && 
@@ -197,6 +199,20 @@ export default function Profile({ navigation }) {
                         onValueChange={(val) => setStudyGoal(val)}
                         />
                         <Text style={styles.goals}>{studyGoal} hours</Text>
+                        </View>
+
+                        <Text style={styles.text}>Read goal:</Text>
+                        <View style={styles.sliderBox}>
+                        <Slider
+                        style={{width: 200, height: 40}}
+                        minimumValue={0}
+                        maximumValue={24}
+                        step={1}
+                        minimumTrackTintColor="#3b7cff"
+                        maximumTrackTintColor="#000000"
+                        onValueChange={(val) => setReadGoal(val)}
+                        />
+                        <Text style={styles.goals}>{readGoal} hours</Text>
                         </View>
 
                     </View>
