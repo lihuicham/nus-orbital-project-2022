@@ -8,21 +8,10 @@ import {
 } from "react-native";
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { SliderPicker } from "react-native-slider-picker";
 import { db } from "../../firebase-config";
 import { collection, doc, Timestamp, setDoc } from "firebase/firestore";
-import { getAuth } from 'firebase/auth';
-
-/* import * as Device from "expo-device";
-import * as Notifications from "expo-notifications";
-
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-  }),
-}); */
+import { getAuth } from "firebase/auth";
+import Slider from "@react-native-community/slider";
 
 // to create firebase firestore unique day id
 const today = new Date();
@@ -37,8 +26,8 @@ day = day < 10 ? "0" + day : day;
 const dayId = year + month + day;
 
 // create dayId for tomorrow
-var tomorrow = today
-tomorrow.setDate(tomorrow.getDate()+1);
+var tomorrow = today;
+tomorrow.setDate(tomorrow.getDate() + 1);
 
 let tomorrowYear = tomorrow.getFullYear().toLocaleString();
 let tomorrowMonth = (tomorrow.getMonth() + 1).toLocaleString();
@@ -47,32 +36,28 @@ tomorrowMonth = tomorrowMonth < 10 ? "0" + tomorrowMonth : montomorrowMonthth;
 tomorrowDay = tomorrowDay < 10 ? "0" + tomorrowDay : tomorrowDay;
 const tomorrowDayId = tomorrowYear + tomorrowMonth + tomorrowDay;
 
-
 const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
   const auth = getAuth();
   const user = auth.currentUser;
-  
+
   const navigation = useNavigation();
   const [value, setValue] = useState(0);
 
   const toViewDetails = () => {
-    navigation.navigate(habitName.replace(/\s+/g, ''))
-    
+    navigation.navigate(habitName.replace(/\s+/g, ""));
   };
 
   const handleConfirm = (val) => {
-    // const habitRef = doc(db, "habits", habitName);
-    // const usersCollectionRef = doc(db, "users", user.uid, "habits", habitName)
-
-    // //console.log(user)
-    // //usersCollectionRef.set({habit: habitName})
-    // setDoc(usersCollectionRef, {
-    //   name: "days",
-      
-    // });
-
     // add these fields inside dayId document
-    const dayRef = doc(db, "users", user.uid, "habits", habitName, "days", dayId);
+    const dayRef = doc(
+      db,
+      "users",
+      user.uid,
+      "habits",
+      habitName,
+      "days",
+      dayId
+    );
     setDoc(dayRef, {
       date: Timestamp.fromDate(new Date()),
       id: dayId,
@@ -82,7 +67,15 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
     });
 
     // create new document for tomorrow with value 0 - will be overriden when updating the next day
-    const tomorrowDayRef = doc(db, "users", user.uid, "habits", habitName, "days", tomorrowDayId);
+    const tomorrowDayRef = doc(
+      db,
+      "users",
+      user.uid,
+      "habits",
+      habitName,
+      "days",
+      tomorrowDayId
+    );
     setDoc(tomorrowDayRef, {
       date: Timestamp.fromDate(new Date()),
       id: tomorrowDayId,
@@ -91,29 +84,6 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
       value: 0,
     });
   };
-
-/*   const [notification, setNotification] = useState(false);
-  const notificationListener = useRef();
-  const responseListener = useRef();
-
-  useEffect(() => {
-    registerForPushNotificationsAsync()
-
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-      setNotification(notification);
-    });
-
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
-    });
-
-    return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current);
-      Notifications.removeNotificationSubscription(responseListener.current);
-    };
-  }, []);
- */
-
 
   if (empty === true) {
     return <View style={[styles.itemWrapper, styles.itemInvisible]} />;
@@ -139,28 +109,14 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
             </TouchableOpacity>
           </View>
 
-          <SliderPicker
-            maxValue={habitMax}
-            callback={(position) => {
-              setValue(position);
-            }}
-            defaultValue={value}
-            labelFontColor={"#6c7682"}
-            labelFontWeight={"600"}
-            labelFontSize={10}
-            showFill={true}
-            fillColor={"green"}
-            showNumberScale={false}
-            showSeparatorScale={false}
-            buttonBackgroundColor={"#fff"}
-            buttonBorderColor={"#6c7682"}
-            buttonBorderWidth={1}
-            scaleNumberFontWeight={"300"}
-            scaleNumberFontSize={10}
-            buttonDimensionsPercentage={6}
-            heightPercentage={1}
-            widthPercentage={50}
-            style={styles.slider}
+          <Slider
+            style={{ width: 200, height: 40 }}
+            minimumValue={0}
+            maximumValue={habitMax}
+            step={1}
+            minimumTrackTintColor="#3b7cff"
+            maximumTrackTintColor="#000000"
+            onValueChange={(position) => setValue(position)}
           />
         </View>
       </View>
@@ -175,48 +131,7 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
   );
 };
 
-/* Notifications.scheduleNotificationAsync({
-    content: {
-      title: "Have you tracked your habits ?",
-      body: 'Record your daily habits using Track My Day !',
-    },
-    trigger: { 
-      hour: 21, 
-      minute: 0, 
-      repeats: true
-    },
-  });
-
-
-async function registerForPushNotificationsAsync() {
-  if (Device.isDevice) {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
-      return;
-    }
-  } else {
-    alert('Must use physical device for Push Notifications');
-  }
-
-  if (Platform.OS === 'android') {
-    Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
-    });
-  }
-} */
-
 export default Item;
-
-
 
 const styles = StyleSheet.create({
   itemWrapper: {
