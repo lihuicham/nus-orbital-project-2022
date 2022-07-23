@@ -1,4 +1,4 @@
-import { Button, TouchableOpacity, Platform, Alert, StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
+import { Button, Image, TouchableOpacity, Platform, Alert, StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
 import React, { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { db } from '../firebase-config';
@@ -7,6 +7,7 @@ import { getAuth } from 'firebase/auth';
 import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
 import { getDatabase, ref, set } from "firebase/database";
+import userImg from '../assets/user-image.png'
 
 export default function Profile({ navigation }) {
 
@@ -42,6 +43,9 @@ export default function Profile({ navigation }) {
         setMode(currentMode);
 
     }
+    
+    // Profile Pic URI
+    const userImgUri = Image.resolveAssetSource(userImg).uri
 
     // add data to Firebase Realtime Database
     function writeUserData(userId, username, email, favQuote) {
@@ -50,7 +54,7 @@ export default function Profile({ navigation }) {
           username: username,
           email: email,
           favQuote: favQuote,
-          profilePic: 'file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540pwintthiriko%252FTRACK_MY_DAY/ImagePicker/14e51d93-05af-4cc9-8cdb-0fcbaef98f31.jpg' //
+          profilePic: userImgUri
         });
     }
 
