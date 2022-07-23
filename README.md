@@ -94,7 +94,6 @@ Our Orbital project will be an application that can be run on mobile or tablet.
 The scope of our project can be divided into 5 parts. Click the links to jump to each section. 
 
 1. **[Authentication:](#1-authentication)** Authentication, Login, Registration, Forgot Password, Profile pages and Delete Account
-
 2. **[Core Features:](#2-core-features-of-app)** Home page, Notes page, To-do list page, Drawer**, Navigation, Settings
 3. **[Extended Features:](#3-extended-features-of-app)** Notification, View details (Calendar & Analysis), Share Your Progress  
 4. **[Firebase Firestore (database):](#4-firebase-firestore-database)** Structure of Data, Create Data, Read Data, Update Data, Delete Data 
@@ -105,6 +104,8 @@ The scope of our project can be divided into 5 parts. Click the links to jump to
 
 # Features
 ## 1. Authentication 
+
+![Authentication](./readme_assets/compiled-images/Authentication.png)
 
 ### Authentication
 The authentication features - Login, Logout, Register, Forgot Password, Reset Password  and Delete Account  of the app are linked to the firebase backend database. When a new user registers his/her email and password on the app, the database will keep a record of his/her email and password. User is able to use the correct email and password combination to login. Firebase Authentication will process respective actions when any of the authentication features are performed by the user. 
@@ -128,14 +129,10 @@ The login page is the first page the user is brought to upon opening the app. Th
 
 **Current progress:** Complete.   
 
-![Login Page](./readme_assets/Login.jpeg)  
-
 ### Register Page
 A new user registers using their email and password at the Register page. The repeat password field ensures that the user enters the correct password both times and an error message will appear if the passwords are different. After registration, the user is guided to the Profile page to register their personal details which will be stored in the Firestore database.  
 
 **Current progress:** Complete  
-
-![Register Page](./readme_assets/Register.jpeg)  
 
 ### Forgot Password Page 
 The user enters their email in the Forgot Password page. This page has been linked to Firebase and the user receives an email with a link to reset their password. Upon resetting their password, the user can only login with the new password.  
@@ -144,8 +141,6 @@ The user enters their email in the Forgot Password page. This page has been link
 
 **--> Watch a demo video of our Forgot Password page: [forgotPassword](https://drive.google.com/file/d/1R_w4zVejvdAYDRRyeUPJz_24s--Pl0rT/view?usp=sharing)** 
 
-![Forgot Password Page](./readme_assets/ForgotPassword.jpeg)  
-
 ### Profile Page 
 The app will also collect the user’s personal details and goals which will be used in the Analysis page. The user can set their username, birthday and enter a favorite quote here. They can also set goals such as amount of sleep per night, amount of water drunk per day and amount of time spent studying or exercising daily.  
 
@@ -153,18 +148,14 @@ The user will only encounter this page once immediately after registration. Afte
 
 **Current progress:** Complete.  
 
-![Profile Page](./readme_assets/Profile.jpeg)  
-
 ### Delete Account
 Users can delete their account in the app. There will be a delete account button at the settings and when clicked, the users will have to log in again with the correct username and password. After logging in, there will be an alert to remind the user that deleting the account is an irreversible action. If the user chooses to delete the account, the user will be removed from the Firebase Authentication and Firestore.  
 
 **Current progress:** Complete.
 
-![Delete Account](./readme_assets/DeleteAccount.jpeg)  
-
-![Confirm Deletion](./readme_assets/ConfirmDeleteAccount.jpeg)
-
 ## 2. Core Features of App
+
+![Home](./readme_assets/compiled-images/Home.png)
 
 ### Tiles (Home Page)
 The home page serves the main function of this app - tracking habits. The trackers include water tracker, sleep tracker, read tracker etc. We redesigned the home page in Milestone 2. We call the home page - “Tiles”, named according to the appearance and layout of the trackers in the home page.  
@@ -186,8 +177,6 @@ When the user clicks the “Confirm” button, the value of each tracker will be
 
 **--> Watch a demo video of Tiles: [Tiles 📺](https://drive.google.com/file/d/1qjN_XWHHIvRYA-MAlK9ewGo7MXftWZag/view?usp=sharing)**  
 
-![Tiles](./readme_assets/Home.jpg)  
-
 ### Notes & To-Do List 
 Notes & to-do lists are meant to satisfy the quick note taking needs of the users. Both pages support simple typing, and the to-do list supports an additional checkbox feature.  
 
@@ -198,9 +187,7 @@ As both pages are meant for quick and simple note taking, we do not intend to ad
 #### Notes
 For notes, the user can add and delete notes. All notes will be visible in one screen and users can scroll to view their notes. Users can swipe to delete the notes.  
 
-**--> Watch a demo video of Notes: [Notes 📺](https://drive.google.com/file/d/1qhzXf-iBGun7XZjSQATp-M0N9kCZG8qk/view?usp=sharing)**  
-
-![Notes](./readme_assets/Notes.jpg)  
+**--> Watch a demo video of Notes: [Notes 📺](https://drive.google.com/file/d/1qhzXf-iBGun7XZjSQATp-M0N9kCZG8qk/view?usp=sharing)**    
 
 <br>
 
@@ -209,7 +196,7 @@ The todo list has a tap to delete task function, and to view different todo list
 
 **--> Watch a demo video of To-Do List: [To-Do List 📺](https://drive.google.com/file/d/1qgq1DNexN3jURlnbD-Zb8ezk21bAvj7l/view?usp=sharing)**  
 
-![To-Do](./readme_assets/Todo.jpg)  
+![Drawer](./readme_assets/compiled-images/Drawer.png)
 
 ### Drawer 
 Drawer can be viewed when the user swipe right on any of the screens or pages. The drawer consists of three sections - user details, navigation tabs, and footer. 
@@ -223,8 +210,6 @@ Report Issues button will open the default mailing app on the user’s phone (e.
 **Current Progress:** Navigation tabs are completed and working. Report Issue and Log Out button are completed and working. UI design of drawer completed.  
 
 **--> Watch a demo video of Drawer: [Drawer 📺](https://drive.google.com/file/d/1qiom-aAh2lUH_4pg5RtMkqOxREYMw7xt/view?usp=sharing)**  
-
-![Drawer](./readme_assets/Drawer.jpg)  
 
 ### Navigation
 Track My Day uses React Navigation package to navigate between different screens. The types of navigation we are using are: stack, drawer and material bottom tabs.  
@@ -244,11 +229,11 @@ The user will be prompted to log in again before they can perform critical actio
 
 **Current Progress:** This page has the following sections: Notifications toggle on/off, Update personal details, Change email or password and Delete Account. Completed sections: Update personal details, change email or password and delete account. Will navigate to respective pages when clicked.  
 
-**--> Watch a demo video of Settings: [Settings 📺](https://drive.google.com/file/d/1P72npPYSDLMmft3HQdRFFsz4LRE_oPin/view?usp=sharing)**  
-
-![Settings](./readme_assets/Settings.jpeg)  
+**--> Watch a demo video of Settings: [Settings 📺](https://drive.google.com/file/d/1P72npPYSDLMmft3HQdRFFsz4LRE_oPin/view?usp=sharing)**   
 
 ## 3. Extended Features of App 
+
+![View Details](./readme_assets/compiled-images/View-Details.png)
 
 ### View Details Page 
 Once the user clicks the “View Details” button at the bottom right of the icon, the user will be directed to a details page. We include the following components in the “View details” page.  
@@ -260,7 +245,7 @@ Calendar and Analysis are placed together in the same “View details” page. B
 
 **Current Progress:** Completed Analytics - able to read data from database and present data as line chart. Basic UI done.  
 
-![View Details](./readme_assets/Analytics.jpg) 
+![Extended](./readme_assets/compiled-images/Extended.png)
 
 ### About Us Page  
 This page contains information about our motivations for creating Track My Day, what the user can do on the app and **links to our GitHub repository, Milestone poster and video as well as a blog post about our journey**.  
@@ -276,12 +261,12 @@ Sometimes, users may have questions or suggestions to improve our app. The FAQ p
 
 **--> Watch a demo video of FAQ Page: [FAQ Page 📺]()**  
 
+![Modals](./readme_assets/compiled-images/Modals.png)
+
 ### Notifications 
 We used local push notifications via Expo CLI for the app’s notification. The app will notify the user everyday at 9pm to use Track My Day.  
 
 **Current Progress:** Completed.  
-
-![Notifications](./readme_assets/Notification.jpg)  
 
 ### Share Your Progress
 We consider that millennials like to share their daily moments on social media, hence we wish to implement a “Share Your Progress” function in our app as a bonus feature. This function will connect the app with social media platforms like Instagram, Facebook and Twitter.  
