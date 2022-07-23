@@ -7,6 +7,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { getAuth } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from "firebase/database";
+import CalendarHeatmap from 'react-native-calendar-heatmap';
 
 
 const WATER = () => {
@@ -17,15 +18,19 @@ const WATER = () => {
     const [ourData, setOurData] = useState([0]);
     const [average, setAverage] = useState(0);
     const [waterGoal, setWaterGoal] = useState(0);
+    const [dateArray, setDateArray] = useState([]);
 
     const getDays = async () => {
         const colRef = await getDocs(collection(db, "users", user.uid, "habits", "WATER", "days"));
         let arr = [];
+        let dateArr = [];
         for (let doc of colRef.docs) {
             arr.push(doc.data().value)
+            dateArr.push(doc.data().date.toDate())
         };
 
         setOurData(arr.slice(0, -1)); // remove last item because it's 0 for next day
+        setDateArray(dateArr);
 
         // To calculate average
         let sum = 0;
@@ -49,22 +54,33 @@ const WATER = () => {
         getDays();
         getData();
     }, [])
+
+    const percentage = (average/waterGoal) * 100;
     
     const screenWidth = Dimensions.get("window").width;
 
     const chartConfig = {
-        backgroundGradientFrom: '#F2EFF0', //'#DADEBA',//"#1E2923",
+        backgroundGradientFrom: '#F2EFF0',
         backgroundGradientFromOpacity: 1,
-        backgroundGradientTo: '#F2EFF0', //'#DADEBA',//"#08130D",
+        backgroundGradientTo: '#F2EFF0',
         backgroundGradientToOpacity: 1,
         decimalPlaces: 0, 
         yAxisLabel: "Hours", 
         xAxisLabel: "Days",
-        color: (opacity = 1) => `rgba(66, 63, 58, ${opacity})`,  //rgba(26, 255, 146
+        color: (opacity = 1) => `rgba(124, 130, 226, ${opacity})`,
+        // color: (opacity = 1) => `rgba(166, 170, 235, ${opacity})`,
         strokeWidth: 2, // optional, default 3
         barPercentage: 0.5,
         useShadowColorFromDataset: false, // optional
         };
+
+    const contributionChartConfig = {
+        backgroundGradientFrom: '#F2EFF0',
+        backgroundGradientFromOpacity: 1,
+        backgroundGradientTo: '#F2EFF0',
+        backgroundGradientToOpacity: 1,
+        color: (opacity = 1) => `rgba(124, 130, 226, ${opacity})`,
+    };
 
 
     const data = {
@@ -80,33 +96,29 @@ const WATER = () => {
       };
 
     // Contribution Graph
-    const commitsData = [
-      { date: "2017-01-02", count: 1 },
-      { date: "2017-01-03", count: 2 },
-      { date: "2017-01-04", count: 3 },
-      { date: "2017-01-05", count: 4 },
-      { date: "2017-01-06", count: 5 },
-      { date: "2017-01-30", count: 2 },
-      { date: "2017-01-31", count: 3 },
-      { date: "2017-03-01", count: 2 },
-      { date: "2017-04-02", count: 4 },
-      { date: "2017-03-05", count: 2 },
-      { date: "2017-02-30", count: 4 }
-    ];
+    const calendarData = []
+
+    for (let i of dateArray) {
+      calendarData.push({date: i, count: 1 });
+    };
+
 
   return (
     <ScrollView>
     <View style={styles.container}>
-        <Text style={styles.text}>Details of your habit</Text>
+        <Text style={styles.text}>DETAILS</Text>
 
+        <Text style={styles.progressText}>PROGRESS</Text>
+
+        <View style={styles.circle}>
         <CircularProgress
           value={average} // stats calculation
-          radius={70}
+          radius={75}
           duration={1000}
           progressValueColor={'black'}
           maxValue={waterGoal} // goal amt
           title={'LITRES'}
-          titleColor={'black'}
+          titleColor={'#232323'}
           titleStyle={{fontWeight: 'bold'}}
           activeStrokeColor={'#2465FD'}
           activeStrokeSecondaryColor={'#C25AFF'}
@@ -114,19 +126,21 @@ const WATER = () => {
             'worklet';
             return value.toFixed(2); // 2 decimal places
           }}
-         
         />
+        <Text style={styles.percentText}>You've achieved <Text style={{fontSize: 20, fontWeight: '500', color: '#B1303B'}}>{ percentage.toPrecision(3) }%</Text> of your water goal. Keep going!</Text> 
+        </View>
 
+        <Text style={styles.calendarText}>CALENDAR</Text>
         <ContributionGraph
-          values={commitsData}
-          endDate={new Date("2017-04-01")}
+          values={calendarData}
+          endDate={new Date()}
           numDays={105}
           width={screenWidth}
           height={220}
-          chartConfig={chartConfig}
+          chartConfig={contributionChartConfig}
         />
 
-
+        <Text style={styles.calendarText}>CHART</Text>
         <LineChart
             data={data}
             width={screenWidth}
@@ -150,16 +164,41 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flex: 1,
-    alignItems: "center",
-    // justifyContent: "center", 
-    // backgroundColor: '#BBA9DC'//'#564779'//'#D0A78B', //"#E9C46A",  //#3e54c1 //#BBA9DC
+    // alignItems: "center"
   },
 
   text: {
-    fontSize: 18, 
+    fontSize: 25, 
     fontWeight: "bold", 
-    marginTop: 50,
-    marginBottom: 50, 
+    marginVertical: 25,
+    textAlign: 'center'
+  },
+
+  progressText: {
+    fontSize: 19, 
+    fontWeight: "bold", 
+    marginBottom: 25,
+    marginLeft: 40,
+  },
+  
+  calendarText: {
+    fontSize: 19, 
+    fontWeight: "bold", 
+    marginTop: 20,
+    marginLeft: 40,
+  },
+
+  circle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 30, 
+    marginBottom: 20
+  },
+  
+  percentText: {
+    flex: 1,
+    marginLeft: 20,
+    marginRight: 20
   }
 });
 
