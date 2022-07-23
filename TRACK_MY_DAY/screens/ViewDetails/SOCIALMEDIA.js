@@ -73,7 +73,7 @@ const SOCIALMEDIA = () => {
   return (
     <ScrollView>
     <View style={styles.container}>
-        <Text style={styles.text}>DETAILS</Text>
+        <Text style={styles.text}>DETAILS for SOCIAL MEDIA</Text>
 
         <Text style={styles.progressText}>AVERAGE</Text>
 

@@ -73,7 +73,7 @@ const PETTIME = () => {
   return (
     <ScrollView>
     <View style={styles.container}>
-        <Text style={styles.text}>DETAILS</Text>
+        <Text style={styles.text}>DETAILS for PET TIME</Text>
 
         <Text style={styles.progressText}>AVERAGE</Text>
 

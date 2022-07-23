@@ -106,7 +106,7 @@ const SLEEP = () => {
   return (
     <ScrollView>
     <View style={styles.container}>
-        <Text style={styles.text}>DETAILS</Text>
+        <Text style={styles.text}>DETAILS for SLEEP</Text>
 
         <Text style={styles.progressText}>PROGRESS</Text>
 

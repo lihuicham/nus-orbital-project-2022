@@ -108,7 +108,7 @@ const WATER = () => {
   return (
     <ScrollView>
     <View style={styles.container}>
-        <Text style={styles.text}>DETAILS</Text>
+        <Text style={styles.text}>DETAILS for WATER</Text>
 
         <Text style={styles.progressText}>PROGRESS</Text>
 

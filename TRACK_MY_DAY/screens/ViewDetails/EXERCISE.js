@@ -106,7 +106,7 @@ const EXERCISE = () => {
   return (
     <ScrollView>
     <View style={styles.container}>
-        <Text style={styles.text}>DETAILS</Text>
+        <Text style={styles.text}>DETAILS for EXERCISE</Text>
 
         <Text style={styles.progressText}>PROGRESS</Text>
 
