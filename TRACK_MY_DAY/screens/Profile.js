@@ -48,13 +48,17 @@ export default function Profile({ navigation }) {
     const userImgUri = Image.resolveAssetSource(userImg).uri
 
     // add data to Firebase Realtime Database
-    function writeUserData(userId, username, email, favQuote) {
+    function writeUserData(userId, username, email, favQuote, sleepGoal, waterGoal, exerciseGoal, studyGoal) {
         const db = getDatabase();
         set(ref(db, 'users/' + userId), {
           username: username,
           email: email,
           favQuote: favQuote,
-          profilePic: userImgUri
+          profilePic: userImgUri,
+          sleepGoal: sleepGoal,
+          waterGoal: waterGoal,
+          exerciseGoal: exerciseGoal,
+          studyGoal: studyGoal
         });
     }
 
