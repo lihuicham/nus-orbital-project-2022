@@ -1,4 +1,4 @@
-import { Button, TouchableOpacity, Platform, Alert, StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
+import { Button, Image, TouchableOpacity, Platform, Alert, StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, Keyboard, ScrollView} from 'react-native';
 import React, { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { db } from '../firebase-config';
@@ -6,6 +6,8 @@ import { collection, doc, setDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
+import { getDatabase, ref, set } from "firebase/database";
+import userImg from '../assets/user-image.png'
 
 export default function Profile({ navigation }) {
 
@@ -41,6 +43,25 @@ export default function Profile({ navigation }) {
         setMode(currentMode);
 
     }
+    
+    // Profile Pic URI
+    const userImgUri = Image.resolveAssetSource(userImg).uri
+
+    // add data to Firebase Realtime Database
+    function writeUserData(userId, username, email, favQuote, sleepGoal, waterGoal, exerciseGoal, studyGoal, readGoal) {
+        const db = getDatabase();
+        set(ref(db, 'users/' + userId), {
+          username: username,
+          email: email,
+          favQuote: favQuote,
+          profilePic: userImgUri,
+          sleepGoal: sleepGoal,
+          waterGoal: waterGoal,
+          exerciseGoal: exerciseGoal,
+          studyGoal: studyGoal,
+          readGoal: readGoal
+        });
+    }
 
     // creating new user in firebase
     const [username, setUsername] = useState("")
@@ -49,13 +70,17 @@ export default function Profile({ navigation }) {
     const [waterGoal, setWaterGoal] = useState("0")
     const [exerciseGoal, setExerciseGoal] = useState("0")
     const [studyGoal, setStudyGoal] = useState("0")
+    const [readGoal, setReadGoal] = useState("0")
 
     const updateProfile = async () => {
         await setDoc(doc(db, "users", user.uid), {
             username: username, favQuote: favQuote, birthday: birthday, 
             sleepGoal: sleepGoal, waterGoal: waterGoal, exerciseGoal: exerciseGoal,
-            studyGoal: studyGoal, id: user.uid
+            studyGoal: studyGoal, readGoal: readGoal, id: user.uid
           })
+          .then(
+            writeUserData(user.uid, username, user.email, favQuote, sleepGoal, waterGoal, exerciseGoal, studyGoal, readGoal) // this should create a new branch in rt db
+          )
           .then(
               username && 
               Alert.alert("Profile Registered!", "",
@@ -174,6 +199,20 @@ export default function Profile({ navigation }) {
                         onValueChange={(val) => setStudyGoal(val)}
                         />
                         <Text style={styles.goals}>{studyGoal} hours</Text>
+                        </View>
+
+                        <Text style={styles.text}>Read goal:</Text>
+                        <View style={styles.sliderBox}>
+                        <Slider
+                        style={{width: 200, height: 40}}
+                        minimumValue={0}
+                        maximumValue={24}
+                        step={1}
+                        minimumTrackTintColor="#3b7cff"
+                        maximumTrackTintColor="#000000"
+                        onValueChange={(val) => setReadGoal(val)}
+                        />
+                        <Text style={styles.goals}>{readGoal} hours</Text>
                         </View>
 
                     </View>

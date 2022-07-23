@@ -10,7 +10,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SliderPicker } from "react-native-slider-picker";
 import { db } from "../../firebase-config";
-import { doc, Timestamp, setDoc } from "firebase/firestore";
+import { collection, doc, Timestamp, setDoc } from "firebase/firestore";
+import { getAuth } from 'firebase/auth';
 
 /* import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
@@ -35,8 +36,22 @@ day = day < 10 ? "0" + day : day;
 
 const dayId = year + month + day;
 
+// create dayId for tomorrow
+var tomorrow = today
+tomorrow.setDate(tomorrow.getDate()+1);
+
+let tomorrowYear = tomorrow.getFullYear().toLocaleString();
+let tomorrowMonth = (tomorrow.getMonth() + 1).toLocaleString();
+let tomorrowDay = tomorrow.getDate().toLocaleString();
+tomorrowMonth = tomorrowMonth < 10 ? "0" + tomorrowMonth : montomorrowMonthth;
+tomorrowDay = tomorrowDay < 10 ? "0" + tomorrowDay : tomorrowDay;
+const tomorrowDayId = tomorrowYear + tomorrowMonth + tomorrowDay;
+
 
 const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  
   const navigation = useNavigation();
   const [value, setValue] = useState(0);
 
@@ -46,20 +61,34 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
   };
 
   const handleConfirm = (val) => {
-    const habitRef = doc(db, "habits", habitName);
-    //console.log(user)
-    setDoc(habitRef, {
-      name: habitName,
-      
-    });
+    // const habitRef = doc(db, "habits", habitName);
+    // const usersCollectionRef = doc(db, "users", user.uid, "habits", habitName)
 
-    const dayRef = doc(db, "habits", habitName, "days", dayId);
+    // //console.log(user)
+    // //usersCollectionRef.set({habit: habitName})
+    // setDoc(usersCollectionRef, {
+    //   name: "days",
+      
+    // });
+
+    // add these fields inside dayId document
+    const dayRef = doc(db, "users", user.uid, "habits", habitName, "days", dayId);
     setDoc(dayRef, {
       date: Timestamp.fromDate(new Date()),
       id: dayId,
       name: habitName,
       unit: habitUnit,
       value: val,
+    });
+
+    // create new document for tomorrow with value 0 - will be overriden when updating the next day
+    const tomorrowDayRef = doc(db, "users", user.uid, "habits", habitName, "days", tomorrowDayId);
+    setDoc(tomorrowDayRef, {
+      date: Timestamp.fromDate(new Date()),
+      id: tomorrowDayId,
+      name: habitName,
+      unit: habitUnit,
+      value: 0,
     });
   };
 

@@ -4,6 +4,7 @@ import { db } from '../firebase-config';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { getAuth } from "firebase/auth";
 import Slider from '@react-native-community/slider';
+import { getDatabase, ref, update } from "firebase/database";
 
 export default function ChangeDetails({ navigation }) {
 
@@ -23,6 +24,7 @@ export default function ChangeDetails({ navigation }) {
   const [newWaterGoal, setNewWaterGoal] = useState("0")
   const [newExerciseGoal, setNewExerciseGoal] = useState("0")
   const [newStudyGoal, setNewStudyGoal] = useState("0")
+  const [newReadGoal, setNewReadGoal] = useState("0")
 
   const updateUsername = async (id, newUsername) => {
     const newFields = {username: newUsername}
@@ -66,6 +68,64 @@ export default function ChangeDetails({ navigation }) {
     .then(Alert.alert("Study goal updated!"))
   }
 
+  const updateReadGoal = async (id, newReadGoal) => {
+    const newFields = {readGoal: newReadGoal}
+    const userDoc = doc(db, "users", id)
+    await updateDoc(userDoc, newFields)
+    .then(Alert.alert("Read goal updated!"))
+  }
+
+  // Realtime Database
+  function usernameRealTime(userId, newUsername) {
+    const db = getDatabase();
+    update(ref(db, 'users/' + userId), {
+      username: newUsername,
+    });
+  }
+
+  function quoteRealTime(userId, newFavQuote) {
+    const db = getDatabase();
+    update(ref(db, 'users/' + userId), {
+      favQuote: newFavQuote,
+    });
+  }
+
+  function waterRealTime(userId, goal) {
+    const db = getDatabase();
+    update(ref(db, 'users/' + userId), {
+      waterGoal: goal
+    });
+  }
+
+  function sleepRealTime(userId, goal) {
+    const db = getDatabase();
+    update(ref(db, 'users/' + userId), {
+      sleepGoal: goal
+    });
+  }
+
+  function exerciseRealTime(userId, goal) {
+    const db = getDatabase();
+    update(ref(db, 'users/' + userId), {
+      exerciseGoal: goal
+    });
+  }
+
+  function studyRealTime(userId, goal) {
+    const db = getDatabase();
+    update(ref(db, 'users/' + userId), {
+      studyGoal: goal
+    });
+  }
+
+  function readRealTime(userId, goal) {
+    const db = getDatabase();
+    update(ref(db, 'users/' + userId), {
+      readGoal: goal
+    });
+  }
+
+
 
   return (
     <TouchableWithoutFeedback onPress={() => {
@@ -103,7 +163,7 @@ export default function ChangeDetails({ navigation }) {
                 <View style={styles.buttonWrapper}>
                     <TouchableOpacity 
                         style={styles.button} 
-                        onPress={() => updateUsername(user.uid, newUsername)}
+                        onPress={() => { updateUsername(user.uid, newUsername); usernameRealTime(user.uid, newUsername) }}
                         >
                         <Text style={styles.buttonText}>Update username</Text>
                     </TouchableOpacity>
@@ -118,7 +178,7 @@ export default function ChangeDetails({ navigation }) {
                 <View style={styles.buttonWrapper}>
                     <TouchableOpacity 
                         style={styles.button} 
-                        onPress={() => updateQuote(user.uid, newFavQuote)}
+                        onPress={() => { updateQuote(user.uid, newFavQuote); quoteRealTime(user.uid, newFavQuote) }}
                         >
                         <Text style={styles.buttonText}>Update quote</Text>
                     </TouchableOpacity>
@@ -145,7 +205,7 @@ export default function ChangeDetails({ navigation }) {
             <View style={styles.buttonWrapper}>
                 <TouchableOpacity 
                     style={styles.button} 
-                    onPress={() => updateWaterGoal(user.uid, newWaterGoal)}
+                    onPress={() => { updateWaterGoal(user.uid, newWaterGoal); waterRealTime(user.uid, newWaterGoal) }}
                     >
                     <Text style={styles.buttonText}>Update water goal</Text>
                 </TouchableOpacity>
@@ -168,7 +228,7 @@ export default function ChangeDetails({ navigation }) {
             <View style={styles.buttonWrapper}>
                 <TouchableOpacity 
                     style={styles.button} 
-                    onPress={() => updateSleepGoal(user.uid, newSleepGoal)}
+                    onPress={() => { updateSleepGoal(user.uid, newSleepGoal); sleepRealTime(user.uid, newSleepGoal) }}
                     >
                     <Text style={styles.buttonText}>Update sleep goal</Text>
                 </TouchableOpacity>
@@ -191,7 +251,7 @@ export default function ChangeDetails({ navigation }) {
             <View style={styles.buttonWrapper}>
                 <TouchableOpacity 
                     style={styles.button} 
-                    onPress={() => updateExerciseGoal(user.uid, newExerciseGoal)}
+                    onPress={() => { updateExerciseGoal(user.uid, newExerciseGoal); exerciseRealTime(user.uid, newExerciseGoal) }}
                     >
                     <Text style={styles.buttonText}>Update exercise goal</Text>
                 </TouchableOpacity>
@@ -215,9 +275,32 @@ export default function ChangeDetails({ navigation }) {
             <View style={styles.buttonWrapper}>
                 <TouchableOpacity 
                     style={styles.button} 
-                    onPress={() => updateStudyGoal(user.uid, newStudyGoal)}
+                    onPress={() => { updateStudyGoal(user.uid, newStudyGoal); studyRealTime(user.uid, newStudyGoal) }}
                     >
                     <Text style={styles.buttonText}>Update study goal</Text>
+                </TouchableOpacity>
+            </View>
+
+            <Text style={styles.text}>New read goal:</Text>
+            <View style={styles.sliderBox}>
+                <Slider
+                style={{width: 200, height: 40}}
+                minimumValue={0}
+                maximumValue={24}
+                step={1}
+                minimumTrackTintColor="#3b7cff"
+                maximumTrackTintColor="#000000"
+                onValueChange={(val) => setNewReadGoal(val)}
+                />
+                <Text>{newReadGoal} hours</Text>
+            </View>
+
+            <View style={styles.buttonWrapper}>
+                <TouchableOpacity 
+                    style={styles.button} 
+                    onPress={() => { updateReadGoal(user.uid, newReadGoal); readRealTime(user.uid, newReadGoal) }}
+                    >
+                    <Text style={styles.buttonText}>Update read goal</Text>
                 </TouchableOpacity>
             </View>
 

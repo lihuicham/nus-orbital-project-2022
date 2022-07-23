@@ -3,7 +3,9 @@ import { Alert, Modal, StyleSheet, Text, Pressable, View, TouchableOpacity, Text
 import { signInWithEmailAndPassword, getAuth, deleteUser } from 'firebase/auth';
 import { db, authentication } from '../firebase-config';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc, setDoc } from 'firebase/firestore';
+import { getDatabase, ref, remove } from "firebase/database";
 import { useNavigation } from '@react-navigation/native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function ModalDeleteAccount() {
     const navigation = useNavigation();
@@ -14,11 +16,14 @@ export default function ModalDeleteAccount() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
-    const [isSecureEntry, setIsSecureEntry] = useState(true);
+    const [passwordVisibility, setPasswordVisibility] = useState(true);
+    const [rightIcon, setRightIcon] = useState('eye')
 
     const deleteAccount = async (id) =>  {
       const userDoc = doc(db, "users", id);
+      // delete User documents from Firestore
       await deleteDoc(userDoc);  
+      // delete User from Firebase Authentication
       deleteUser(user).then(() => {
         handleLogout()
         console.log("user deleted")
@@ -51,9 +56,8 @@ export default function ModalDeleteAccount() {
               {
                 text: "Go back",
                 onPress: () => console.log("Cancel Pressed"),
-                //style: "cancel"
               },
-              { text: "Delete", onPress: () => deleteAccount(user.uid) }
+              { text: "Delete", onPress: () => { deleteData(), deleteAccount(user.uid) }  }
             ]
           )
           })
@@ -74,9 +78,23 @@ export default function ModalDeleteAccount() {
                Alert.alert("Error", "Something went wrong, please try again.")
             // alert(error.message)
             }
-          })
-          
+          }) 
     };
+
+    const handlePasswordVisibility = () => {
+      if (rightIcon === 'eye') {
+        setRightIcon('eye-off');
+        setPasswordVisibility(!passwordVisibility);
+      } else if (rightIcon === 'eye-off') {
+          setRightIcon('eye');
+          setPasswordVisibility(!passwordVisibility);
+        }
+    }
+
+    function deleteData () {
+      const db = getDatabase();
+      remove(ref(db, 'users/' + user.uid));
+    }
 
 
     return (
@@ -97,17 +115,22 @@ export default function ModalDeleteAccount() {
                 style={styles.input}
                 placeholder='Email'
                 onChangeText={(val) => setEmail(val)}/>
-                
-                <TextInput
-                style={styles.input}
-                placeholder='Password'
-                onChangeText={(val) => setPassword(val)}
-                secureTextEntry={isSecureEntry}
-                ></TextInput>
-
+              
+                <View style={styles.password}>
+                  <TextInput
+                  style={styles.input}
+                  placeholder='Password'
+                  onChangeText={(val) => setPassword(val)}
+                  secureTextEntry={passwordVisibility} />
+                  <Pressable 
+                  onPress={handlePasswordVisibility}
+                  style={{position: 'absolute', marginLeft: 180}}>
+                    <MaterialCommunityIcons name={rightIcon} size={20} color="#232323"/>
+                  </Pressable>
+                </View>
 
                 <Pressable
-                style={[styles.button, styles.buttonClose]}
+                style={[styles.button, styles.deleteSignInButton]}
                 onPress={handleLogin}
                 >
                 <Text style={styles.modalText}>Sign in</Text>
@@ -124,13 +147,13 @@ export default function ModalDeleteAccount() {
             </View>
             </View>
         </Modal>
-        <Pressable
+        <TouchableOpacity
             style={[styles.button, styles.buttonOpen]}
             onPress={() => setModalVisible(true)}
         >
             <Text style={styles.buttonText}>Delete Account</Text>
             <Text style={styles.arrow}>☞</Text>
-        </Pressable>
+        </TouchableOpacity>
         
         </View>
   );
@@ -173,9 +196,11 @@ const styles = StyleSheet.create({
   buttonOpen: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#D80505',
     padding: 3,
     borderRadius: 10,
+    borderColor: '#E20505',
+    borderWidth: 0.5,
     opacity: 0.8,
     shadowColor: "#000",
     shadowOffset: {
@@ -192,6 +217,12 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     paddingRight: 30
   },
+  deleteSignInButton: {
+    backgroundColor: '#F70606',
+    marginTop: 20,
+    paddingLeft: 30,
+    paddingRight: 30
+  },
   modalText: {
     color: "white",
     fontWeight: "bold",
@@ -199,6 +230,8 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
     fontSize: 17,
     marginLeft: 10
   },
@@ -210,6 +243,10 @@ const styles = StyleSheet.create({
   },
   arrow: {
     fontSize: 33,
-    marginLeft: 155
+    marginLeft: 155,
+  },
+  password: {
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 });

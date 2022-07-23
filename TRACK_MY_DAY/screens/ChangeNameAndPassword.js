@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { db } from '../firebase-config';
 import { collection } from 'firebase/firestore';
 import { getAuth, updateEmail, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
+import { getDatabase, ref, update } from "firebase/database";
 
 export default function ChangeNameAndPassword({ navigation }) {
   const toLogin = () => {
@@ -23,9 +24,13 @@ export default function ChangeNameAndPassword({ navigation }) {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
 
+
   const handleUpdateEmail = () => {
     // authenticateUser()
       updateEmail(user, email)
+        .then(() => {
+          emailRealTime(user.uid, email)
+        })
         .then(() => {
           if (email === '') {
             Alert.alert("Invalid email", "Please enter a valid email.")
@@ -73,6 +78,13 @@ export default function ChangeNameAndPassword({ navigation }) {
     
     }
 
+    // Realtime Database
+    function emailRealTime(userId, email) {
+      const db = getDatabase();
+      update(ref(db, 'users/' + userId), {
+        email: email
+      });
+    }
 
     // reauthenticate credentials
     const authenticateUser = () => {
@@ -114,9 +126,7 @@ export default function ChangeNameAndPassword({ navigation }) {
         </View>
           
         <Text style={styles.heading}> CHANGE EMAIL </Text>
-          
           <View style={styles.section}>
-          
             <Text style={styles.text}> Enter new email: </Text>
             <TextInput 
             style={styles.input}
@@ -134,8 +144,6 @@ export default function ChangeNameAndPassword({ navigation }) {
           <Text style={styles.heading}> CHANGE PASSWORD </Text>
           
           <View style={styles.section}>
-         
-
             <Text style={styles.text}> Enter new password: </Text>
             <TextInput 
             style={styles.input}
@@ -156,13 +164,9 @@ export default function ChangeNameAndPassword({ navigation }) {
                     <Text style={styles.buttonText}>Confirm password</Text>
                 </TouchableOpacity>
             </View>
-
-
-
-
           </View>
-
         </View>
+
       </ScrollView>
     </TouchableWithoutFeedback>
   );
