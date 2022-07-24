@@ -46,7 +46,7 @@ To view a collection of images, demo videos, project log, poster and full video 
           - [About Us Page](#about-us-page)  
           - [FAQ Page](#faq-page)  
           - [Notifications](#notifications)   
-  - [Firebase Firestore (Database)](#firebase-firestore-database)  
+  - [Firestore Database](#firestore-database)  
       - [Structure of Data](#structure-of-data)  
       - [Create Data](#create-data)  
       - [Read Data](#read-data)  
@@ -293,71 +293,52 @@ We used local push notifications via Expo CLI for the app’s notification. The 
 
 **Current Progress:** Completed. Toggling on/off is not yet complete.  
 
-# Firebase Firestore (database)
+# Firestore Database  
 
-### Structure of Data 
-
-#### For Profile: 
-- db/users/{userId} in Firestore database
-- userId (string) = the randomly generated user.uid where user is the currently logged in user
-- Collection: users ; Document: userId
-- Each userId document field: birthday, exerciseGoal, favQuote, id, sleepGoal, studyGoal, username, waterGoal  
-
-![Firestore User]()
-
-#### For View Details: 
-- db/users/{userId}/habits/{habitName}/days/{dayId} in Firestore database
-- habitName (string) = name of each habit, as shown in Tiles. Eg. READ, EXERCISE, WATER and etc. 
-- dayId (string) = date of the day Eg. 20220624 for June 24, 2022. 
-- Collection: users, habits, days ; Document: userId, habitName, dayId
+### Structure of Data  
+- db/users/{userId}/habits/{habitName}/days/{dayId} in Firestore database  
+- userId (string) is the randomly generated user.uid where user is the currently logged in user  
+- habitName (string) is name of each habit, as shown in Tiles. Eg. READ, EXERCISE, WATER and etc  
+- Collection: users, habits, days ; Document: userId, habitName, dayId  
+- Each userId document field: birthday, exerciseGoal, favQuote, id, sleepGoal, studyGoal, username, waterGoal   
 - Each dayId document field: date, id, name, unit, value  
 
-![Firestore Habits](./readme_assets/FirestoreHabits.PNG) 
+### Create Data  
 
-### Create Data 
+A new 'userId' document with a unique document ID is created when a new user registers their personal details.  
 
-#### For Profile: 
-- When a new user registers their personal details, a document will be added to the users collection in Firebase with these details.
-- The document ID for each new document is set as the currently logged in user’s ID in order to read, delete or update the user’s information which requires the document ID of the document the operation would be performed on. 
-- User ID is also unique, meaning that each user will only have one document created for them.  
+The fields of this document will contain all the information filled up from the Profile page during registration. The randomly generated uid of each user is used as the document ID to allow read, delete or update operations on the user's information.  
 
-**--> Watch a demo video of Firestore User: [Firestore User 📺](https://drive.google.com/file/d/1zqaltEo0c0DqQUBuxWPkDJJ9SFnVFlkp/view?usp=sharing)**  
+The 'habits' collection is created when the user logs the first habit. When the user presses the 'Confirm' button on any tile, the 'habits' collection, 'habitName' document, 'days' collection and 'dayId' document will be created. If the habit has never been logged before, pressing 'Confirm' will create new collections and documents from 'habitName' collection onwards. If the user logs a habit for the first time on that day, a new 'dayId' document will be created.  
+
+Since the date of day is used as the document's id, it is unique. Hence, if a user changes the value within 24 hours, the same document will be updated and no new documents will be created.
+
+![Firestore](./readme_assets/Firestore.png)
+![Firestore Habits](./readme_assets/FirestoreHabits.png)
 
 
-#### For View Details: 
-- Add and update document, integrating frontend Tiles to backend database
-- A new document of {dayId} will be created in the days collection when the user selects a value using the slider at Tiles. If the document is not created yet, a new document will be created as the user selects the value. If the document has been created (which means the user has selected a value before), the document will be updated with the new value when the user selects a new value using the same slider at Tiles. All documents are created specific for each habit tracked, with respective paths. 
-- We use {dayId} for each document’s id for the easy retrieval of data to be used in other components. 
-- _Note: Since the date of day is used as the document's id, it is unique. Hence, if a user changes the value within 24 hours, the same document will be updated and no new documents will be created._
+### Read Data  
 
-### Read Data 
+Data from the 'habits' collection is used in the 'View Details' page. The 'value' field is used to calculate the user's average progress. For instance, if the habit is EXERCISE, the data logged in the value fields for all the days will be added up and divided by the number of days to show their average progress, which is then used in the circular progress chart. Days data is used in the calendar to show the days that the user has achieved their goal as well as in the line chart to show the user's value logged daily.  
 
-#### For Profile: 
-- Data is retrieved from Firebase and is specific to each user
+### Update Data  
 
-#### For View Details: 
-- used in Analytics in “View details” page 
-- Data is retrieved from Firestore and is specific to each habit, with their respective paths. 
-- We use the “value” field in each document for analysis  
+The user updates their personal details on a separate page under ‘Settings’. Clicking a specific update button will update the corresponding field in the Firebase database. Before the user can change their email address or password, they will be prompted to sign in again. Login rules are the same as in the Login page. The user’s email will be updated via Firebase authentication as well as in the Realtime database.  
 
-**--> Watch a demo video of Firestore Habits: [Firestore Habits 📺](https://drive.google.com/file/d/1mQhwyXvufG-RMuEUdkKmk4a4hg7tD5N_/view?usp=sharing)**  
-
-### Update Data 
-
-#### For Profile: 
-- The user updates their personal details on a separate page under ‘Settings’. Clicking a specific update button will update the corresponding field in the Firebase database.
-- The user will be prompted to sign in again before they can change their email address or password. Login rules are the same as in the Login page. The user’s email will be updated via Firebase authentication.
+If the user changes the value of the slider in a tile and presses 'Confirm', the habit data for that day will change to reflect the new value in the 'value' field of the dayId document. If the user logs a habit multiple times on one day, only the last log will be considered.
 
 ### Delete Data: 
 
-#### For Profile: 
-- Before an account can be deleted, the user has to sign in again to confirm their identity. A modal will pop up to allow this. Login rules are the same as in the Login page.
-- Deleting an account will delete the user’s data from Firebase authentication as well as Firestore database.  
+Before an account can be deleted, the user has to sign in again to confirm their identity. A modal will pop up to allow this. Login rules are the same as in the Login page. Deleting an account will delete the user’s data from Firebase authentication, Firestore database and Realtime database. In the Firestore database, the userId collection for that user will be deleted. 
+
+**--> Watch a demo video of Firestore (User): [Firestore User 📺]()**  
+**--> Watch a demo video of Firestore (Habits): [Firestore Habits 📺]()**  
 
 # Firebase Realtime Database  
-When the user updates their details, such as email, username, favourite quote, and goals, the Realtime Database will track these changes.  
 
-These changes can be read immediately and changes to email, username and favourite quote will be reflected in the drawer. Changes to goals will be used in the View Details page to calculate the user's progress.
+After the user registers their details in the Profile page, these details (email, username, favourite quote, goals) will be stored in the Realtime Database. Every user is assigned a default profile picture upon registration, which is also recorded in the Realtime Database.  
+
+Upon updating email, username or favourite quote, the changes will be recorded in the Realtime Database and immediately reflected in the Drawer of the app. Changes to goals will be recorded to adjust the details in the View Details page when calculating the user's progress as a percentage.
 
 ![Firebase Realtime Database](./readme_assets/RealtimeDatabase.png)
 

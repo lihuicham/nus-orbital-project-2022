@@ -18,6 +18,11 @@ const READ = () => {
     const [readGoal, setReadGoal] = useState(0);
     const [dateArray, setDateArray] = useState([]);
 
+    function convertUTCDateToLocalDate(date) {
+      var newDate = new Date(date.getTime() - date.getTimezoneOffset()*60*1000);
+      return newDate;   
+    }
+
     const getDays = async () => {
         const colRef = await getDocs(collection(db, "users", user.uid, "habits", "READ", "days"));
         let arr = [];
@@ -28,7 +33,8 @@ const READ = () => {
 
             // push only if goal is met for the day
             if (doc.data().value >= readGoal) {
-              dateArr.push(doc.data().date.toDate())
+              let convertedDate = convertUTCDateToLocalDate(doc.data().date.toDate());
+              dateArr.push(convertedDate);
             }
         };
 
@@ -119,7 +125,7 @@ const READ = () => {
           duration={1000}
           progressValueColor={'black'}
           maxValue={readGoal} // goal amt
-          title={'LITRES'}
+          title={'HOURS'}
           titleColor={'#232323'}
           titleStyle={{fontWeight: 'bold'}}
           activeStrokeColor={'#2465FD'}
