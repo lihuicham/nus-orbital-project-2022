@@ -34,11 +34,11 @@ const AboutUs = () => {
             <FontAwesome5 name="github" size={40} color='white'/>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.link} onPress={() => {Linking.openURL('https://youtu.be/-wzJrKG1zDc')}}>
+        <TouchableOpacity style={styles.link} onPress={() => {Linking.openURL('https://youtu.be/0sXy3uWyvM4')}}>
             <FontAwesome5 name="youtube" size={40} color='white'/>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.link} onPress={() => {Linking.openURL('https://drive.google.com/file/d/1J-rZ5Fe_WoDgllRyRgNPc7-eXiaExXt9/view?usp=sharing')}}>
+        <TouchableOpacity style={styles.link} onPress={() => {Linking.openURL('https://drive.google.com/file/d/1CGu4T8KHQxMVlKYjaHPzs1KFxtaJxETo/view?usp=sharing')}}>
             <FontAwesome5 name="image" size={40} color='white'/>
         </TouchableOpacity>
 
