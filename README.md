@@ -91,9 +91,7 @@ Li Hui and Hazel wrote a blog post to share their Orbital journey and some behin
 - User (Usability) Testing  
 - Updated project poster for Milestone 3
 - Updated project demo video (full) for Milestone 3 
-- Special: A blog post about the journey of developing Track My Day
-
-<br>
+- Special: A blog post about the journey of developing Track My Day  
 
 # Project Introduction
 ## Team Information  
@@ -374,7 +372,7 @@ To be completed in Milestone 3
 We used these tools to create the project:  
 
 - Development: React Native, React Native Navigation 
-- Backend database: Firebase Authentication, Firestore, Firebase Realtime Database
+- Backend database: Firebase Authentication, Firestore, Realtime database
 - Languages: JavaScript, HTML, CSS  
 - UI design: dopelycolors, icons8, OUCH
 - Version Control: Git, GitHub 
