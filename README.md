@@ -1,5 +1,5 @@
 # NUS ORBITAL PROJECT 2022 - Track My Day 
-## **An Orbital project by Cham Li Hui and Pwint Thiri Ko.**  
+### **An Orbital project by Cham Li Hui and Pwint Thiri Ko.**  
 
 ![Track My Day](./readme_assets/diagrams/trackmyday.png)
   
