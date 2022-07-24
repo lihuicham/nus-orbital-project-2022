@@ -69,6 +69,8 @@ export default function CustomDrawer(props) {
     }
   };
 
+  console.log(image);
+
   // Realtime Database
   function updateProfilePic(userId, pic) {
     const db = getDatabase();

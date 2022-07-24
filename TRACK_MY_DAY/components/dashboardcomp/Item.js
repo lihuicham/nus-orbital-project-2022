@@ -77,7 +77,7 @@ const Item = ({ habitImage, habitName, habitUnit, habitMax, empty }) => {
       tomorrowDayId
     );
     setDoc(tomorrowDayRef, {
-      date: Timestamp.fromDate(new Date()),
+      date: tomorrow,
       id: tomorrowDayId,
       name: habitName,
       unit: habitUnit,

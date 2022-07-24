@@ -81,7 +81,7 @@ const HABITS = [
 
 
 
-export default function Dashboard() {
+export default function Habits() {
   const renderItem = ({ item }) => (
     <Item habitImage={item.habitImage} habitName={item.habitName} habitUnit={item.habitUnit} habitMax={item.habitMax} empty={item.empty} />
   );

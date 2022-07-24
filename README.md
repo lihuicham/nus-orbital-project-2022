@@ -12,6 +12,9 @@
       - [Aim & Vision](#aim--vision)  
       - [User Stories & Experience](#user-stories--experience)  
       - [Project Scope](#project-scope)
+  - [Concept Diagrams](#concept-diagrams)  
+      - [Component Interaction](#component-interaction)  
+      - [User Flow Map](#user-flow-map)
   - [Features](#features)  
       - [Authentication](#1-authentication)  
           - [Authentication](#authentication)  
@@ -21,13 +24,13 @@
           - [Profile Page](#profile-page)  
           - [Delete Account](#delete-account)  
       - [Core Features](#2-core-features-of-app)  
-          - [Tiles (Home Page)](#tiles-home-page)  
+          - [Habits (Home Page)](#habits-home-page)  
           - [Notes & To-Do List](#notes--to-do-list)  
           - [Drawer](#drawer)  
           - [User Details](#user-details)  
           - [Navigation](#navigation)  
           - [Settings](#settings)  
-      - [Extended Features of App](#3-extended-features-of-app)  
+      - [Extended Features](#3-extended-features-of-app)  
           - [View Details Page](#view-details-page)  
           - [About Us Page](#about-us-page)  
           - [FAQ Page](#faq-page)  
@@ -35,9 +38,6 @@
   - [Backend Database](#4-backend-database)  
       - [Firebase Firestore Database](#firebase-firestore-database)  
       - [Firebase Realtime Database](#firebase-realtime-database)  
-  - [Concept Diagrams](#concept-diagrams)  
-      - [Component Interaction](#component-interaction)  
-      - [User Flow Map](#user-flow-map)
   - [Testing](#testing)  
       - [Unit Testing](#unit-testing)  
       - [Integration Testing](#integration-testing)  
@@ -46,7 +46,8 @@
       - [User Testing](#user-testing)
   - [Timeline and Progress Chart](#timeline-and-progress-chart)  
   - [Tech Stack](#tech-stack) 
-  - [Software Engineering Practices](#software-engineering-practices)    
+  - [Software Engineering Practices](#software-engineering-practices)   
+  - [Conclusion](#conclusion)
 <br> 
 
 # Important Links & Documents  
@@ -131,6 +132,15 @@ The scope of our project can be divided into 5 parts. Click the links to jump to
 
 ** _Note: Drawer includes user details, navigation tabs, report issues and log out._
 <br><br>
+
+## Concept Diagrams  
+### Component Interaction  
+This diagram shows the interaction of the files in the app.
+![Component Interaction Diagram](./readme_assets/diagrams/ComponentInteraction.png)
+
+### User Flow Map  
+The User Flow Map depicts the possible actions a user can take in our app and the results.
+![User Flow Map](./readme_assets/diagrams/UserFlowMap.png)
 
 # Features
 ## 1. Authentication 
@@ -312,26 +322,57 @@ We used local push notifications via Expo CLI for the app’s notification. The 
 
 **Current Progress:** Completed. Toggling on/off is not yet complete.  
 
-## 4. Backend Database 
-### Firebase Firestore Database
+## 4. Backend Database  
 
+### Firebase Firestore Database 
+
+### Structure of Data  
+- db/users/{userId}/habits/{habitName}/days/{dayId} in Firestore database  
+- userId (string) is the randomly generated user.uid where user is the currently logged in user  
+- habitName (string) is name of each habit, as shown in Tiles. Eg. READ, EXERCISE, WATER and etc  
+- Collection: users, habits, days ; Document: userId, habitName, dayId  
+- Each userId document field: birthday, exerciseGoal, favQuote, id, sleepGoal, studyGoal, username, waterGoal   
+- Each dayId document field: date, id, name, unit, value  
+
+**Users Collection**  
+![FirestoreUsers](./readme_assets/firebase/FirestoreUsers.png)  
+
+**Habits Collection**  
+![FirestoreHabits](./readme_assets/firebase/FirestoreHabits.PNG)  
+
+**Days Collection** 
+![FirestoreDays](./readme_assets/firebase/FirestoreDays.PNG) 
+
+### Create Data  
+A new 'userId' document with a unique document ID is created when a new user registers their personal details.  
+
+The fields of this document will contain all the information filled up from the Profile page during registration. The randomly generated uid of each user is used as the document ID to allow read, delete or update operations on the user's information.  
+
+The 'habits' collection is created when the user logs the first habit. When the user presses the 'Confirm' button on any tile, the 'habits' collection, 'habitName' document, 'days' collection and 'dayId' document will be created. If the habit has never been logged before, pressing 'Confirm' will create new collections and documents from 'habitName' collection onwards. If the user logs a habit for the first time on that day, a new 'dayId' document will be created.  
+
+Since the date of day is used as the document's id, it is unique. Hence, if a user changes the value within 24 hours, the same document will be updated and no new documents will be created.
+
+
+### Read Data  
+Data from the 'habits' collection is used in the 'View Details' page. The 'value' field is used to calculate the user's average progress. For instance, if the habit is EXERCISE, the data logged in the value fields for all the days will be added up and divided by the number of days to show their average progress, which is then used in the circular progress chart. Days data is used in the calendar to show the days that the user has achieved their goal as well as in the line chart to show the user's value logged daily.  
+
+### Update Data  
+The user updates their personal details on a separate page under ‘Settings’. Clicking a specific update button will update the corresponding field in the Firebase database. Before the user can change their email address or password, they will be prompted to sign in again. Login rules are the same as in the Login page. The user’s email will be updated via Firebase authentication as well as in the Realtime database.  
+
+If the user changes the value of the slider in a tile and presses 'Confirm', the habit data for that day will change to reflect the new value in the 'value' field of the dayId document. If the user logs a habit multiple times on one day, only the last log will be considered.
+
+### Delete Data  
+Before an account can be deleted, the user has to sign in again to confirm their identity. A modal will pop up to allow this. Login rules are the same as in the Login page. Deleting an account will delete the user’s data from Firebase authentication, Firestore database and Realtime database. In the Firestore database, the userId collection for that user will be deleted. 
+
+**--> Watch a demo video of User Collection: [Firestore User 📺]()**  
+**--> Watch a demo video of Habits Collection: [Firestore Habits 📺]()**
 
 ### Firebase Realtime Database  
-When the user updates their details, such as email, username, favourite quote, and goals, the Realtime Database will track these changes.  
+After the user registers their details in the Profile page, these details (email, username, favourite quote, goals) will be stored in the Realtime Database. Every user is assigned a default profile picture upon registration, which is also recorded in the Realtime Database.  
 
-These changes can be read immediately and changes to email, username and favourite quote will be reflected in the drawer. Changes to goals will be used in the View Details page to calculate the user's progress.
+Upon updating email, username or favourite quote, the changes will be recorded in the Realtime Database and immediately reflected in the Drawer of the app. Changes to goals will be recorded to adjust the details in the View Details page when calculating the user's progress as a percentage.
 
-![Firebase Realtime Database]()
-
-
-## Concept Diagrams  
-### Component Interaction  
-This diagram shows the interaction of the files in the app.
-![Component Interaction Diagram](./readme_assets/diagrams/ComponentInteraction.png)
-
-### User Flow Map  
-The User Flow Map depicts the possible actions a user can take in our app and the results.
-![User Flow Map](./readme_assets/diagrams/UserFlowMap.png)
+![Firebase Realtime Database](./readme_assets/firebase/RealtimeDatabase.png)
 
 ## 5. Testing 
 
@@ -356,7 +397,7 @@ Note column:
 To be completed in Milestone 3
 
 
-## Timeline and Progress Chart
+# Timeline and Progress Chart
 
 ### Orbital 2022 Timeline 
 **Liftoff:** 9 - 16 May 2022  
@@ -368,7 +409,7 @@ To be completed in Milestone 3
 ### Progress Chart of Track My Day 
 ![Progress Chart](./readme_assets/diagrams/Progress.png)
 
-## Tech Stack  
+# Tech Stack  
 We used these tools to create the project:  
 
 - Development: React Native, React Native Navigation 
@@ -380,7 +421,7 @@ We used these tools to create the project:
 - CLI: Expo  
 - Poster & Video: Canva, Adobe Premiere Pro 
 
-## Software Engineering Practices  
+# Software Engineering Practices  
 - Iterative development  
 - Follow the 'KISS' principle  
 - Readable code  
@@ -389,7 +430,8 @@ We used these tools to create the project:
 - Presence of 'Cancel' and 'Back' buttons  
 - Version control with Git  
 
-<br>
+# Conclusion 
+  
 
 ![Milestone 3 Poster]()
 

@@ -18,6 +18,11 @@ const STUDY = () => {
     const [studyGoal, setStudyGoal] = useState(0);
     const [dateArray, setDateArray] = useState([]);
 
+    function convertUTCDateToLocalDate(date) {
+      var newDate = new Date(date.getTime() - date.getTimezoneOffset()*60*1000);
+      return newDate;   
+    }
+
     const getDays = async () => {
         const colRef = await getDocs(collection(db, "users", user.uid, "habits", "STUDY", "days"));
         let arr = [];
@@ -27,7 +32,8 @@ const STUDY = () => {
 
           // push only if goal is met for the day
           if (doc.data().value >= studyGoal) {
-            dateArr.push(doc.data().date.toDate())
+            let convertedDate = convertUTCDateToLocalDate(doc.data().date.toDate());
+            dateArr.push(convertedDate);
           }
       };
 

@@ -18,6 +18,11 @@ const EXERCISE = () => {
     const [exerciseGoal, setExerciseGoal] = useState(0);
     const [dateArray, setDateArray] = useState([]);
 
+    function convertUTCDateToLocalDate(date) {
+      var newDate = new Date(date.getTime() - date.getTimezoneOffset()*60*1000);
+      return newDate;   
+    }
+
     const getDays = async () => {
         const colRef = await getDocs(collection(db, "users", user.uid, "habits", "EXERCISE", "days"));
         let arr = [];
@@ -27,9 +32,10 @@ const EXERCISE = () => {
 
           // push only if goal is met for the day
           if (doc.data().value >= exerciseGoal) {
-            dateArr.push(doc.data().date.toDate())
-          }
-    };
+            let convertedDate = convertUTCDateToLocalDate(doc.data().date.toDate());
+            dateArr.push(convertedDate);
+          } 
+        };
 
         setOurData(arr.slice(0, -1)); // remove last item because it's 0 for next day
         setDateArray(dateArr);
@@ -102,6 +108,8 @@ const EXERCISE = () => {
     for (let i of dateArray) {
       calendarData.push({date: i, count: 1 });
     };
+
+    // console.log(dateArray)
 
   return (
     <ScrollView>
