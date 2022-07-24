@@ -35,6 +35,7 @@
           - [About Us Page](#about-us-page)  
           - [FAQ Page](#faq-page)  
           - [Notifications](#notifications)   
+          - [Error Handling](#error-handling)   
   - [Backend Database](#4-backend-database)  
       - [Firebase Firestore Database](#firebase-firestore-database)  
       - [Firebase Realtime Database](#firebase-realtime-database)  
@@ -43,7 +44,6 @@
   - [Tech Stack](#tech-stack) 
   - [Software Engineering Practices](#software-engineering-practices)   
   - [Conclusion](#conclusion)
-<br> 
 
 # Important Links & Documents  
 **[1. GitHub Repository & README](https://github.com/lihuicham/nus-orbital-project-2022)**  
@@ -61,9 +61,9 @@ Please download the APK file using your mobile device (e.g. phone), you can acce
 
 To view *data visualizations* (View Details page) of habits, we provide a sample account below that has pre-recorded user and habits data.  
 
-**Sample account:**    
-Email: hearts@gmail.com  
-Password: 123456  
+**Sample account:**   
+**Email: hearts@gmail.com**  
+**Password: 123456** 
 
 However, to enjoy the full experience of using Track My Day, we encourage you to create a new account via the Registration page.  
 
@@ -72,8 +72,6 @@ Note: For the sample account, the profile picture is not going to appear when lo
 
 **[7. Special: Read our journey of creating Track My Day](https://medium.com/@lihuicham/our-journey-of-creating-a-mobile-app-11968f0ccb93)**  
 Li Hui and Hazel wrote a blog post to share their Orbital journey and some behind-the-scenes stories in developing Track My Day.  
-<br>
-
 
 # What's New in Milestone 3?
 - Diagrams for Component Interaction & User Flow Map in README
@@ -126,14 +124,13 @@ The scope of our project can be divided into 5 parts. Click the links to jump to
 5. **[Testing: ](#5-testing)** Unit, Integration, End-to-end (E2E), System, User (Usability) Testing 
 
 ** _Note: Drawer includes user details, navigation tabs, report issues and log out._
-<br><br>
 
-## Concept Diagrams  
-### Component Interaction  
+# Concept Diagrams  
+## Component Interaction  
 This diagram shows the interaction of the files in the app.
 ![Component Interaction Diagram](./readme_assets/diagrams/ComponentInteraction.png)
 
-### User Flow Map  
+## User Flow Map  
 The User Flow Map depicts the possible actions a user can take in our app and the results.
 ![User Flow Map](./readme_assets/diagrams/UserFlowMap.png)
 
@@ -153,7 +150,6 @@ Restrictions:
 
 Error messages will be shown on the phone screen when any of the restrictions are violated. 
 Resetting the password also makes use of Firebase authentication and after a new password is set, the user can only log in with the new password.
-
 
 **Current Progress:** Completed frontend UI and integration with Firebase Authentication database.  
 
@@ -178,7 +174,7 @@ The user enters their email in the Forgot Password page. This page has been link
 
 **Current progress:** Complete.
 
-**--> Watch a demo video of our Forgot Password page: [forgotPassword](https://drive.google.com/file/d/1R_w4zVejvdAYDRRyeUPJz_24s--Pl0rT/view?usp=sharing)** 
+**--> Watch a demo video of our Forgot Password page: [Forgot Password](https://drive.google.com/file/d/1R_w4zVejvdAYDRRyeUPJz_24s--Pl0rT/view?usp=sharing)** 
 
 ### Profile Page 
 The app will also collect the user’s personal details and goals which will be used in the Analysis page. The user can set their username, birthday and enter a favorite quote here. They can also set goals such as amount of sleep per night, amount of water drunk per day and amount of time spent studying, exercising or reading daily.  
@@ -199,7 +195,7 @@ After logging in, there will be an alert to remind the user that deleting the ac
 ![Home](./readme_assets/compiled-images/Home.png)
 
 ### Habits (Home page)
-The home page serves the main function of this app - tracking habits. The trackers include water tracker, sleep tracker, read tracker etc. We redesigned the home page in Milestone 2. We call the home page - “Tiles”, named according to the appearance and layout of the trackers in the home page.  
+The home page serves the main function of this app - tracking habits. The trackers include water tracker, sleep tracker, read tracker etc. We redesigned the home page in Milestone 2. We call the home page - "Habits", named according to the appearance and layout of the trackers in the home page.  
 
 The trackers can have different units and maximum values e.g. 24 hours, 10 liters, 50 kilograms and so on. This allows the trackers to be flexible in tracking all sorts of habits. Other than default trackers, users can customize their own trackers too.  
 We use a slider to increase the value of each tracker instead of a dropdown menu or a picker. The slider is included for the user to adjust the value. Each tracker has its own unit that is suitable for the habit that the tracker is tracking. This feature greatly enhances the user experience.  
@@ -208,15 +204,15 @@ There will also be a “View Details” button at the bottom right corner of eac
 When the user clicks the “Confirm” button, the value of each tracker will be recorded or “written” into our backend database (Firebase Firestore). More details about write, read and update in the following section - Firebase Firestore. 
 
 *Note:  
-**From The Ring to Tiles** - We understand that the changes in the layout of the home page is the biggest change in our app. Previously (in Liftoff and Milestone 1), we decided that the trackers should be designed as different proportions of a ring, and hence our home page will only contain “The Ring”.*  
+**From The Ring to Habits** - We understand that the changes in the layout of the home page is the biggest change in our app. Previously (in Liftoff and Milestone 1), we decided that the trackers should be designed as different proportions of a ring, and hence our home page will only contain “The Ring”.*  
 
 *However, we tested the ring design, consulted the tutor from the UI/UX workshop and discussed between us, we decided that the ring design was limiting the number of habit trackers we can have on The Ring (home page). Since it is just a hollow circle shape (literally, a ring shape), it can only be divided into at most 5 sections if the user wishes to have an aesthetically pleasing UI. We experimented with more trackers, which simulated the real-life use of the app. However, The Ring became really messy and packed because each tracker shared a small chunk of the circle ring. This greatly impacted the UI and UX of the app, and limited the app’s habit tracking ability and deviated from the project’s purpose.*  
 
-*Hence, we took a step back and redesigned the habit trackers and the home page. Going forward, we will be implementing the habit trackers as “tiles” in the home page.* 
+*Hence, we took a step back and redesigned the habit trackers and the home page. Going forward, we will be implementing the habit trackers as tile-shaped items in the home page.* 
 
-**Current progress:** Basic habits - water, sleep, read, exercise and etc have been added to Tiles. All components - slider confirm button and view details button are completed. Integrated frontend (confirm button) with backend database (Firebase Firestore). Completed all working features and UI design.  
+**Current progress:** Basic habits - water, sleep, read, exercise and etc have been added to Habits. All components - slider confirm button and view details button are completed. Integrated frontend (confirm button) with backend database (Firebase Firestore). Completed all working features and UI design.  
 
-**--> Watch a demo video of Tiles: [Tiles 📺](https://drive.google.com/file/d/1qjN_XWHHIvRYA-MAlK9ewGo7MXftWZag/view?usp=sharing)**  
+**--> Watch a demo video of Habits: [Habits 📺](https://drive.google.com/file/d/1k6K7tc9mmgB_ra-eyCTUKxR747TtdUrh/view?usp=sharing)**  
 
 ### Notes & To-Do List 
 Notes & to-do lists are meant to satisfy the quick note taking needs of the users. Both pages support simple typing.  
@@ -228,7 +224,7 @@ Current progress: Both pages completed with full functions.
 #### Notes  
 For notes, the user can add (save), edit and delete notes. When the “+” button at the bottom right corner is clicked, a new page (which is a modal) for adding & editing the notes will be visible. All notes are arranged in one screen and users can scroll to view their notes. Users can also choose to view the notes in “Full View” or “List View” (collapsed notes).  
 
-**--> Watch a demo video of Notes: [Notes 📺](https://drive.google.com/file/d/1qhzXf-iBGun7XZjSQATp-M0N9kCZG8qk/view?usp=sharing)**  
+**--> Watch a demo video of Notes: [Notes 📺](https://drive.google.com/file/d/1matQlFcFgpAlKZSv6F480w7M7dLr6DP2/view?usp=sharing)**  
 
 #### To-Do List
 Users can add a new todo item by typing in the text box and pressing the “+” button. Users can delete individual todo items by tapping on each of them.  
@@ -253,14 +249,16 @@ Report Issues button will open the default mailing app on the user’s phone (e.
 ### User Details  
 When a new accout is created, the default profile picture will be applied. The user can change their profile picture by clicking on the camera icon beside the profile picture.  
 
+**--> Watch a demo video of Profile Picture: [Profile Picture 📺](https://drive.google.com/file/d/1Krg3G3d29KnL3T8vH4m3do0fF9iyrQ2r/view?usp=sharing)** 
+
 Whenever a user updates their email, username or favourite quote, it will be reflected in the drawer immediately.
 
 ### Navigation
 Track My Day uses React Navigation package to navigate between different screens. The types of navigation we are using are: stack, drawer and material bottom tabs.  
 
 1. **Stack navigation:** All buttons (e.g. to View Details button) 
-2. **Drawer navigation:**  Home page (Tiles), Settings, About Us page, FAQ page, Log Out 
-3. **Material Bottom tabs navigation:** Home page (Tiles), To-do page, Notes page 
+2. **Drawer navigation:**  Home page (Habits), Settings, About Us page, FAQ page, Log Out 
+3. **Material Bottom tabs navigation:** Home page (Habits), To-do page, Notes page  
 
 **Current Progress:** Completed. Able to navigate between different pages. 
 
@@ -282,7 +280,7 @@ The user will be prompted to log in again before they can perform critical actio
 ### View Details Page 
 Once the user clicks the “View Details” button at the bottom right of the icon, the user will be directed to a details page. We include the following components in the “View Details” page.  
 
-1. **Analytics:** Since habits are tracked in terms of days in Tiles, the data size collected for the habits are suitable for analysis. Here, the user can see the percentage of their goal that they have achieved so far.   
+1. **Analytics:** Since habits are tracked in terms of days in Habits, the data size collected for the habits are suitable for analysis. Here, the user can see the percentage of their goal that they have achieved so far.   
 
 2. **Circular Progress Chart:** This animated chart shows how far the user has come in achieving their goal. The number in the middle of the ring is the average of their logged data (data for each day/number of days) whereas the entire ring adds up to their goal amount. For example, if the user's sleep goal is 8 hours, the ring will be complete at 8 hours. If the user has slept for 6, 7, 8 hours in the past 3 days, the number in the middle will show (6+7+8/3) = 7. The units will be in hours for sleep.
 
@@ -299,19 +297,22 @@ This page contains information about our motivations for creating Track My Day, 
 
 **Current Progress:** Completed.
 
-**--> Watch a demo video of About Us Page: [About Us Page 📺]()**  
+**--> Watch a demo video of About Us Page: [About Us Page 📺](https://drive.google.com/file/d/1U_aGp_QZTYpCoSh_vDaVSkR7Uya7gM2R/view?usp=sharing)**  
 
 ### FAQ Page  
 Sometimes, users may have questions or suggestions to improve our app. The FAQ page uses bounce-in animation and contains answers to the most common questions. There is also a question on 'Need more help?' for users to reach out if the questions in the page do not adequately address the user's concern.  
 
 **Current Progress:** Completed.  
 
-**--> Watch a demo video of FAQ Page: [FAQ Page 📺]()**  
+**--> Watch a demo video of FAQ Page: [FAQ Page 📺](https://drive.google.com/file/d/1p2GD4mRs7Vzf1fQ0CYG9fT3gWSYyoVnt/view?usp=sharing)**  
 
 ![Modals](./readme_assets/compiled-images/Modals.png)
 
 ### Notifications 
 We used local push notifications via Expo CLI for the app’s notification. The app will notify the user everyday at 9pm to use Track My Day.  
+
+### Error Handling  
+We replaced Firebase auto-generated messages to customized error messages for Track My Day. We made sure that all error messages and modals are appropriate and easy to understand. 
 
 **Current Progress:** Completed. Toggling on/off is not yet complete.  
 
@@ -322,7 +323,7 @@ We used local push notifications via Expo CLI for the app’s notification. The 
 ### Structure of Data  
 - db/users/{userId}/habits/{habitName}/days/{dayId} in Firestore database  
 - userId (string) is the randomly generated user.uid where user is the currently logged in user  
-- habitName (string) is name of each habit, as shown in Tiles. Eg. READ, EXERCISE, WATER and etc  
+- habitName (string) is name of each habit, as shown in Habits (Home page). Eg. READ, EXERCISE, WATER and etc  
 - Collection: users, habits, days ; Document: userId, habitName, dayId  
 - Each userId document field: birthday, exerciseGoal, favQuote, id, sleepGoal, studyGoal, username, waterGoal   
 - Each dayId document field: date, id, name, unit, value  
@@ -357,21 +358,22 @@ If the user changes the value of the slider in a tile and presses 'Confirm', the
 ### Delete Data  
 Before an account can be deleted, the user has to sign in again to confirm their identity. A modal will pop up to allow this. Login rules are the same as in the Login page. Deleting an account will delete the user’s data from Firebase authentication, Firestore database and Realtime database. In the Firestore database, the userId collection for that user will be deleted. 
 
-**--> Watch a demo video of User Collection: [Firestore User 📺]()**  
-**--> Watch a demo video of Habits Collection: [Firestore Habits 📺]()**
+**--> Watch a demo video of User Collection: [Firestore User 📺](https://drive.google.com/file/d/18yV1PlLZtKF6YFBHQ_aIqclHnYMsBY4I/view?usp=sharing)**  
+**--> Watch a demo video of Habits Collection: [Firestore Habits 📺](https://drive.google.com/file/d/1i71MfNZnemTmHp_y3Az5K5KGqVj-aeVo/view?usp=sharing)**
 
 ### Firebase Realtime Database  
+![Firebase Realtime Database](./readme_assets/firebase/RealtimeDatabase.png)  
 After the user registers their details in the Profile page, these details (email, username, favourite quote, goals) will be stored in the Realtime Database. Every user is assigned a default profile picture upon registration, which is also recorded in the Realtime Database.  
 
 Upon updating email, username or favourite quote, the changes will be recorded in the Realtime Database and immediately reflected in the Drawer of the app. Changes to goals will be recorded to adjust the details in the View Details page when calculating the user's progress as a percentage.
 
-![Firebase Realtime Database](./readme_assets/firebase/RealtimeDatabase.png)
+**--> Watch a demo video of Realtime Database: [Firebase Realtime Database 📺](https://drive.google.com/file/d/1i71MfNZnemTmHp_y3Az5K5KGqVj-aeVo/view?usp=sharing)** 
 
 ## 5. Testing 
 
 We performed unit, integration, end-to-end, system and user (usability) testing in Orbital. 
 
-**[Read the Testing documentation.](https://docs.google.com/document/d/1C29gLA-c5yeohHu0ahHg1QZRiEsqnHGG6vKC9_89wVk/edit)**
+**[Read the Testing documentation.](https://drive.google.com/file/d/1G0q_GlozJvwva5pIhhfdtRXYqG12mZl_/view?usp=sharing)**
 
 # Timeline and Progress Chart
 
@@ -379,7 +381,7 @@ We performed unit, integration, end-to-end, system and user (usability) testing 
 **Liftoff:** 9 - 16 May 2022  
 **Milestone 1:** 16 - 30 May 2022  
 **Milestone 2:** 30 May - 27 June 2022  
-**Milestone 3:** 27 June - 25 July 2022  
+**Milestone 3:** 27 June - 25 July 2022   
 **Splashdown:** 25 July - 24 August 2022 
 
 ## Progress Chart of Track My Day 
