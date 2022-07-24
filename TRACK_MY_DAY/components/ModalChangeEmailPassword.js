@@ -20,7 +20,7 @@ export default function ModalChangeEmailPassword() {
             const user = userCredential.user;
             console.log("Login : " + user.email); 
             // allow change of email and password if correct login details
-            user.email &&  navigation.navigate("ChangeNameAndPassword")
+            user.email &&  navigation.navigate("ChangeEmailAndPassword")
           })
           .catch((error) => {
             if (error.code === 'auth/invalid-email') {
