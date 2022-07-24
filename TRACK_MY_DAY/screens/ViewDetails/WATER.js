@@ -15,7 +15,6 @@ const WATER = () => {
 
     const [ourData, setOurData] = useState([0]);
     const [average, setAverage] = useState(0);
-    const [waterGoal, setWaterGoal] = useState(0);
     const [dateArray, setDateArray] = useState([]);
 
     const getDays = async () => {
@@ -27,9 +26,9 @@ const WATER = () => {
             arr.push(doc.data().value)
 
             // push only if goal is met for the day
-            if (doc.data().value >= waterGoal) {
-              dateArr.push(doc.data().date.toDate())
-            }
+            if (doc.data().value >= getGoal()) {
+              dateArr.push(doc.data().date.toDate());
+            };
         };
 
         setOurData(arr.slice(0, -1)); // remove last item because it's 0 for next day
@@ -44,21 +43,23 @@ const WATER = () => {
         setAverage(sum/(arr.length - 1)); // -1 because last item is for the next day
     };
 
-    const getData = () => {
+    const getGoal = () => {
       const db = getDatabase();
       const usernameRef = ref(db, 'users/' + user.uid);
+      let waterGoal = 0;
       onValue(usernameRef, (snapshot) => {
         const data = snapshot.val();
-        setWaterGoal(data.waterGoal);
+        waterGoal = data.waterGoal;
       });
-    }
+      return waterGoal;
+    };
 
     useEffect(() => {
-        getDays();
-        getData();
+      getGoal();
+      getDays();
     }, [])
 
-    const percentage = (average/waterGoal) * 100;
+    const percentage = (average/getGoal()) * 100;
     
     const screenWidth = Dimensions.get("window").width;
 
@@ -98,10 +99,21 @@ const WATER = () => {
       };
 
     // Contribution Graph
-    const calendarData = [];
+    function formatTime(time) {
+      let year = time.getFullYear().toLocaleString();
+      let month = (time.getMonth() + 1).toLocaleString();
+      let day = time.getDate().toLocaleString();
 
+      month = month < 10 ? "0" + month : month;
+      day = day < 10 ? "0" + day : day;
+      var yymmdd = year + "-" + month + "-" + day;
+      
+      return yymmdd;
+    }
+
+    const calendarData = [];
     for (let i of dateArray) {
-      calendarData.push({date: i, count: 1 });
+      calendarData.push({date: formatTime(i), count: 1 });
     };
 
 
@@ -118,7 +130,7 @@ const WATER = () => {
           radius={75}
           duration={1000}
           progressValueColor={'black'}
-          maxValue={waterGoal} // goal amt
+          maxValue={getGoal()} // goal amt
           title={'LITRES'}
           titleColor={'#232323'}
           titleStyle={{fontWeight: 'bold'}}
