@@ -15,28 +15,21 @@ const READ = () => {
 
     const [ourData, setOurData] = useState([0]);
     const [average, setAverage] = useState(0);
-    const [readGoal, setReadGoal] = useState(0);
     const [dateArray, setDateArray] = useState([]);
-
-    function convertUTCDateToLocalDate(date) {
-      var newDate = new Date(date.getTime() - date.getTimezoneOffset()*60*1000);
-      return newDate;   
-    }
 
     const getDays = async () => {
         const colRef = await getDocs(collection(db, "users", user.uid, "habits", "READ", "days"));
         let arr = [];
         let dateArr = [];
-        
+         
         for (let doc of colRef.docs) {
-            arr.push(doc.data().value)
+          arr.push(doc.data().value)
 
-            // push only if goal is met for the day
-            if (doc.data().value >= readGoal) {
-              let convertedDate = convertUTCDateToLocalDate(doc.data().date.toDate());
-              dateArr.push(convertedDate);
-            }
-        };
+          // push only if goal is met for the day
+          if (doc.data().value >= getGoal()) {
+            dateArr.push(doc.data().date.toDate());
+          };
+      };
 
         setOurData(arr.slice(0, -1)); // remove last item because it's 0 for next day
         setDateArray(dateArr);
@@ -50,21 +43,23 @@ const READ = () => {
         setAverage(sum/(arr.length - 1)); // -1 because last item is for the next day
     };
 
-    const getData = () => {
+    const getGoal = () => {
       const db = getDatabase();
       const usernameRef = ref(db, 'users/' + user.uid);
+      let readGoal = 0;
       onValue(usernameRef, (snapshot) => {
         const data = snapshot.val();
-        setReadGoal(data.readGoal);
+        readGoal = data.readGoal;
       });
-    }
+      return readGoal;
+    };
 
     useEffect(() => {
-        getDays();
-        getData();
+      getGoal();
+      getDays();
     }, [])
 
-    const percentage = (average/readGoal) * 100;
+    const percentage = (average/getGoal()) * 100;
     
     const screenWidth = Dimensions.get("window").width;
 
@@ -104,10 +99,21 @@ const READ = () => {
       };
 
     // Contribution Graph
-    const calendarData = [];
+    function formatTime(time) {
+      let year = time.getFullYear().toLocaleString();
+      let month = (time.getMonth() + 1).toLocaleString();
+      let day = time.getDate().toLocaleString();
 
+      month = month < 10 ? "0" + month : month;
+      day = day < 10 ? "0" + day : day;
+      var yymmdd = year + "-" + month + "-" + day;
+      
+      return yymmdd;
+    }
+
+    const calendarData = [];
     for (let i of dateArray) {
-      calendarData.push({date: i, count: 1 });
+      calendarData.push({date: formatTime(i), count: 1 });
     };
 
 
@@ -124,7 +130,7 @@ const READ = () => {
           radius={75}
           duration={1000}
           progressValueColor={'black'}
-          maxValue={readGoal} // goal amt
+          maxValue={getGoal()} // goal amt
           title={'HOURS'}
           titleColor={'#232323'}
           titleStyle={{fontWeight: 'bold'}}
