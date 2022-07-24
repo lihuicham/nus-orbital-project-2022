@@ -48,9 +48,9 @@
 # Important Links & Documents  
 **[1. GitHub Repository & README](https://github.com/lihuicham/nus-orbital-project-2022)**  
 
-**[2. Track My Day App Poster]()**  
+**[2. Project Poster](https://drive.google.com/file/d/1RTQBezcj5NqdyEZmqj8GT3y1Tgt8y9dX/view?usp=sharing)**  
 
-**[3. Track My Day App Video 📺]()**  
+**[3. Project Video 📺]()**  
 
 **[4. Project Log](https://docs.google.com/document/d/1lzUOJ71JTVQP_y-cWFw_vw1JclCSUFteBu6YtgPo6-A/edit)**  
 
@@ -407,9 +407,13 @@ We used these tools to create the project:
 - Version control with Git  
 
 # Conclusion 
-  
+Finally, we reach the end of Orbital. We never thought that we are capable of building an app on our own given our limited knowledge in programming. We would like to express our gratitude to all mentors, peers and moderators of NUS Orbital 2022. Through this project, we gain tremendous knowledge and precious experience in the software engineering field. After completing Orbital, we are now more prepared for future challenges to us and Track My Day. 
 
-![Milestone 3 Poster]()
+We welcome you to [download]() Track My Day on your mobile device and hope you enjoy the app's experience. A summary of the documentation is presented as our [project poster](https://drive.google.com/file/d/1RTQBezcj5NqdyEZmqj8GT3y1Tgt8y9dX/view?usp=sharing). To understand how Track My Day works, you can [watch the project demo video](). If you are interested in our journey of creating Track My Day app and participating in Orbital, you can [read our blog post](https://medium.com/@lihuicham/our-journey-of-creating-a-mobile-app-11968f0ccb93). Alternatively, you can view all Orbital submission files in the About Us page in Track My Day app. 
+
+By Cham Li Hui & Pwint Thiri Ko, July 2022. 
+
+
 
 
 
