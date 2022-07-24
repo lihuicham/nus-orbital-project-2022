@@ -5,7 +5,7 @@ import { collection } from 'firebase/firestore';
 import { getAuth, updateEmail, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
 import { getDatabase, ref, update } from "firebase/database";
 
-export default function ChangeNameAndPassword({ navigation }) {
+export default function ChangeEmailAndPassword({ navigation }) {
   const toLogin = () => {
     navigation.replace("Login");
   };

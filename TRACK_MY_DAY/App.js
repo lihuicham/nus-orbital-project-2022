@@ -13,7 +13,7 @@ import LoginStackScreen from "./routes/LoginStackScreen";
 import NotesListStackScreen from './routes/NotesListStackScreen';
 import SettingStackScreen from './routes/SettingsStackScreen';
 import ToDoStackScreen from './routes/ToDoStackScreen';
-import Dashboard from "./screens/Dashboard";
+import Habits from "./screens/Habits";
 import Profile from "./screens/Profile";
 import AboutUs from "./screens/AboutUs";
 import FAQ from "./screens/FAQ";

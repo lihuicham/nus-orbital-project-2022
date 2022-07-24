@@ -1,24 +1,10 @@
 # NUS ORBITAL PROJECT 2022 - Track My Day 
 ### **An Orbital project by Cham Li Hui and Pwint Thiri Ko.**  
-**[Github Repository](https://github.com/lihuicham/nus-orbital-project-2022)**    
 
-**[Google Drive for Milestone 3](https://drive.google.com/drive/folders/1hbSiGgI8AQzhq_WigtTu3QDPAddWhNlb?usp=sharing)**  
-
-**[Track My Day App Video 📺]()**  
-
-Proof of Concept: **[Track My Day APK file]()** - please download it using your mobile device, you can access the file via our google drive (on your phone) and download it. It will show up as a mobile application on your phone screen. Click the app and try out Track My Day.  
-
-**Sample account** with saved data for habits to display visualisation:  
-email: hearts@gmail.com  
-password: 123456  
-
-_The profile picture is not going to appear on this account (we'll figure out how to fix it later!) but uploading a profile picture works. If you create a new account, you will be able to see a default profile picture and change it as well._
-
-_Note:  
-We recommend viewing our **GitHub README** for the latest update of the app.  
-To view a collection of images, demo videos, project log, poster and full video of the app, visit our **Google Drive**. For best viewing experience (high resolution), watch the videos in full screen._
+![Track My Day](./readme_assets/diagrams/trackmyday.png)
   
   # Table of Contents  
+  - [Important Links & Documents](#important-links--documents)
   - [What's new in Milestone 3?](#whats-new-in-milestone-3)
   - [Project Introduction](#project-introduction)  
       - [Team Information](#team-information)  
@@ -26,6 +12,9 @@ To view a collection of images, demo videos, project log, poster and full video 
       - [Aim & Vision](#aim--vision)  
       - [User Stories & Experience](#user-stories--experience)  
       - [Project Scope](#project-scope)
+  - [Concept Diagrams](#concept-diagrams)  
+      - [Component Interaction](#component-interaction)  
+      - [User Flow Map](#user-flow-map)
   - [Features](#features)  
       - [Authentication](#1-authentication)  
           - [Authentication](#authentication)  
@@ -35,42 +24,70 @@ To view a collection of images, demo videos, project log, poster and full video 
           - [Profile Page](#profile-page)  
           - [Delete Account](#delete-account)  
       - [Core Features](#2-core-features-of-app)  
-          - [Tiles (Home Page)](#tiles-home-page)  
+          - [Habits (Home Page)](#habits-home-page)  
           - [Notes & To-Do List](#notes--to-do-list)  
           - [Drawer](#drawer)  
           - [User Details](#user-details)  
           - [Navigation](#navigation)  
           - [Settings](#settings)  
-      - [Extended Features of App](#3-extended-features-of-app)  
+      - [Extended Features](#3-extended-features-of-app)  
           - [View Details Page](#view-details-page)  
           - [About Us Page](#about-us-page)  
           - [FAQ Page](#faq-page)  
           - [Notifications](#notifications)   
-  - [Firestore Database](#firestore-database)  
-      - [Structure of Data](#structure-of-data)  
-      - [Create Data](#create-data)  
-      - [Read Data](#read-data)  
-      - [Update Data](#update-data)  
-      - [Delete Data](#delete-data)  
-  - [Firebase Realtime Database](#firebase-realtime-database)  
-  - [Diagrams](#concept-diagrams)  
-      - [Component Interaction](#component-interaction)  
-      - [User Flow Map](#user-flow-map)
+  - [Backend Database](#4-backend-database)  
+      - [Firebase Firestore Database](#firebase-firestore-database)  
+      - [Firebase Realtime Database](#firebase-realtime-database)  
   - [Testing](#testing)  
-      - [Unit Testing](#unit-testing)  
-      - [Integration Testing](#integration-testing)  
-      - [End-to-end (E2E) Testing](#end-to-end-e2e-testing)  
-      - [System Testing](#system-testing)  
-  - [Demo Video of Full App](#demo-video-of-full-app)  
   - [Timeline and Progress Chart](#timeline-and-progress-chart)  
-  - [Project Log](#project-log)  
   - [Tech Stack](#tech-stack) 
-  - [Software Engineering Practices](#software-engineering-practices)    
-  - [Milestone 3 Poster](#milestone-3-poster)  
-    
+  - [Software Engineering Practices](#software-engineering-practices)   
+  - [Conclusion](#conclusion)
 <br> 
 
+# Important Links & Documents  
+**[1. GitHub Repository & README](https://github.com/lihuicham/nus-orbital-project-2022)**  
+
+**[2. Project Poster](https://drive.google.com/file/d/1RTQBezcj5NqdyEZmqj8GT3y1Tgt8y9dX/view?usp=sharing)**  
+
+**[3. Project Video 📺]()**  
+
+**[4. Project Log](https://docs.google.com/document/d/1lzUOJ71JTVQP_y-cWFw_vw1JclCSUFteBu6YtgPo6-A/edit)**  
+
+**[5. Milestone 3 Google Drive Folder](https://drive.google.com/drive/folders/1hbSiGgI8AQzhq_WigtTu3QDPAddWhNlb?usp=sharing)**
+
+**[6. Proof of Concept: Download Track My Day App]()**  
+Please download the APK file using your mobile device (e.g. phone), you can access the file via our google drive (Milestone 3 Skylab Submission folder) and download it. It will show up as a regular mobile application on your phone screen. Launch the app and try out Track My Day !  
+
+To view *data visualizations* (View Details page) of habits, we provide a sample account below that has pre-recorded user and habits data.  
+
+**Sample account:**    
+Email: hearts@gmail.com  
+Password: 123456  
+
+However, to enjoy the full experience of using Track My Day, we encourage you to create a new account via the Registration page.  
+
+Note: For the sample account, the profile picture is not going to appear when log in. To try out the profile picture feature, do create a new account and upload your own picture. You can edit your profile picture too. 
+
+
+**[7. Special: Read our journey of creating Track My Day](https://medium.com/@lihuicham/our-journey-of-creating-a-mobile-app-11968f0ccb93)**  
+Li Hui and Hazel wrote a blog post to share their Orbital journey and some behind-the-scenes stories in developing Track My Day.  
+<br>
+
+
 # What's New in Milestone 3?
+- Diagrams for Component Interaction & User Flow Map in README
+- Password toggle visibility 
+- Upload profile picture  
+- Realtime database 
+- New version of Notes page 
+- New version of View Details page with progress indicator and charts (data visualizations)
+- About Us page 
+- FAQ page
+- User (Usability) Testing  
+- Updated project poster for Milestone 3
+- Updated project demo video (full) for Milestone 3 
+- Special: A blog post about the journey of developing Track My Day  
 
 # Project Introduction
 ## Team Information  
@@ -104,12 +121,21 @@ The scope of our project can be divided into 5 parts. Click the links to jump to
 
 1. **[Authentication:](#1-authentication)** Authentication, Login, Registration, Forgot Password, Profile pages and Delete Account
 2. **[Core Features:](#2-core-features-of-app)** Home page, Notes page, To-do list page, Drawer**, Navigation, Settings
-3. **[Extended Features:](#3-extended-features-of-app)** Notification, View details (Calendar & Analysis), Share Your Progress  
-4. **[Firebase Firestore (database):](#4-firebase-firestore-database)** Structure of Data, Create Data, Read Data, Update Data, Delete Data 
-5. [**Testing:**](#5-testing) Unit, Integration, End-to-end (E2E), System, User Testing 
+3. **[Extended Features:](#3-extended-features-of-app)** View details (Data Visualization), About Us page, FAQ page, Notifications
+4. **[Backend Database: ](#4-backend-database)** Firebase Firestore, Realtime database
+5. **[Testing: ](#5-testing)** Unit, Integration, End-to-end (E2E), System, User (Usability) Testing 
 
 ** _Note: Drawer includes user details, navigation tabs, report issues and log out._
 <br><br>
+
+## Concept Diagrams  
+### Component Interaction  
+This diagram shows the interaction of the files in the app.
+![Component Interaction Diagram](./readme_assets/diagrams/ComponentInteraction.png)
+
+### User Flow Map  
+The User Flow Map depicts the possible actions a user can take in our app and the results.
+![User Flow Map](./readme_assets/diagrams/UserFlowMap.png)
 
 # Features
 ## 1. Authentication 
@@ -172,7 +198,7 @@ After logging in, there will be an alert to remind the user that deleting the ac
 
 ![Home](./readme_assets/compiled-images/Home.png)
 
-### Tiles (Home Page)
+### Habits (Home page)
 The home page serves the main function of this app - tracking habits. The trackers include water tracker, sleep tracker, read tracker etc. We redesigned the home page in Milestone 2. We call the home page - “Tiles”, named according to the appearance and layout of the trackers in the home page.  
 
 The trackers can have different units and maximum values e.g. 24 hours, 10 liters, 50 kilograms and so on. This allows the trackers to be flexible in tracking all sorts of habits. Other than default trackers, users can customize their own trackers too.  
@@ -202,9 +228,7 @@ Current progress: Both pages completed with full functions.
 #### Notes  
 For notes, the user can add (save), edit and delete notes. When the “+” button at the bottom right corner is clicked, a new page (which is a modal) for adding & editing the notes will be visible. All notes are arranged in one screen and users can scroll to view their notes. Users can also choose to view the notes in “Full View” or “List View” (collapsed notes).  
 
-**--> Watch a demo video of Notes: [Notes 📺](https://drive.google.com/file/d/1qhzXf-iBGun7XZjSQATp-M0N9kCZG8qk/view?usp=sharing)**    
-
-<br>
+**--> Watch a demo video of Notes: [Notes 📺](https://drive.google.com/file/d/1qhzXf-iBGun7XZjSQATp-M0N9kCZG8qk/view?usp=sharing)**  
 
 #### To-Do List
 Users can add a new todo item by typing in the text box and pressing the “+” button. Users can delete individual todo items by tapping on each of them.  
@@ -225,8 +249,6 @@ Report Issues button will open the default mailing app on the user’s phone (e.
 **Current Progress:** Navigation tabs are completed and working. Report Issue and Log Out button are completed and working. UI design of drawer completed.  
 
 **--> Watch a demo video of Drawer: [Drawer 📺](https://drive.google.com/file/d/1qiom-aAh2lUH_4pg5RtMkqOxREYMw7xt/view?usp=sharing)**  
-
-![Drawer](./readme_assets/Drawer.jpg)  
 
 ### User Details  
 When a new accout is created, the default profile picture will be applied. The user can change their profile picture by clicking on the camera icon beside the profile picture.  
@@ -293,7 +315,9 @@ We used local push notifications via Expo CLI for the app’s notification. The 
 
 **Current Progress:** Completed. Toggling on/off is not yet complete.  
 
-# Firestore Database  
+## 4. Backend Database  
+
+### Firebase Firestore Database 
 
 ### Structure of Data  
 - db/users/{userId}/habits/{habitName}/days/{dayId} in Firestore database  
@@ -303,8 +327,16 @@ We used local push notifications via Expo CLI for the app’s notification. The 
 - Each userId document field: birthday, exerciseGoal, favQuote, id, sleepGoal, studyGoal, username, waterGoal   
 - Each dayId document field: date, id, name, unit, value  
 
-### Create Data  
+**Users Collection**  
+![FirestoreUsers](./readme_assets/firebase/FirestoreUsers.png)  
 
+**Habits Collection**  
+![FirestoreHabits](./readme_assets/firebase/FirestoreHabits.PNG)  
+
+**Days Collection** 
+![FirestoreDays](./readme_assets/firebase/FirestoreDays.PNG) 
+
+### Create Data  
 A new 'userId' document with a unique document ID is created when a new user registers their personal details.  
 
 The fields of this document will contain all the information filled up from the Profile page during registration. The randomly generated uid of each user is used as the document ID to allow read, delete or update operations on the user's information.  
@@ -313,136 +345,51 @@ The 'habits' collection is created when the user logs the first habit. When the 
 
 Since the date of day is used as the document's id, it is unique. Hence, if a user changes the value within 24 hours, the same document will be updated and no new documents will be created.
 
-![Firestore](./readme_assets/Firestore.png)
-![Firestore Habits](./readme_assets/FirestoreHabits.png)
-
 
 ### Read Data  
-
 Data from the 'habits' collection is used in the 'View Details' page. The 'value' field is used to calculate the user's average progress. For instance, if the habit is EXERCISE, the data logged in the value fields for all the days will be added up and divided by the number of days to show their average progress, which is then used in the circular progress chart. Days data is used in the calendar to show the days that the user has achieved their goal as well as in the line chart to show the user's value logged daily.  
 
 ### Update Data  
-
 The user updates their personal details on a separate page under ‘Settings’. Clicking a specific update button will update the corresponding field in the Firebase database. Before the user can change their email address or password, they will be prompted to sign in again. Login rules are the same as in the Login page. The user’s email will be updated via Firebase authentication as well as in the Realtime database.  
 
 If the user changes the value of the slider in a tile and presses 'Confirm', the habit data for that day will change to reflect the new value in the 'value' field of the dayId document. If the user logs a habit multiple times on one day, only the last log will be considered.
 
-### Delete Data: 
-
+### Delete Data  
 Before an account can be deleted, the user has to sign in again to confirm their identity. A modal will pop up to allow this. Login rules are the same as in the Login page. Deleting an account will delete the user’s data from Firebase authentication, Firestore database and Realtime database. In the Firestore database, the userId collection for that user will be deleted. 
 
-**--> Watch a demo video of Firestore (User): [Firestore User 📺]()**  
-**--> Watch a demo video of Firestore (Habits): [Firestore Habits 📺]()**  
+**--> Watch a demo video of User Collection: [Firestore User 📺]()**  
+**--> Watch a demo video of Habits Collection: [Firestore Habits 📺]()**
 
-# Firebase Realtime Database  
-
+### Firebase Realtime Database  
 After the user registers their details in the Profile page, these details (email, username, favourite quote, goals) will be stored in the Realtime Database. Every user is assigned a default profile picture upon registration, which is also recorded in the Realtime Database.  
 
 Upon updating email, username or favourite quote, the changes will be recorded in the Realtime Database and immediately reflected in the Drawer of the app. Changes to goals will be recorded to adjust the details in the View Details page when calculating the user's progress as a percentage.
 
-![Firebase Realtime Database](./readme_assets/RealtimeDatabase.png)
+![Firebase Realtime Database](./readme_assets/firebase/RealtimeDatabase.png)
 
+## 5. Testing 
 
-## Concept Diagrams  
-### Component Interaction  
-This diagram shows the interaction of the files in the app.
-![Component Interaction Diagram](./readme_assets/ComponentInteraction.png)
+We performed unit, integration, end-to-end, system and user (usability) testing in Orbital. 
 
-### User Flow Map  
-The User Flow Map depicts the possible actions a user can take in our app and the results.
-![User Flow Map](./readme_assets/UserFlowMap.png)
+**[Read the Testing documentation.](https://docs.google.com/document/d/1C29gLA-c5yeohHu0ahHg1QZRiEsqnHGG6vKC9_89wVk/edit)**
 
-# Testing 
+# Timeline and Progress Chart
 
-### Unit Testing 
-Note column:
-1. Specific reason on testing (if not obvious)
-2. Testing steps (if not obvious) 
-3. Plan to improve (if pass)
-4. Expected results (if fail)
-
-![Unit Test 1](./readme_assets/UnitTest1.png)
-![Unit Test 2](./readme_assets/UnitTest2.png)
-![Unit Test 3](./readme_assets/UnitTest3.png)
-![Unit Test 4](./readme_assets/UnitTest4.png)
-![Unit Test 5](./readme_assets/UnitTest5.png)
-![Unit Test 6](./readme_assets/UnitTest6.png)
-![Unit Test 7](./readme_assets/UnitTest7.png)
-![Unit Test 8](./readme_assets/UnitTest8.png)
-![Unit Test 9](./readme_assets/UnitTest9.png)
-![Unit Test 10](./readme_assets/UnitTest10.png)
-
-### Integration Testing 
-![Int Test 1](./readme_assets/IntTest1.png)
-![Int Test 2](./readme_assets/IntTest2.png)
-![Int Test 3](./readme_assets/IntTest3.png)
-![Int Test 4](./readme_assets/IntTest4.png)
-![Int Test 5](./readme_assets/IntTest5.png)
-![Int Test 6](./readme_assets/IntTest6.png)
-![Int Test 7](./readme_assets/IntTest7.png)
-![Int Test 8](./readme_assets/IntTest8.png)
-![Int Test 9](./readme_assets/IntTest9.png)
-![Int Test 10](./readme_assets/IntTest10.png)
-
-
-### End-to-end (E2E) Testing 
-
-E2E Testing starts from the end user’s perspective and simulates real-world scenarios. This testing aims to validate the system under test and its components for integration and data integrity. 
-![E2E Test 1](./readme_assets/E2E1.png)
-![E2E Test 2](./readme_assets/E2E2.png)
-![E2E Test 3](./readme_assets/E2E3.png)
-![E2E Test 4](./readme_assets/E2E4.png)
-![E2E Test 5](./readme_assets/E2E5.png)
-![E2E Test 6](./readme_assets/E2E6.png)
-![E2E Test 7](./readme_assets/E2E7.png)
-![E2E Test 8](./readme_assets/E2E8.png)
-![E2E Test 9](./readme_assets/E2E9.png)
-
-
-
-### System Testing 
-Types of Testing: 
- 
-![System Test 1](./readme_assets/SystemTest1.png)  
-
-Tested types of System Testing:  
-
-![System Test 2](./readme_assets/SystemTest2.png)
-![System Test 3](./readme_assets/SystemTest3.png)
-![System Test 4](./readme_assets/SystemTest4.png)
-![System Test 5](./readme_assets/SystemTest5.png)
-
-
-### User Testing
-To be completed in Milestone 3
-
-
-## Demo Video of Full App 
-**[Track My Day 📺]()**
-
-## Timeline and Progress Chart
-
-### Orbital 2022 Timeline 
+## Orbital 2022 Timeline 
 **Liftoff:** 9 - 16 May 2022  
 **Milestone 1:** 16 - 30 May 2022  
 **Milestone 2:** 30 May - 27 June 2022  
 **Milestone 3:** 27 June - 25 July 2022  
 **Splashdown:** 25 July - 24 August 2022 
 
-### Progress Chart of Track My Day 
-![Progress Chart](./readme_assets/Progress.png)
+## Progress Chart of Track My Day 
+![Progress Chart](./readme_assets/diagrams/Progress.png)
 
-### Project Log
-Project Log provides description on the tasks distribution of Cham Li Hui and Pwint Thiri Ko and their respective time spent on developing the app.  
-
-**[Read our Project Log](https://docs.google.com/document/d/1lzUOJ71JTVQP_y-cWFw_vw1JclCSUFteBu6YtgPo6-A/edit?usp=sharing)**
-
-
-## Tech Stack  
+# Tech Stack  
 We used these tools to create the project:  
 
 - Development: React Native, React Native Navigation 
-- Backend database: Firebase Authentication, Firestore, Firebase Realtime Database
+- Backend database: Firebase Authentication, Firestore, Realtime database
 - Languages: JavaScript, HTML, CSS  
 - UI design: dopelycolors, icons8, OUCH
 - Version Control: Git, GitHub 
@@ -450,18 +397,23 @@ We used these tools to create the project:
 - CLI: Expo  
 - Poster & Video: Canva, Adobe Premiere Pro 
 
-## Software Engineering Practices  
+# Software Engineering Practices  
 - Iterative development  
 - Follow the 'KISS' principle  
 - Readable code  
-- Unit, Integration, E2E, System Testing  
+- Unit, Integration, E2E, System and User (Usability) Testing  
 - Error messages that are easy to understand  
 - Presence of 'Cancel' and 'Back' buttons  
-- Minimalistic design  
 - Version control with Git  
 
-## Milestone 3 Poster 
-![Milestone 3 Poster]()
+# Conclusion 
+Finally, we reach the end of Orbital. We never thought that we are capable of building an app on our own given our limited knowledge in programming. We would like to express our gratitude to all mentors, peers and moderators of NUS Orbital 2022. Through this project, we gain tremendous knowledge and precious experience in the software engineering field. After completing Orbital, we are now more prepared for future challenges to us and Track My Day. 
+
+We welcome you to [download]() Track My Day on your mobile device and hope you enjoy the app's experience. A summary of the documentation is presented as our [project poster](https://drive.google.com/file/d/1RTQBezcj5NqdyEZmqj8GT3y1Tgt8y9dX/view?usp=sharing). To understand how Track My Day works, you can [watch the project demo video](). Additionally, you can [view our project log](https://docs.google.com/document/d/1lzUOJ71JTVQP_y-cWFw_vw1JclCSUFteBu6YtgPo6-A/edit) to know the working hours and allocated tasks for each member. If you are interested in our journey of creating Track My Day app and participating in Orbital, you can [read our blog post](https://medium.com/@lihuicham/our-journey-of-creating-a-mobile-app-11968f0ccb93). Alternatively, you can view all Orbital submission files in the About Us page in Track My Day app. 
+
+By Cham Li Hui & Pwint Thiri Ko, July 2022. 
+
+
 
 
 

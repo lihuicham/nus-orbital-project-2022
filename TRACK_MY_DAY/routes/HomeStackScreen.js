@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import Dashboard from "../screens/Dashboard";
+import Habits from "../screens/Habits";
 import EXERCISE from "../screens/ViewDetails/EXERCISE";
 import PETTIME from "../screens/ViewDetails/PETTIME";
 import READ from "../screens/ViewDetails/READ";
@@ -13,7 +13,7 @@ const HomeStack = createStackNavigator();
 const HomeStackScreen = () => {
     return (
         <HomeStack.Navigator screenOptions={{headerShown:false, headerStyle: {backgroundColor: "#264653"}, headerTintColor: "#fff"}}>
-            <HomeStack.Screen name="Home" component={Dashboard} options={{title: "Home"}}/>
+            <HomeStack.Screen name="Home" component={Habits} options={{title: "Home"}}/>
             <HomeStack.Screen name="EXERCISE" component={EXERCISE} options={{title: "EXERCISE"}} />
             <HomeStack.Screen name="PETTIME" component={PETTIME} options={{title: "PETTIME"}} />
             <HomeStack.Screen name="READ" component={READ} options={{title: "READ"}} />
