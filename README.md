@@ -39,11 +39,6 @@
       - [Firebase Firestore Database](#firebase-firestore-database)  
       - [Firebase Realtime Database](#firebase-realtime-database)  
   - [Testing](#testing)  
-      - [Unit Testing](#unit-testing)  
-      - [Integration Testing](#integration-testing)  
-      - [End-to-end (E2E) Testing](#end-to-end-e2e-testing)  
-      - [System Testing](#system-testing)  
-      - [User Testing](#user-testing)
   - [Timeline and Progress Chart](#timeline-and-progress-chart)  
   - [Tech Stack](#tech-stack) 
   - [Software Engineering Practices](#software-engineering-practices)   
@@ -51,7 +46,7 @@
 <br> 
 
 # Important Links & Documents  
-**[1. GitHub Repository](https://github.com/lihuicham/nus-orbital-project-2022)**  
+**[1. GitHub Repository & README](https://github.com/lihuicham/nus-orbital-project-2022)**  
 
 **[2. Track My Day App Poster]()**  
 
@@ -233,9 +228,7 @@ Current progress: Both pages completed with full functions.
 #### Notes  
 For notes, the user can add (save), edit and delete notes. When the “+” button at the bottom right corner is clicked, a new page (which is a modal) for adding & editing the notes will be visible. All notes are arranged in one screen and users can scroll to view their notes. Users can also choose to view the notes in “Full View” or “List View” (collapsed notes).  
 
-**--> Watch a demo video of Notes: [Notes 📺](https://drive.google.com/file/d/1qhzXf-iBGun7XZjSQATp-M0N9kCZG8qk/view?usp=sharing)**    
-
-<br>
+**--> Watch a demo video of Notes: [Notes 📺](https://drive.google.com/file/d/1qhzXf-iBGun7XZjSQATp-M0N9kCZG8qk/view?usp=sharing)**  
 
 #### To-Do List
 Users can add a new todo item by typing in the text box and pressing the “+” button. Users can delete individual todo items by tapping on each of them.  
@@ -376,37 +369,20 @@ Upon updating email, username or favourite quote, the changes will be recorded i
 
 ## 5. Testing 
 
-### Unit Testing 
-Note column:
-1. Specific reason on testing (if not obvious)
-2. Testing steps (if not obvious) 
-3. Plan to improve (if pass)
-4. Expected results (if fail)
+We performed unit, integration, end-to-end, system and user (usability) testing in Orbital. 
 
-
-### Integration Testing 
-
-
-### End-to-end (E2E) Testing 
-
-
-### System Testing 
-
-
-### User Testing
-To be completed in Milestone 3
-
+**[Read the Testing documentation.](https://docs.google.com/document/d/1C29gLA-c5yeohHu0ahHg1QZRiEsqnHGG6vKC9_89wVk/edit)**
 
 # Timeline and Progress Chart
 
-### Orbital 2022 Timeline 
+## Orbital 2022 Timeline 
 **Liftoff:** 9 - 16 May 2022  
 **Milestone 1:** 16 - 30 May 2022  
 **Milestone 2:** 30 May - 27 June 2022  
 **Milestone 3:** 27 June - 25 July 2022  
 **Splashdown:** 25 July - 24 August 2022 
 
-### Progress Chart of Track My Day 
+## Progress Chart of Track My Day 
 ![Progress Chart](./readme_assets/diagrams/Progress.png)
 
 # Tech Stack  
