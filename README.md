@@ -87,13 +87,13 @@ Li Hui and Hazel wrote a blog post to share their Orbital journey and some behin
 - Updated project demo video (full) for Milestone 3 
 - Special: A blog post about the journey of developing Track My Day  
 
-### Bugs squashed 
+### Bugs Squashed 
 - Delete button in Notes page is fixed. Notes page is revamped with new design. 
 - Each user has individual collection in database when created (each user is unique).
 - User details (e.g. login credentials and personal details) are sync to realtime database.
 - Data points in View Analytics charts are correctly presented in terms of date and time. 
 
-### Edge features developed 
+### Edge Features Developed  
 - Toggle password visibility (eye icon).
 - Mean, percentage difference, circular progress indicator and monthly progress chart (calendar) for data analytics and visualization in View Details page. 
 - Able to upload and re-upload profile picture in drawer via the camera icon.
