@@ -34,11 +34,15 @@ export default function CustomDrawer(props) {
       const usernameRef = ref(db, 'users/' + user.uid);
       onValue(usernameRef, (snapshot) => {
         const data = snapshot.val();
+        
+        if (data) {
         setUsername(data.username);
         setFavQuote(data.favQuote);
         setImage(data.profilePic);
+        }
       });
     }
+    console.log(user)
     
     useEffect(() => {
       try {

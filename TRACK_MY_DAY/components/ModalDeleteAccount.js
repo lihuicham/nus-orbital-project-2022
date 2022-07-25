@@ -93,7 +93,11 @@ export default function ModalDeleteAccount() {
 
     function deleteData () {
       const db = getDatabase();
-      remove(ref(db, 'users/' + user.uid));
+      remove(ref(db, 'users/' + user.uid))
+      .catch((error) => {
+        console.log(error);
+      });
+      
     }
 
 

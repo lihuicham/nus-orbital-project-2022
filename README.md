@@ -56,7 +56,7 @@
 
 **[5. Milestone 3 Google Drive Folder](https://drive.google.com/drive/folders/1hbSiGgI8AQzhq_WigtTu3QDPAddWhNlb?usp=sharing)**
 
-**[6. Proof of Concept: Download Track My Day App]()**  
+**[6. Proof of Concept: Download Track My Day App](https://drive.google.com/file/d/1h96ByWI4m1E9CScxBl9__jdGQK-J2-sU/view?usp=sharing)**  
 Please download the APK file using your mobile device (e.g. phone), you can access the file via our google drive (Milestone 3 Skylab Submission folder) and download it. It will show up as a regular mobile application on your phone screen. Launch the app and try out Track My Day !  
 
 To view *data visualizations* (View Details page) of habits, we provide a sample account below that has pre-recorded user and habits data.  
@@ -299,7 +299,9 @@ Once the user clicks the “View Details” button at the bottom right of the ic
 
 3. **Calendar:** Although our app tracks the daily progress of the user’s habits, we want a calendar to track the monthly progress of the user’s habits. Each day, a square will only be filled in when the user achieves their goal for the day. The calendar is designed for the visualization of the user’s progress and encourages the users to keep up with their streaks.   
 
-4. **Chart:** We use a line chart that shows the user’s progress in tracking his/her water consumption habit for visualization of analytics. The data for the line chart is read from the Firebase Firestore.
+4. **Chart:** We use a line chart that shows the user’s progress in tracking his/her water consumption habit for visualization of analytics. The data for the line chart is read from the Firebase Firestore.  
+
+_Note: The View Details pages for Social Media and Pet Time do not contain the calendar because this is not something people usually have goals for. These habits were created with the aim of allowing users to view the trends in their social media usage or time spent with their pets. Thus, only the progress chart and line chart are included since they are the more useful features._
 
 **Current Progress:** Completed.
 
