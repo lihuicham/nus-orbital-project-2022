@@ -75,7 +75,7 @@ Li Hui and Hazel wrote a blog post to share their Orbital journey and some behin
 
 # What's New in Milestone 3?
 - Diagrams for Component Interaction & User Flow Map in README
-- Password toggle visibility 
+- Toggle password visibility
 - Upload profile picture  
 - Realtime database 
 - New version of Notes page 
@@ -86,6 +86,19 @@ Li Hui and Hazel wrote a blog post to share their Orbital journey and some behin
 - Updated project poster for Milestone 3
 - Updated project demo video (full) for Milestone 3 
 - Special: A blog post about the journey of developing Track My Day  
+
+### Bugs squashed 
+- Delete button in Notes page is fixed. Notes page is revamped with new design. 
+- Each user has individual collection in database when created (each user is unique).
+- User details (e.g. login credentials and personal details) are sync to realtime database.
+- Data points in View Analytics charts are correctly presented in terms of date and time. 
+
+### Edge features developed 
+- Toggle password visibility (eye icon).
+- Mean, percentage difference, circular progress indicator and monthly progress chart (calendar) for data analytics and visualization in View Details page. 
+- Able to upload and re-upload profile picture in drawer via the camera icon.
+- Enhance users understanding to Track My Day with About Us and FAQ page. 
+
 
 # Project Introduction
 ## Team Information  
