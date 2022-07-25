@@ -39,7 +39,7 @@
   - [Backend Database](#4-backend-database)  
       - [Firebase Firestore Database](#firebase-firestore-database)  
       - [Firebase Realtime Database](#firebase-realtime-database)  
-  - [Testing](#testing)  
+  - [Testing](#5-testing)  
   - [Timeline and Progress Chart](#timeline-and-progress-chart)  
   - [Tech Stack](#tech-stack) 
   - [Software Engineering Practices](#software-engineering-practices)   
@@ -75,7 +75,7 @@ Li Hui and Hazel wrote a blog post to share their Orbital journey and some behin
 
 # What's New in Milestone 3?
 - Diagrams for Component Interaction & User Flow Map in README
-- Password toggle visibility 
+- Toggle password visibility
 - Upload profile picture  
 - Realtime database 
 - New version of Notes page 
@@ -86,6 +86,19 @@ Li Hui and Hazel wrote a blog post to share their Orbital journey and some behin
 - Updated project poster for Milestone 3
 - Updated project demo video (full) for Milestone 3 
 - Special: A blog post about the journey of developing Track My Day  
+
+### Bugs Squashed 
+- Delete button in Notes page is fixed. Notes page is revamped with new design. 
+- Each user has individual collection in database when created (each user is unique).
+- User details (e.g. login credentials and personal details) are sync to realtime database.
+- Data points in View Analytics charts are correctly presented in terms of date and time. 
+
+### Edge Features Developed  
+- Toggle password visibility (eye icon).
+- Mean, percentage difference, circular progress indicator and monthly progress chart (calendar) for data analytics and visualization in View Details page. 
+- Able to upload and re-upload profile picture in drawer via the camera icon.
+- Enhance users understanding to Track My Day with About Us and FAQ page. 
+
 
 # Project Introduction
 ## Team Information  
@@ -311,10 +324,12 @@ Sometimes, users may have questions or suggestions to improve our app. The FAQ p
 ### Notifications 
 We used local push notifications via Expo CLI for the app’s notification. The app will notify the user everyday at 9pm to use Track My Day.  
 
+**Current Progress:** Completed. Toggling on/off is not yet complete.  
+
 ### Error Handling  
 We replaced Firebase auto-generated messages to customized error messages for Track My Day. We made sure that all error messages and modals are appropriate and easy to understand. 
 
-**Current Progress:** Completed. Toggling on/off is not yet complete.  
+**Current Progress:** Completed.
 
 ## 4. Backend Database  
 
@@ -367,13 +382,13 @@ After the user registers their details in the Profile page, these details (email
 
 Upon updating email, username or favourite quote, the changes will be recorded in the Realtime Database and immediately reflected in the Drawer of the app. Changes to goals will be recorded to adjust the details in the View Details page when calculating the user's progress as a percentage.
 
-**--> Watch a demo video of Realtime Database: [Firebase Realtime Database 📺](https://drive.google.com/file/d/1i71MfNZnemTmHp_y3Az5K5KGqVj-aeVo/view?usp=sharing)** 
+**--> Watch a demo video of Realtime Database: [Firebase Realtime Database 📺](https://drive.google.com/file/d/1G0q_GlozJvwva5pIhhfdtRXYqG12mZl_/view?usp=sharing)** 
 
 ## 5. Testing 
 
 We performed unit, integration, end-to-end, system and user (usability) testing in Orbital. 
 
-**[Read the Testing documentation.](https://drive.google.com/file/d/1G0q_GlozJvwva5pIhhfdtRXYqG12mZl_/view?usp=sharing)**
+**[Read the Testing documentation.](https://docs.google.com/document/d/1C29gLA-c5yeohHu0ahHg1QZRiEsqnHGG6vKC9_89wVk/edit?usp=sharing)**
 
 # Timeline and Progress Chart
 
@@ -411,7 +426,9 @@ We used these tools to create the project:
 # Conclusion 
 Finally, we reach the end of Orbital. We never thought that we are capable of building an app on our own given our limited knowledge in programming. We would like to express our gratitude to all mentors, peers and moderators of NUS Orbital 2022. Through this project, we gain tremendous knowledge and precious experience in the software engineering field. After completing Orbital, we are now more prepared for future challenges to us and Track My Day. 
 
-We welcome you to [download]() Track My Day on your mobile device and hope you enjoy the app's experience. A summary of the documentation is presented as our [project poster](https://drive.google.com/file/d/1CGu4T8KHQxMVlKYjaHPzs1KFxtaJxETo/view?usp=sharing). To understand how Track My Day works, you can [watch the project demo video](https://youtu.be/0sXy3uWyvM4). Additionally, you can [view our project log](https://docs.google.com/document/d/1lzUOJ71JTVQP_y-cWFw_vw1JclCSUFteBu6YtgPo6-A/edit) to know the working hours and allocated tasks for each member. If you are interested in our journey of creating Track My Day app and participating in Orbital, you can [read our blog post](https://medium.com/@lihuicham/our-journey-of-creating-a-mobile-app-11968f0ccb93). Alternatively, you can view all Orbital submission files in the About Us page in Track My Day app. 
+We welcome you to [download]() Track My Day on your mobile device and hope you enjoy the app's experience. A summary of the documentation is presented as our [project poster](https://drive.google.com/file/d/1CGu4T8KHQxMVlKYjaHPzs1KFxtaJxETo/view?usp=sharing). To understand how Track My Day works, you can [watch the project demo video](https://youtu.be/0sXy3uWyvM4). Additionally, you can [view our project log](https://docs.google.com/document/d/1lzUOJ71JTVQP_y-cWFw_vw1JclCSUFteBu6YtgPo6-A/edit) to know the working hours and allocated tasks for each member. If you are interested in our journey of creating Track My Day app and participating in Orbital, you can [read our blog post](https://medium.com/@lihuicham/our-journey-of-creating-a-mobile-app-11968f0ccb93). Alternatively, you can view all Orbital submission files in the About Us page in Track My Day app.  
+
+Thank you. 
 
 By Cham Li Hui & Pwint Thiri Ko, July 2022. 
 
